@@ -1,4 +1,4 @@
-package com.example.test.migration;
+package com.example.migration;
 
 import org.hibernate.Session;
 

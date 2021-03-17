@@ -1,12 +1,11 @@
-package com.example.test;
+package com.example;
 
-import com.example.test.migration.Migration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestApplication {
+public class Server {
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(Server.class, args);
     }
 }

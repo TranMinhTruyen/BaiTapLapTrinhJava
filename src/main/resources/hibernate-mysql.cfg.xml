@@ -29,8 +29,8 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
 
-        <mapping class="com.example.test.entity.Student" />
-        <mapping class="com.example.test.entity.Khoa" />
+        <mapping class="com.example.entity.Student" />
+        <mapping class="com.example.entity.Khoa" />
     </session-factory>
 
 </hibernate-configuration>
