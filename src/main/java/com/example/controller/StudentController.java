@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -16,15 +17,21 @@ public class StudentController {
     @Autowired
     private StudentServices studentService;
 
-    @GetMapping("student/all")
-    public ResponseEntity<List<Student>> getAll(){
-        List<Student> listStudent = studentService.getAllStudent();
-        return new ResponseEntity<List<Student>>(listStudent, HttpStatus.OK);
+    @GetMapping("student/getAllStudent/name={name}")
+    public ResponseEntity<List<Student>> getAll(@PathVariable("name") String name){
+        List<Student> listStudent = studentService.getAllStudent(name);
+        return new ResponseEntity<>(listStudent, HttpStatus.OK);
     }
 
-    @GetMapping("student/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable("id") long id){
-        Student std = studentService.getStudent(id);
-        return new ResponseEntity<>(std, HttpStatus.OK);
-    }
+//    @GetMapping("student/getStudentbyId/{id}")
+//    public ResponseEntity<Optional<Student>> getStudentbyId(@PathVariable("id") long id){
+//        Optional<Student> student = studentService.getStudentById(id);
+//        return new ResponseEntity<>(student, HttpStatus.OK);
+//    }
+//
+//    @DeleteMapping("student/deleteByStudent/{id}")
+//    public ResponseEntity<Boolean> deleteStudenById(@PathVariable("id") long id){
+//        Boolean res = studentService.deleteStudentById(id);
+//        return new ResponseEntity<>(res, HttpStatus.OK);
+//    }
 }
