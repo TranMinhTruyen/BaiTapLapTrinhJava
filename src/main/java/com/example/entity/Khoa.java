@@ -9,27 +9,19 @@ import java.util.*;
 public class Khoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="khoa")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="khoa_id")
     private Set<Student> listSV;
-
-    public Set<Student> getListSV() {
-        return listSV;
-    }
-
-    public void setListSV(Set<Student> listSV) {
-        this.listSV = listSV;
-    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

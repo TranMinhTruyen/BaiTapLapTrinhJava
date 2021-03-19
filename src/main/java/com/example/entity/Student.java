@@ -6,6 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "sinhvien")
 public class Student implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mssv;
@@ -20,8 +21,8 @@ public class Student implements Serializable {
     private String gender;
 
     @ManyToOne()
-    @JoinColumn(name = "khoa_id")
-    private Khoa khoa;
+    @JoinColumn(name = "khoa_id", nullable = false)
+    private Khoa khoa_id;
 
     public long getMssv() {
         return mssv;
@@ -55,12 +56,7 @@ public class Student implements Serializable {
         this.gender = gender;
     }
 
-
-    public String getKhoa() {
-        return khoa.getName();
-    }
-
-    public void setKhoa(long khoa) {
-        this.khoa.setId(khoa) ;
+    public String getKhoa_id() {
+        return khoa_id.getName();
     }
 }

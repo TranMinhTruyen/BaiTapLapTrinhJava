@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long>{
-    List<Student> findAllByKhoa_Name(String name);
+    Student findStudentByMssv(long id);
 }
