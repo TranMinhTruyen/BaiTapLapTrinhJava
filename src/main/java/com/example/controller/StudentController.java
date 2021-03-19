@@ -2,17 +2,15 @@ package com.example.controller;
 
 import com.example.service.StudentServices;
 import com.example.entity.Student;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.AbstractJsonParser;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+@Tag(name = "Student")
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/student")

@@ -1,9 +1,9 @@
 package com.example.controller;
 
 import com.example.entity.Khoa;
-import com.example.entity.Student;
 import com.example.service.KhoaServices;
-import com.example.service.StudentServices;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Khoa")
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/khoa")
 public class KhoaController {
+
     @Autowired
     private KhoaServices khoaServices;
     private String message;
