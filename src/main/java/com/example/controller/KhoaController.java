@@ -3,6 +3,10 @@ package com.example.controller;
 import com.example.entity.Khoa;
 import com.example.service.KhoaServices;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,17 +22,18 @@ import java.util.List;
 public class KhoaController {
 
     @Autowired
+
     private KhoaServices khoaServices;
     private String message;
-
     /*
     Tạo mới 1 khoa
      */
-    @PostMapping("createKhoa")
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @PostMapping(value = "createKhoa", consumes = {"application/json"})
     public ResponseEntity<?> createKhoa(@RequestBody Khoa khoa){
         Khoa dataKhoa = khoaServices.addKhoa(khoa);
         if (dataKhoa != null){
-            return new ResponseEntity<Khoa>(dataKhoa, HttpStatus.OK);
+            return new ResponseEntity<>(dataKhoa, HttpStatus.OK);
         }
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -37,17 +42,20 @@ public class KhoaController {
     /*
     Lấy tất cả khoa
      */
-    @GetMapping("getAllKhoa")
-    public ResponseEntity<List<Khoa>> getKhoatbyId(){
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getAllKhoa")
+    public ResponseEntity<List<Khoa>> getAllKhoa(){
         List<Khoa> listKhoa = khoaServices.getAllKhoa();
         return new ResponseEntity<>(listKhoa, HttpStatus.OK);
     }
 
+
     /*
     Lấy khoa theo id
      */
-    @GetMapping("getKhoaById/id={id}")
-    public ResponseEntity<?> getStudentById(@PathVariable("id") int id){
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getKhoaById/id={id}")
+    public ResponseEntity<?> getKhoaById(@PathVariable("id") int id){
         Khoa khoa = khoaServices.getKhoaById(id);
         if (khoa != null)
             return new ResponseEntity<>(khoa, HttpStatus.OK);
@@ -57,11 +65,13 @@ public class KhoaController {
         }
     }
 
+
     /*
     Cập nhật khoa theo id
      */
-    @PutMapping("updateStudent/id={id}")
-    public ResponseEntity<?> updateStudent(@PathVariable("id") int id, @RequestBody Khoa khoa){
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @PutMapping(value = "updateKhoa/id={id}", consumes = {"application/json"})
+    public ResponseEntity<?> updateKhoa(@PathVariable("id") int id, @RequestBody Khoa khoa){
         Khoa dataKhoa = khoaServices.updateKhoa(id, khoa);
         if (dataKhoa != null)
             return new ResponseEntity<>(dataKhoa, HttpStatus.OK);
@@ -71,11 +81,13 @@ public class KhoaController {
         }
     }
 
+
     /*
-    Xóa sinh viên theo mssv
+    Xóa khoa theo id
      */
-    @DeleteMapping("deleteByStudent/id={id}")
-    public ResponseEntity<Boolean> deleteStudenById(@PathVariable("id") int id){
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @DeleteMapping(value = "deleteKhoaById/id={id}")
+    public ResponseEntity<Boolean> deleteKhoaById(@PathVariable("id") int id){
         Boolean res = khoaServices.deleteKhoaById(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
