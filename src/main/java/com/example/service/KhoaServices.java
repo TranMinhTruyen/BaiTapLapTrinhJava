@@ -1,7 +1,9 @@
 package com.example.service;
 
+import com.example.config.HibernateUtils;
 import com.example.entity.Khoa;
 import com.example.repository.KhoaReponsitory;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +18,21 @@ public class KhoaServices {
     Thêm khoa
      */
     public Khoa addKhoa(Khoa khoa){
-        return khoaReponsitory.save(khoa);
+        return khoaReponsitory.addKhoa(khoa);
     }
 
     /*
     Lấy tất cả khoa
      */
-    public List<Khoa> getAllKhoa() {
-        return khoaReponsitory.findAll();
+    public List getAllKhoa() {
+        return khoaReponsitory.getAllKhoa();
     }
 
     /*
     Lấy khoa theo id
      */
     public Khoa getKhoaById(int id) {
-        return khoaReponsitory.findKhoaById(id);
+        return khoaReponsitory.getKhoaById(id);
     }
 
     /*
@@ -39,9 +41,7 @@ public class KhoaServices {
     public Khoa updateKhoa(int id, Khoa khoa){
         Khoa dataKhoa = getKhoaById(id);
         if (dataKhoa != null) {
-            dataKhoa.setName(khoa.getName());
-            khoaReponsitory.save(dataKhoa);
-            return dataKhoa;
+            return khoaReponsitory.updateKhoaById(khoa,id);
         }
         else {
             return null;
@@ -53,7 +53,7 @@ public class KhoaServices {
      */
     public boolean deleteKhoaById(int id) {
         if (getKhoaById(id) != null){
-            khoaReponsitory.deleteById(id);
+            khoaReponsitory.deleteKhoaById(id);
             return true;
         }
         else

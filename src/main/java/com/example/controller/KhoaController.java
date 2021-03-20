@@ -22,9 +22,9 @@ import java.util.List;
 public class KhoaController {
 
     @Autowired
-
     private KhoaServices khoaServices;
     private String message;
+
     /*
     Tạo mới 1 khoa
      */

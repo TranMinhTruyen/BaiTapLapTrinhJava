@@ -1,8 +1,82 @@
 package com.example.repository;
 
+import com.example.config.HibernateUtils;
 import com.example.entity.Khoa;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-public interface KhoaReponsitory extends JpaRepository<Khoa, Integer> {
-    Khoa findKhoaById(int id);
+import javax.persistence.Query;
+import javax.persistence.criteria.*;
+import java.util.List;
+
+@Repository
+public class KhoaReponsitory {
+
+    public List getAllKhoa(){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Khoa> query = builder.createQuery(Khoa.class);
+            Root<Khoa> root = query.from(Khoa.class);
+            query = query.select(root);
+            Query q = session.createQuery(query);
+            return q.getResultList();
+        }
+    }
+
+
+    public Khoa addKhoa(Khoa khoa){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            if (khoa != null){
+                session.beginTransaction();
+                session.save(khoa);
+                session.getTransaction().commit();
+                return khoa;
+            }
+            else
+                return null;
+        }
+    }
+
+
+    public Khoa getKhoaById(int id){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Khoa> query = builder.createQuery(Khoa.class);
+            Root<Khoa> root = query.from(Khoa.class);
+
+            query = query.select(root).where(builder.equal(root.get("id").as(String.class),id));
+            return session.createQuery(query).getSingleResult();
+        }
+    }
+
+
+    public Khoa updateKhoaById(Khoa khoa, int id){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaUpdate<Khoa> criteriaUpdate = builder.createCriteriaUpdate(Khoa.class);
+            Root<Khoa> root = criteriaUpdate.from(Khoa.class);
+
+            criteriaUpdate.set("name",khoa.getName()).where(builder.equal(root.get("id").as(String.class),id));
+
+            session.beginTransaction();
+            session.createQuery(criteriaUpdate).executeUpdate();
+            session.getTransaction().commit();
+            return khoa;
+        }
+    }
+
+
+    public void deleteKhoaById(int id){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaDelete<Khoa> criteriaDelete = builder.createCriteriaDelete(Khoa.class);
+            Root<Khoa> root = criteriaDelete.from(Khoa.class);
+
+            criteriaDelete.where(builder.equal(root.get("id").as(String.class),id));
+
+            session.beginTransaction();
+            session.createQuery(criteriaDelete).executeUpdate();
+            session.getTransaction().commit();
+        }
+    }
 }

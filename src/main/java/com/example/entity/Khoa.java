@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -14,10 +16,11 @@ public class Khoa implements Serializable {
     @Column
     private String name;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy="khoa_id")
-    private Set<Student> listSV;
+    private List<Student> listSV;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
