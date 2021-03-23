@@ -2,6 +2,7 @@ package com.example.repository;
 
 import com.example.config.HibernateUtils;
 import com.example.entity.Khoa;
+import com.example.entity.Student;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -69,14 +70,31 @@ public class KhoaReponsitory {
     public void deleteKhoaById(int id){
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaDelete<Khoa> criteriaDelete = builder.createCriteriaDelete(Khoa.class);
-            Root<Khoa> root = criteriaDelete.from(Khoa.class);
+            CriteriaDelete<Khoa> criteriaDeleteK = builder.createCriteriaDelete(Khoa.class);
+            CriteriaDelete<Student> criteriaDeleteS = builder.createCriteriaDelete(Student.class);
+            Root<Khoa> rootK = criteriaDeleteK.from(Khoa.class);
+            Root<Student> rootS= criteriaDeleteS.from(Student.class);
 
-            criteriaDelete.where(builder.equal(root.get("id").as(String.class),id));
+            criteriaDeleteK.where(builder.equal(rootK.get("id").as(String.class),id));
+            criteriaDeleteS.where(builder.equal(rootS.get("khoa"),id));
 
             session.beginTransaction();
-            session.createQuery(criteriaDelete).executeUpdate();
+            session.createQuery(criteriaDeleteS).executeUpdate();
+            session.createQuery(criteriaDeleteK).executeUpdate();
             session.getTransaction().commit();
+        }
+    }
+
+
+    public List<Object[]> getSinhVienByKhoa (int id){
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Object[]> query = builder.createQuery(Object[].class);
+
+            Root<Khoa> root = query.from(Khoa.class);
+
+            query = query.select(root.get("listSV")).where(builder.equal(root.get("id").as(String.class),id));
+            return session.createQuery(query).getResultList();
         }
     }
 }

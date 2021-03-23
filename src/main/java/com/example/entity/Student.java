@@ -22,7 +22,7 @@ public class Student implements Serializable {
 
     @ManyToOne()
     @JoinColumn(name = "khoa_id", nullable = false)
-    private Khoa khoa_id;
+    private Khoa khoa;
 
     public long getMssv() {
         return mssv;
@@ -56,7 +56,7 @@ public class Student implements Serializable {
         this.gender = gender;
     }
 
-    public String getKhoa_id() {
-        return khoa_id.getName();
+    public String getKhoa() {
+        return khoa.getName();
     }
 }

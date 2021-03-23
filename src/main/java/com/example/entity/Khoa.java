@@ -17,7 +17,7 @@ public class Khoa implements Serializable {
     private String name;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="khoa_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="khoa")
     private List<Student> listSV;
 
     public int getId() {
@@ -34,5 +34,13 @@ public class Khoa implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Student> getListSV() {
+        return listSV;
+    }
+
+    public void setListSV(List<Student> listSV) {
+        this.listSV = listSV;
     }
 }

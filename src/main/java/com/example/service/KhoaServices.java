@@ -1,9 +1,7 @@
 package com.example.service;
 
-import com.example.config.HibernateUtils;
 import com.example.entity.Khoa;
 import com.example.repository.KhoaReponsitory;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +56,10 @@ public class KhoaServices {
         }
         else
             return false;
+    }
+
+
+    public List<Object[]> getSinhVienByKhoa(int id){
+        return khoaReponsitory.getSinhVienByKhoa(id);
     }
 }

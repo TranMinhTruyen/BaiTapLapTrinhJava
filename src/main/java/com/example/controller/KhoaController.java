@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.Khoa;
+import com.example.entity.Student;
 import com.example.service.KhoaServices;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -76,7 +77,7 @@ public class KhoaController {
         if (dataKhoa != null)
             return new ResponseEntity<>(dataKhoa, HttpStatus.OK);
         else {
-            message = "Không tìm thấy sinh viên có MSSV: " + id;
+            message = "Không tìm thấy khoa có id: " + id;
             return new ResponseEntity<>(message,HttpStatus.NOT_FOUND);
         }
     }
@@ -90,5 +91,21 @@ public class KhoaController {
     public ResponseEntity<Boolean> deleteKhoaById(@PathVariable("id") int id){
         Boolean res = khoaServices.deleteKhoaById(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+
+    /*
+    Lấy Student theo id Khoa
+     */
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getStudentKhoaById/id={id}")
+    public ResponseEntity<?> getStudentKhoaById(@PathVariable("id") int  id){
+        List<Object[]> students = khoaServices.getSinhVienByKhoa(id);
+        if (students != null)
+            return new ResponseEntity<>(students, HttpStatus.OK);
+        else {
+            message = "Không tìm thấy khoa có id: " + id;
+            return new ResponseEntity<>(message,HttpStatus.NOT_FOUND);
+        }
     }
 }
