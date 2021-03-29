@@ -15,6 +15,7 @@ public class Migration {
     public static void dropDataBase(SchemaExport export, Metadata metadata){
         EnumSet<TargetType> targetTypes = EnumSet.of(TargetType.DATABASE);
         export.drop(targetTypes, metadata);
+        System.out.println("Drop Ok");
     }
 
     public static void createDataBase(SchemaExport export, Metadata metadata){

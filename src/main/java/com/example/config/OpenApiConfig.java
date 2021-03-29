@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Truyen Application API")
+                        .title("Quan Ly Nha Hang Application API")
                         .description("OpenAPI 3.0")
                         .contact(new Contact()
                                 .email("tranminhtruyen1410@gmail.com")
