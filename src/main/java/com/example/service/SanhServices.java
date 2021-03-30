@@ -1,10 +1,12 @@
 package com.example.service;
 
-import com.example.entity.Sanh;
+import com.example.comon.entity.Sanh;
 
-import java.util.List;
 
 public interface SanhServices {
-    List <Sanh> getAllSanh();
+    Object getAllSanh(int page, int size);
+    Object getSanhByKeyword(int page, int size, String keyword);
     Sanh createSanh(Sanh sanh);
+    Sanh updateSanh(int id, Sanh sanh);
+    boolean deleteSanhById(int id);
 }

@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.comon.config;
 
 
 import org.hibernate.SessionFactory;

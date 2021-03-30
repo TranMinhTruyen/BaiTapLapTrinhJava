@@ -1,4 +1,4 @@
-package com.example.migration;
+package com.example.comon.migration;
 
 
 import org.hibernate.boot.Metadata;

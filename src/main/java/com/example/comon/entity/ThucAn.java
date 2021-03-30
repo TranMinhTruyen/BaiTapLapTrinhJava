@@ -1,15 +1,14 @@
-package com.example.entity;
+package com.example.comon.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
-
+import java.util.List;
 
 @Entity
-@Table(name = "sanh")
-public class Sanh implements Serializable {
+@Table(name = "thucan")
+public class ThucAn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +18,12 @@ public class Sanh implements Serializable {
     @Column(name = "TEN")
     private String ten;
 
-    @JsonProperty("giatien")
-    @Column(name = "GIATIEN")
+    @Column(name = "GIA_TIEN")
     private BigDecimal giaTien;
 
-    @JsonProperty("sochongoi")
-    @Column(name = "SOCHONGOI")
-    private int soChoNgoi;
-
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY,mappedBy="sanh")
-    private Tiec tiec;
+    @OneToMany(mappedBy = "thucAn")
+    private List<Menu> menu;
 
     public int getId() {
         return id;
@@ -55,19 +49,11 @@ public class Sanh implements Serializable {
         this.giaTien = giaTien;
     }
 
-    public int getSoChoNgoi() {
-        return soChoNgoi;
+    public List<Menu> getMenu() {
+        return menu;
+    }
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
     }
 
-    public void setSoChoNgoi(int soChoNgoi) {
-        this.soChoNgoi = soChoNgoi;
-    }
-
-    public Tiec getTiec() {
-        return tiec;
-    }
-
-    public void setTiec(Tiec tiec) {
-        this.tiec = tiec;
-    }
 }

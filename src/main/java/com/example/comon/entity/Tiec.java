@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.comon.entity;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -45,13 +45,8 @@ public class Tiec implements Serializable {
     private List<PhanHoi> phanHois;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "DANHSACHNHANVIEN",
-            joinColumns = @JoinColumn(name = "TIEC_ID"),
-            inverseJoinColumns = @JoinColumn(name = "NHANVIEN_ID")
-    )
-    private List<NhanVien> nhanViens;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="tiec")
+    private List<DanhSachNhanVien> nhanViens;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy="tiec")
@@ -113,14 +108,6 @@ public class Tiec implements Serializable {
         this.phanHois = phanHois;
     }
 
-    public List<NhanVien> getNhanViens() {
-        return nhanViens;
-    }
-
-    public void setNhanViens(List<NhanVien> nhanViens) {
-        this.nhanViens = nhanViens;
-    }
-
     public List<Menu> getMenu() {
         return menu;
     }
@@ -135,5 +122,13 @@ public class Tiec implements Serializable {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public List<DanhSachNhanVien> getNhanViens() {
+        return nhanViens;
+    }
+
+    public void setNhanViens(List<DanhSachNhanVien> nhanViens) {
+        this.nhanViens = nhanViens;
     }
 }

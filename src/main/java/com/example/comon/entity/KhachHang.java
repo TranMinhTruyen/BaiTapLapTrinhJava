@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.comon.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,9 +30,11 @@ public class KhachHang implements Serializable {
     @Column(name = "NGAY_SINH")
     private Date ngaySinh;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy="khachHang")
     private List<Tiec> tiecList;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, mappedBy="khachHang")
     private PhanHoi phanHoi;
 
@@ -84,22 +86,18 @@ public class KhachHang implements Serializable {
         this.ngaySinh = ngaySinh;
     }
 
-    @JsonIgnore
     public List<Tiec> getTiecList() {
         return tiecList;
     }
 
-    @JsonIgnore
     public void setTiecList(List<Tiec> tiecList) {
         this.tiecList = tiecList;
     }
 
-    @JsonIgnore
     public PhanHoi getPhanHoi() {
         return phanHoi;
     }
 
-    @JsonIgnore
     public void setPhanHoi(PhanHoi phanHoi) {
         this.phanHoi = phanHoi;
     }

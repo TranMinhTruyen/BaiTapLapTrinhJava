@@ -20,13 +20,14 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <mapping class="com.example.entity.Sanh" />
-        <mapping class="com.example.entity.Tiec" />
-        <mapping class="com.example.entity.KhachHang" />
-        <mapping class="com.example.entity.ThucAn" />
-        <mapping class="com.example.entity.PhanHoi" />
-        <mapping class="com.example.entity.NhanVien" />
-        <mapping class="com.example.entity.Menu" />
+        <mapping class="com.example.comon.entity.Sanh" />
+        <mapping class="com.example.comon.entity.Tiec" />
+        <mapping class="com.example.comon.entity.KhachHang" />
+        <mapping class="com.example.comon.entity.ThucAn" />
+        <mapping class="com.example.comon.entity.PhanHoi" />
+        <mapping class="com.example.comon.entity.NhanVien" />
+        <mapping class="com.example.comon.entity.Menu" />
+        <mapping class="com.example.comon.entity.DanhSachNhanVien" />
     </session-factory>
 
 </hibernate-configuration>

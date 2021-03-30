@@ -1,12 +1,11 @@
 package com.example.service.ServicesImplement;
 
-import com.example.entity.Sanh;
+import com.example.comon.responsebody.ResponseObject;
+import com.example.comon.entity.Sanh;
 import com.example.repository.SanhRepository;
 import com.example.service.SanhServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class SanhServicesImp implements SanhServices {
@@ -16,12 +15,59 @@ public class SanhServicesImp implements SanhServices {
 
 
     @Override
-    public List<Sanh> getAllSanh() {
-        return sanhRepository.getAllSanh();
+    public Object getAllSanh(int page, int size) {
+        ResponseObject result = new ResponseObject();
+        int offset = (page - 1) * size;
+        int total = sanhRepository.getAllSanh().size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = sanhRepository.getAllSanh().stream().skip(offset).limit(size).toArray();
+        result.setData(data);
+        result.setTotalPage(totalPage);
+        result.setTotalRecord(total);
+        result.setPage(page);
+        result.setSize(size);
+        return result;
+    }
+
+    @Override
+    public Object getSanhByKeyword(int page, int size, String keyword) {
+        ResponseObject result = new ResponseObject();
+        int offset = (page - 1) * size;
+        int total = sanhRepository.getSanhByKeyWord(keyword).size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = sanhRepository.getSanhByKeyWord(keyword).stream().skip(offset).limit(size).toArray();
+        result.setData(data);
+        result.setTotalPage(totalPage);
+        result.setTotalRecord(total);
+        result.setPage(page);
+        result.setSize(size);
+        return result;
     }
 
     @Override
     public Sanh createSanh(Sanh sanh) {
         return sanhRepository.createSanh(sanh);
+    }
+
+    @Override
+    public Sanh updateSanh(int id, Sanh sanh) {
+        Sanh result = sanhRepository.getSanhById(id);
+        if (result != null) {
+            sanhRepository.updateSanh(id, sanh);
+            return sanh;
+        }
+        else
+            return null;
+    }
+
+    @Override
+    public boolean deleteSanhById(int id) {
+        Sanh result = sanhRepository.getSanhById(id);
+        if (result != null) {
+            sanhRepository.deleteSanhById(id);
+            return true;
+        }
+        else
+            return false;
     }
 }

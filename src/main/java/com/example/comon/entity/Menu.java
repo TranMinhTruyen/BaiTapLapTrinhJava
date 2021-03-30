@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.comon.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,24 +31,20 @@ public class Menu {
         this.id = id;
     }
 
-    @JsonIgnore
-    public Tiec getTiec() {
-        return tiec;
+    public int getTiec() {
+        return tiec.getId();
     }
 
-    @JsonIgnore
-    public void setTiec(Tiec tiec) {
-        this.tiec = tiec;
+    public void setTiec(int id) {
+        this.tiec.setId(id);
     }
 
-    @JsonIgnore
-    public ThucAn getThucAn() {
-        return thucAn;
+    public int getThucAn() {
+        return thucAn.getId();
     }
 
-    @JsonIgnore
-    public void setThucAn(ThucAn thucAn) {
-        this.thucAn = thucAn;
+    public void setThucAn(int id) {
+        this.thucAn.setId(id);
     }
 
     public int getSoLuong() {
