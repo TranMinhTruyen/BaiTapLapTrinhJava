@@ -5,29 +5,25 @@
 
 <hibernate-configuration>
     <session-factory>
-        <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/nhahang?createDatabaseIfNotExist=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8</property>
         <property name="connection.username">root</property>
         <property name="connection.password">123456</property>
 
-        <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
 
-        <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
 
-        <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-        <mapping class="com.example.comon.entity.Sanh" />
-        <mapping class="com.example.comon.entity.Tiec" />
-        <mapping class="com.example.comon.entity.KhachHang" />
-        <mapping class="com.example.comon.entity.ThucAn" />
-        <mapping class="com.example.comon.entity.PhanHoi" />
-        <mapping class="com.example.comon.entity.NhanVien" />
-        <mapping class="com.example.comon.entity.Menu" />
-        <mapping class="com.example.comon.entity.DanhSachNhanVien" />
+        <mapping class="com.example.common.entity.Sanh" />
+        <mapping class="com.example.common.entity.Tiec" />
+        <mapping class="com.example.common.entity.KhachHang" />
+        <mapping class="com.example.common.entity.ThucAn" />
+        <mapping class="com.example.common.entity.PhanHoi" />
+        <mapping class="com.example.common.entity.NhanVien" />
+        <mapping class="com.example.common.entity.Menu" />
+        <mapping class="com.example.common.entity.DanhSachNhanVien" />
     </session-factory>
 
 </hibernate-configuration>

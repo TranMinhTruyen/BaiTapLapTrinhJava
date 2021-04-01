@@ -1,7 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
-import com.example.comon.config.HibernateUtils;
-import com.example.comon.entity.Sanh;
+import com.example.common.config.HibernateUtils;
+import com.example.common.entity.Sanh;
 import com.example.repository.SanhRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -60,14 +60,14 @@ public class SanhRepositoryImp implements SanhRepository {
     }
 
     @Override
-    public Sanh updateSanh(int id, Sanh sanh) {
+    public void updateSanh(int id, Sanh sanh) {
         Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Sanh> query = criteriaBuilder.createCriteriaUpdate(Sanh.class);
         Root<Sanh> root = query.from(Sanh.class);
         query.set("ten",sanh.getTen());
-        query.set("soChoNgoi",sanh.getGiaTien());
-        query.set("giaTien",sanh.getSoChoNgoi());
+        query.set("tongSoBan",sanh.getTongSoBan());
+        query.set("giaTien",sanh.getGiaTien());
 
         Predicate p = criteriaBuilder.equal(root.get("id"),id);
         query.where(p);
@@ -76,7 +76,6 @@ public class SanhRepositoryImp implements SanhRepository {
         session.createQuery(query).executeUpdate();
         transaction.commit();
         session.close();
-        return sanh;
     }
 
     @Override
@@ -94,7 +93,7 @@ public class SanhRepositoryImp implements SanhRepository {
     }
 
     @Override
-    public boolean deleteSanhById(int id) {
+    public void deleteSanhById(int id) {
         Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Sanh> query = criteriaBuilder.createCriteriaDelete(Sanh.class);
@@ -107,7 +106,6 @@ public class SanhRepositoryImp implements SanhRepository {
         session.createQuery(query).executeUpdate();
         transaction.commit();
         session.close();
-        return true;
     }
 
 

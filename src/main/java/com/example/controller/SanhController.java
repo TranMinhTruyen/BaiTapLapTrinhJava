@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.comon.entity.Sanh;
+import com.example.common.entity.Sanh;
 import com.example.service.SanhServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,26 +34,18 @@ public class SanhController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-//    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-//    @GetMapping(value = "getAllSanh/{page},{size}")
-//    public ResponseEntity<?> getAllSanh(@PathVariable("page") int page,
-//                                        @PathVariable("size") int size){
-//        Object listSanh = sanhServices.getAllSanh(page, size);
-//        return new ResponseEntity<>(listSanh, HttpStatus.OK);
-//    }
-
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "getSanhByKeyword/{page},{size}")
-    public ResponseEntity<?> getSanhByKeyword(@PathVariable("page") int page,
-                                        @PathVariable("size") int size,
-                                        @RequestParam(required = false) String keyword){
+    @GetMapping(value = "getSanhByKeyword/")
+    public ResponseEntity<?> getSanhByKeyword(@RequestParam int page,
+                                              @RequestParam int size,
+                                              @RequestParam(required = false) String keyword){
         Object listSanh = sanhServices.getSanhByKeyword(page, size, keyword);
         return new ResponseEntity<>(listSanh, HttpStatus.OK);
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @PutMapping(value = "updateSanh/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateSanh(@PathVariable("id") int id, @RequestBody Sanh sanh) {
+    @PutMapping(value = "updateSanh/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateSanh(@RequestParam int id, @RequestBody Sanh sanh) {
         Sanh listSanh = sanhServices.updateSanh(id, sanh);
         if (listSanh != null)
             return new ResponseEntity<>(listSanh, HttpStatus.OK);
@@ -62,12 +54,20 @@ public class SanhController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @DeleteMapping(value = "deleteSanh/{id}")
-    public ResponseEntity<?> updateSanh(@PathVariable("id") int id) {
+    @DeleteMapping(value = "deleteSanh/")
+    public ResponseEntity<?> updateSanh(@RequestParam int id) {
         boolean listSanh = sanhServices.deleteSanhById(id);
         if (listSanh)
             return new ResponseEntity<>(listSanh, HttpStatus.OK);
         else
             return new ResponseEntity<>("Not found", HttpStatus.OK);
     }
+
+    //    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+//    @GetMapping(value = "getAllSanh/")
+//    public ResponseEntity<?> getAllSanh(@RequestParam int page,
+//                                        @RequestParam int size){
+//        Object listSanh = sanhServices.getAllSanh(page, size);
+//        return new ResponseEntity<>(listSanh, HttpStatus.OK);
+//    }
 }

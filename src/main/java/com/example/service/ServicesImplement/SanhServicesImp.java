@@ -1,7 +1,7 @@
 package com.example.service.ServicesImplement;
 
-import com.example.comon.responsebody.ResponseObject;
-import com.example.comon.entity.Sanh;
+import com.example.common.wrapper.CommonResponse;
+import com.example.common.entity.Sanh;
 import com.example.repository.SanhRepository;
 import com.example.service.SanhServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +13,9 @@ public class SanhServicesImp implements SanhServices {
     @Autowired
     private SanhRepository sanhRepository;
 
-
-    @Override
-    public Object getAllSanh(int page, int size) {
-        ResponseObject result = new ResponseObject();
-        int offset = (page - 1) * size;
-        int total = sanhRepository.getAllSanh().size();
-        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
-        Object[] data = sanhRepository.getAllSanh().stream().skip(offset).limit(size).toArray();
-        result.setData(data);
-        result.setTotalPage(totalPage);
-        result.setTotalRecord(total);
-        result.setPage(page);
-        result.setSize(size);
-        return result;
-    }
-
     @Override
     public Object getSanhByKeyword(int page, int size, String keyword) {
-        ResponseObject result = new ResponseObject();
+        CommonResponse result = new CommonResponse();
         int offset = (page - 1) * size;
         int total = sanhRepository.getSanhByKeyWord(keyword).size();
         int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
@@ -70,4 +54,19 @@ public class SanhServicesImp implements SanhServices {
         else
             return false;
     }
+
+//    @Override
+//    public Object getAllSanh(int page, int size) {
+//        CommonResponse result = new CommonResponse();
+//        int offset = (page - 1) * size;
+//        int total = sanhRepository.getAllSanh().size();
+//        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+//        Object[] data = sanhRepository.getAllSanh().stream().skip(offset).limit(size).toArray();
+//        result.setData(data);
+//        result.setTotalPage(totalPage);
+//        result.setTotalRecord(total);
+//        result.setPage(page);
+//        result.setSize(size);
+//        return result;
+//    }
 }
