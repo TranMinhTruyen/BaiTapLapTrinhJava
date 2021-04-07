@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -33,7 +35,7 @@ public class Tiec implements Serializable {
     private Sanh sanh;
 
     @JacksonInject
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "KHACH_HANG_ID", nullable = true)
     private KhachHang khachHang;
 
@@ -41,16 +43,16 @@ public class Tiec implements Serializable {
     private String trangThai;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="tiec")
-    private List<PhanHoi> phanHois;
+    @OneToMany(mappedBy="tiec")
+    private Set<PhanHoi> phanHois = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="tiec")
-    private List<DanhSachNhanVien> nhanViens;
+    @OneToMany(mappedBy="tiec")
+    private Set<DanhSachNhanVien> nhanViens = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="tiec")
-    private List<Menu> menu;
+    @OneToMany(mappedBy="tiec")
+    private Set<Menu> menu = new HashSet<>();
 
     public int getId() {
         return id;
@@ -100,22 +102,6 @@ public class Tiec implements Serializable {
         this.khachHang = khachHang;
     }
 
-    public List<PhanHoi> getPhanHois() {
-        return phanHois;
-    }
-
-    public void setPhanHois(List<PhanHoi> phanHois) {
-        this.phanHois = phanHois;
-    }
-
-    public List<Menu> getMenu() {
-        return menu;
-    }
-
-    public void setMenu(List<Menu> menu) {
-        this.menu = menu;
-    }
-
     public String getTrangThai() {
         return trangThai;
     }
@@ -124,11 +110,27 @@ public class Tiec implements Serializable {
         this.trangThai = trangThai;
     }
 
-    public List<DanhSachNhanVien> getNhanViens() {
+    public Set<PhanHoi> getPhanHois() {
+        return phanHois;
+    }
+
+    public void setPhanHois(Set<PhanHoi> phanHois) {
+        this.phanHois = phanHois;
+    }
+
+    public Set<DanhSachNhanVien> getNhanViens() {
         return nhanViens;
     }
 
-    public void setNhanViens(List<DanhSachNhanVien> nhanViens) {
+    public void setNhanViens(Set<DanhSachNhanVien> nhanViens) {
         this.nhanViens = nhanViens;
+    }
+
+    public Set<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Set<Menu> menu) {
+        this.menu = menu;
     }
 }

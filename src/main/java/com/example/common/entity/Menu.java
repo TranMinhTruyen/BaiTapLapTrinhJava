@@ -1,25 +1,30 @@
 package com.example.common.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "menu")
-public class Menu {
+public class Menu implements Serializable {
 
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TIEC_ID")
-    private Tiec tiec;
+    private Tiec tiec = new Tiec();
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "THUC_AN_ID")
-    private ThucAn thucAn;
+    private ThucAn thucAn = new ThucAn();
 
     @Column(name = "SOLUONG")
     private int soLuong;
+
+    public Menu() {
+    }
 
     public Long getId() {
         return id;
@@ -27,6 +32,14 @@ public class Menu {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public int getTiec() {
@@ -43,13 +56,5 @@ public class Menu {
 
     public void setThucAn(int id) {
         this.thucAn.setId(id);
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
     }
 }

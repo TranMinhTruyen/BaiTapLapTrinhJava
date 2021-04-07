@@ -15,21 +15,19 @@ import java.util.List;
 @Repository
 public class MenuRepositoryImp implements MenuRepository {
 
+    private final Session session = HibernateUtils.getSessionFactory().openSession();
+
     @Override
     public List getAllMenu() {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Menu> query = criteriaBuilder.createQuery(Menu.class);
         Root<Menu> root = query.from(Menu.class);
         query.select(root);
-        List result = session.createQuery(query).getResultList();
-        session.close();
-        return result;
+        return session.createQuery(query).getResultList();
     }
 
     @Override
     public List<Object> getMenuCuaTiec(int keyword) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Menu> root = query.from(Menu.class);
@@ -49,22 +47,20 @@ public class MenuRepositoryImp implements MenuRepository {
     }
 
     @Override
-    public List createMenu(List<Menu> menus) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
-        if (!menus.isEmpty()){
+    public Menu createMenu(Menu menu) {
+        if (menu != null){
             session.beginTransaction();
-            session.save(menus);
+            session.save(menu);
             session.getTransaction().commit();
-            session.close();
-            return menus;
+            return menu;
         }
         else
+            session.getTransaction().rollback();
             return null;
     }
 
     @Override
     public Boolean isMenuExists(int idTiec, int idThucAn) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Menu> query = criteriaBuilder.createQuery(Menu.class);
         Root<Menu> root = query.from(Menu.class);
@@ -77,14 +73,12 @@ public class MenuRepositoryImp implements MenuRepository {
         Transaction transaction = session.beginTransaction();
         Menu result =  session.createQuery(query).uniqueResult();
         transaction.commit();
-        session.close();
 
         return result != null;
     }
 
     @Override
     public Menu updateSoLuong(int idTiec, int idThucAn, Menu menu) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Menu> query = criteriaBuilder.createCriteriaUpdate(Menu.class);
         Root<Menu> root = query.from(Menu.class);
@@ -98,13 +92,11 @@ public class MenuRepositoryImp implements MenuRepository {
         Transaction transaction = session.beginTransaction();
         session.createQuery(query).executeUpdate();
         transaction.commit();
-        session.close();
         return menu;
     }
 
     @Override
     public void deleteThucAn(int idTiec, int idThucAn) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Menu> query = criteriaBuilder.createCriteriaDelete(Menu.class);
         Root<Menu> root = query.from(Menu.class);
@@ -117,12 +109,10 @@ public class MenuRepositoryImp implements MenuRepository {
         Transaction transaction = session.beginTransaction();
         session.createQuery(query).executeUpdate();
         transaction.commit();
-        session.close();
     }
 
     @Override
     public void deleteMenu(int idTiec) {
-        Session session = HibernateUtils.getSessionFactory().openSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Menu> query = criteriaBuilder.createCriteriaDelete(Menu.class);
         Root<Menu> root = query.from(Menu.class);
@@ -134,6 +124,5 @@ public class MenuRepositoryImp implements MenuRepository {
         Transaction transaction = session.beginTransaction();
         session.createQuery(query).executeUpdate();
         transaction.commit();
-        session.close();
     }
 }

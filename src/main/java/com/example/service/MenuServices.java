@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface MenuServices {
     List getAllMenu();
-    List getMenuCuaTiec(int keyword);
-    List createMenu(List<Menu> menus);
+    Object getMenuCuaTiec(int page, int size, int keyword);
+    Menu createMenu(Menu menu);
     Menu updateSoLuong(int idTiec, int idThucAn, Menu menu);
     Boolean deleteThucAn(int idTiec, int idThucAn);
     Boolean deleteMenu(int idTiec);

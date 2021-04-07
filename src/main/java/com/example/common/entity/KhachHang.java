@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "khachhang")
@@ -34,8 +35,8 @@ public class KhachHang implements Serializable {
     private byte[] hinhAnh;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="khachHang")
-    private List<Tiec> tiecList;
+    @OneToMany(mappedBy="khachHang")
+    private Set<Tiec> tiecList = new HashSet<>();
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, mappedBy="khachHang")
@@ -89,13 +90,6 @@ public class KhachHang implements Serializable {
         this.ngaySinh = ngaySinh;
     }
 
-    public List<Tiec> getTiecList() {
-        return tiecList;
-    }
-
-    public void setTiecList(List<Tiec> tiecList) {
-        this.tiecList = tiecList;
-    }
 
     public PhanHoi getPhanHoi() {
         return phanHoi;
@@ -111,5 +105,13 @@ public class KhachHang implements Serializable {
 
     public void setHinhAnh(byte[] hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public Set<Tiec> getTiecList() {
+        return tiecList;
+    }
+
+    public void setTiecList(Set<Tiec> tiecList) {
+        this.tiecList = tiecList;
     }
 }

@@ -1,10 +1,10 @@
-package com.example.repository;
+package com.example.service;
 
 import com.example.common.entity.Tiec;
 
 import java.util.List;
 
-public interface TiecRepository {
+public interface TiecServices {
     List getAllTiec();
     Tiec getTiecbyId(int id);
 }

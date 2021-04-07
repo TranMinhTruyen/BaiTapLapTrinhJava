@@ -24,6 +24,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="BaiTapLapTrinhJava" value="17baee0a-2a5c-47d0-b13d-3e3247157191" />
           <factory-entry name="entityManagerFactory" value="5355c04b-f98a-45fe-a55c-b469e6d3605d" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -45,12 +46,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/WebApp/ClientApp/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/WebApp/ClientApp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/ClientApp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/ClientApp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/FrontEnd/ClientApp/dist" />
       <excludeFolder url="file://$MODULE_DIR$/FrontEnd/ClientApp/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/WebApp/ClientApp/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/WebApp/ClientApp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="jdk" jdkName="openjdk-16" jdkType="JavaSDK" />
@@ -207,7 +208,5 @@
     <orderEntry type="library" name="Maven: org.glassfish.jaxb:txw2:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.activation:jakarta.activation:1.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.json:json:20180130" level="project" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.18" level="project" />
   </component>
 </module>

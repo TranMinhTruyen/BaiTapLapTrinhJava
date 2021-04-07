@@ -6,8 +6,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+
 @org.springframework.context.annotation.Configuration
 public class HibernateUtils {
+
     private static final SessionFactory FACTORY;
 
     static{

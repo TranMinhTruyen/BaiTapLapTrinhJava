@@ -10,7 +10,14 @@
 F:/HuongDoiTuong/BaiTapLapTrinhJava/src/main/resources/hibernate-mysql.cfg.xml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/nhahang?createDatabaseIfNotExist=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="BaiTapLapTrinhJava/Hibernate" uuid="17baee0a-2a5c-47d0-b13d-3e3247157191">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/nhahang</jdbc-url>
     </data-source>
   </component>
 </project>

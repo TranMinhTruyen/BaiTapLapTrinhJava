@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "nhanvien")
@@ -42,7 +44,7 @@ public class NhanVien implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "nhanVien")
-    private List<DanhSachNhanVien> nhanViens;
+    private Set<DanhSachNhanVien> nhanViens = new HashSet<>();
 
     public int getId() {
         return id;
@@ -108,11 +110,11 @@ public class NhanVien implements Serializable {
         this.chucVu = chucVu;
     }
 
-    public List<DanhSachNhanVien> getNhanViens() {
+    public Set<DanhSachNhanVien> getNhanViens() {
         return nhanViens;
     }
 
-    public void setNhanViens(List<DanhSachNhanVien> nhanViens) {
+    public void setNhanViens(Set<DanhSachNhanVien> nhanViens) {
         this.nhanViens = nhanViens;
     }
 
