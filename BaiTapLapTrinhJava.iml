@@ -209,4 +209,5 @@
     <orderEntry type="library" name="Maven: com.sun.istack:istack-commons-runtime:3.0.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.activation:jakarta.activation:1.2.2" level="project" />
   </component>
+  <component name="POM File Configuration" pomFile="" />
 </module>
