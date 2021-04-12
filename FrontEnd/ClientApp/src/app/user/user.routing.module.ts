@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component'
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './layouts/about/about.component';
+import { PortfolioComponent } from './layouts/portfolio/portfolio.component';
+import { FeedbackComponent } from './layouts/feedback/feedback.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { HomexComponent } from './layouts/homex/homex.component';
 
 const routes: Routes = [
   { path: 'user',
-    component: UserComponent,
+    component: HomeComponent,
     // children:[{
     //   path: 'home',
     //   component: HomeComponent,
     // }]
-  },
-  { path: 'user/home',
-    // redirectTo: 'home',
-    // pathMatch:'full'
-    component: HomeComponent,
   },
 ];
 
@@ -28,12 +27,17 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   exports: [RouterModule],
   declarations: [
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    AboutComponent,
+    PortfolioComponent,
+    FeedbackComponent,
+    FooterComponent,
+    HomexComponent
   ],
 })
 export class UserRoutingModule { }

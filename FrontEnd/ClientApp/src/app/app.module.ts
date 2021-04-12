@@ -11,6 +11,10 @@ import { UserComponent } from './user/user.component';
 import { AdminRoutingModule } from './admin/admin.routing.module';
 import { UserRoutingModule } from './user/user.routing.module';
 import { Notfound404Component } from './notfound404/notfound404.component';
+//
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -25,7 +29,10 @@ import { Notfound404Component } from './notfound404/notfound404.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AdminRoutingModule,
-    UserRoutingModule
+    UserRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
