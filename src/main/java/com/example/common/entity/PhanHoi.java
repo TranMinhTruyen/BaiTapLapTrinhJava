@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "phanhoi")
 public class PhanHoi {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -17,7 +18,6 @@ public class PhanHoi {
     private Tiec tiec;
 
     @OneToOne()
-    @JoinColumn(name = "KHACH_HANG_ID", nullable = true)
     private KhachHang khachHang;
 
     public int getId() {
@@ -36,19 +36,19 @@ public class PhanHoi {
         this.noiDung = noiDung;
     }
 
-    public int getTiec() {
-        return tiec.getId();
+    public Tiec getTiec() {
+        return tiec;
     }
 
-    public void setTiec(int id) {
-        this.tiec.setId(id);
+    public void setTiec(Tiec tiec) {
+        this.tiec = tiec;
     }
 
-    public int getKhachHang() {
-        return khachHang.getId();
+    public KhachHang getKhachHang() {
+        return khachHang;
     }
 
-    public void setKhachHang(int id) {
-        this.khachHang.setId(id);
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
     }
 }

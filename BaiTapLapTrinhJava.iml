@@ -4,6 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
+          <unit-entry name="getSessionFactory" />
           <unit-entry name="hibernate-mysql.cfg.xml" value="fa12f9d7-1834-47fd-9493-33cfebe1b7af" />
         </datasource-map>
         <naming-strategy-map />
@@ -12,6 +13,9 @@
     </facet>
     <facet type="web" name="Web">
       <configuration>
+        <descriptors>
+          <deploymentDescriptor name="weblogic.xml" url="file://$MODULE_DIR$/WEB-INF/weblogic.xml" />
+        </descriptors>
         <webroots />
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
@@ -54,7 +58,7 @@
       <excludeFolder url="file://$MODULE_DIR$/WebApp/ClientApp/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="jdk" jdkName="openjdk-16" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.4.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.4.3" level="project" />

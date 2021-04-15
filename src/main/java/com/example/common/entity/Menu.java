@@ -1,7 +1,11 @@
 package com.example.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "menu")
@@ -10,51 +14,48 @@ public class Menu implements Serializable {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TIEC_ID")
-    private Tiec tiec = new Tiec();
+    @Column(name = "TEN_MENU")
+    private String tenMenu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "THUC_AN_ID")
-    private ThucAn thucAn = new ThucAn();
+    @JsonIgnore
+    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+    private List<Tiec> tiec;
 
-    @Column(name = "SOLUONG")
-    private int soLuong;
+    @JsonIgnore
+    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+    private List<MenuThucAn> menuThucAns = new ArrayList<>();
 
-    public Menu() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getSoLuong() {
-        return soLuong;
+    public String getTenMenu() {
+        return tenMenu;
     }
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+    public void setTenMenu(String tenMenu) {
+        this.tenMenu = tenMenu;
     }
 
-    public int getTiec() {
-        return tiec.getId();
+    public List<Tiec> getTiec() {
+        return tiec;
     }
 
-    public void setTiec(int id) {
-        this.tiec.setId(id);
+    public void setTiec(List<Tiec> tiec) {
+        this.tiec = tiec;
     }
 
-    public int getThucAn() {
-        return thucAn.getId();
+    public List<MenuThucAn> getThucAns() {
+        return menuThucAns;
     }
 
-    public void setThucAn(int id) {
-        this.thucAn.setId(id);
+    public void setThucAns(List<MenuThucAn> menuThucAns) {
+        this.menuThucAns = menuThucAns;
     }
 }

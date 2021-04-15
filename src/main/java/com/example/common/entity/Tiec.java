@@ -1,14 +1,13 @@
 package com.example.common.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Time;
 import java.sql.Date;
-import java.util.HashSet;
+import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -20,39 +19,47 @@ public class Tiec implements Serializable {
     @Column(name = "ID")
     private int id;
 
-    @Column(name = "THOI_GIAN_BAT_DAU")
+    @JsonProperty("ThoiGian")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    @Column(name = "THOIGIAN")
     private Time thoiGianBatDau;
 
-    @Column(name = "NGAY_BAT_DAU")
+    @JsonProperty("NgayToChuc")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @Column(name = "NGAYTOCHUC")
     private Date ngayBatDau;
 
+    @JsonProperty("Loai")
     @Column(name = "LOAI")
     private String loai;
 
-    @JsonIgnore
-    @OneToOne()
-    @JoinColumn(name = "SANH_ID", nullable = true)
+    @JsonProperty("Sanh")
+    @ManyToOne()
+    @JoinColumn(name = "ID_SANH", nullable = true)
     private Sanh sanh;
 
-    @JacksonInject
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "KHACH_HANG_ID", nullable = true)
+    @JsonProperty("ThongTinKhachHang")
+    @ManyToOne()
+    @JoinColumn(name = "ID_KHACHHANG", nullable = true)
     private KhachHang khachHang;
 
+    @JsonProperty("TrangThai")
     @Column(name = "TRANGTHAI")
     private String trangThai;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="tiec")
-    private Set<PhanHoi> phanHois = new HashSet<>();
+    @JsonProperty("PhanHoi")
+    @OneToMany(mappedBy="tiec", fetch = FetchType.LAZY)
+    private List<PhanHoi> phanHoiList;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="tiec")
-    private Set<DanhSachNhanVien> nhanViens = new HashSet<>();
+    @JsonProperty("CaLamViec")
+    @ManyToOne()
+    @JoinColumn(name = "ID_CALAMVIEC")
+    private CaLamViec caLamViec;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="tiec")
-    private Set<Menu> menu = new HashSet<>();
+    @JsonProperty("TenMenu")
+    @ManyToOne()
+    @JoinColumn(name = "ID_MENU")
+    private Menu menu;
 
     public int getId() {
         return id;
@@ -110,27 +117,27 @@ public class Tiec implements Serializable {
         this.trangThai = trangThai;
     }
 
-    public Set<PhanHoi> getPhanHois() {
-        return phanHois;
+    public List<PhanHoi> getPhanHoiList() {
+        return phanHoiList;
     }
 
-    public void setPhanHois(Set<PhanHoi> phanHois) {
-        this.phanHois = phanHois;
+    public void setPhanHoiList(List<PhanHoi> phanHoiList) {
+        this.phanHoiList = phanHoiList;
     }
 
-    public Set<DanhSachNhanVien> getNhanViens() {
-        return nhanViens;
+    public CaLamViec getCaLamViec() {
+        return caLamViec;
     }
 
-    public void setNhanViens(Set<DanhSachNhanVien> nhanViens) {
-        this.nhanViens = nhanViens;
+    public void setCaLamViec(CaLamViec caLamViec) {
+        this.caLamViec = caLamViec;
     }
 
-    public Set<Menu> getMenu() {
+    public Menu getMenu() {
         return menu;
     }
 
-    public void setMenu(Set<Menu> menu) {
+    public void setMenu(Menu menu) {
         this.menu = menu;
     }
 }

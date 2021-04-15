@@ -1,128 +1,84 @@
 package com.example.repository.RepositoryImplement;
 
-import com.example.common.config.HibernateUtils;
 import com.example.common.entity.Menu;
-import com.example.common.entity.ThucAn;
 import com.example.common.wrapper.MenuWrapper;
 import com.example.repository.MenuRepository;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
+@Transactional
 public class MenuRepositoryImp implements MenuRepository {
 
-    private final Session session = HibernateUtils.getSessionFactory().openSession();
+    @Autowired
+    private LocalSessionFactoryBean sessionFactory;
 
     @Override
     public List getAllMenu() {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Menu> query = criteriaBuilder.createQuery(Menu.class);
-        Root<Menu> root = query.from(Menu.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
-    }
-
-    @Override
-    public List<Object> getMenuCuaTiec(int keyword) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Menu> root = query.from(Menu.class);
-
-        Join<Menu, ThucAn> thucAn = root.join("thucAn", JoinType.LEFT);
-        Predicate p = criteriaBuilder.equal(root.get("tiec"),keyword);
-        query.where(p);
         query.select(criteriaBuilder.construct(
                 MenuWrapper.class,
-                thucAn.get("id"),
-                thucAn.get("ten"),
-                thucAn.get("giaTien"),
-                thucAn.get("hinhAnh"),
-                root.get("soLuong")
+                root.get("id"),
+                root.get("tenMenu")
         ));
         return session.createQuery(query).getResultList();
     }
 
     @Override
-    public Menu createMenu(Menu menu) {
-        if (menu != null){
-            session.beginTransaction();
-            session.save(menu);
-            session.getTransaction().commit();
-            return menu;
-        }
-        else
-            session.getTransaction().rollback();
-            return null;
-    }
-
-    @Override
-    public Boolean isMenuExists(int idTiec, int idThucAn) {
+    public Menu getMenuById(long keyword) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Menu> query = criteriaBuilder.createQuery(Menu.class);
         Root<Menu> root = query.from(Menu.class);
-
-        Predicate p1 = criteriaBuilder.equal(root.get("tiec"),idTiec);
-        Predicate p2 = criteriaBuilder.equal(root.get("thucAn"),idThucAn);
-
-        query.where(criteriaBuilder.and(p1,p2));
-
-        Transaction transaction = session.beginTransaction();
-        Menu result =  session.createQuery(query).uniqueResult();
-        transaction.commit();
-
-        return result != null;
+        Predicate p = criteriaBuilder.equal(root.get("id"),keyword);
+        query.where(p);
+        return session.createQuery(query).uniqueResult();
     }
 
     @Override
-    public Menu updateSoLuong(int idTiec, int idThucAn, Menu menu) {
+    public Menu createMenu(Menu menu) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        if (menu != null){
+            session.save(menu);
+            return menu;
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Override
+    public Menu updateMenu(long idMenu, Menu menu) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Menu> query = criteriaBuilder.createCriteriaUpdate(Menu.class);
         Root<Menu> root = query.from(Menu.class);
-        query.set("soLuong",menu.getSoLuong());
+        query.set("tenMenu",menu.getTenMenu());
 
-        Predicate p1 = criteriaBuilder.equal(root.get("tiec"),idTiec);
-        Predicate p2 = criteriaBuilder.equal(root.get("thucAn"),idThucAn);
-
-        query.where(criteriaBuilder.and(p1,p2));
-
-        Transaction transaction = session.beginTransaction();
+        Predicate p = criteriaBuilder.equal(root.get("id"),idMenu);
+        query.where(p);
         session.createQuery(query).executeUpdate();
-        transaction.commit();
+
         return menu;
     }
 
     @Override
-    public void deleteThucAn(int idTiec, int idThucAn) {
+    public void deleteMenu(long idMenu) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Menu> query = criteriaBuilder.createCriteriaDelete(Menu.class);
         Root<Menu> root = query.from(Menu.class);
-
-        Predicate p1 = criteriaBuilder.equal(root.get("tiec"),idTiec);
-        Predicate p2 = criteriaBuilder.equal(root.get("thucAn"),idThucAn);
-
-        query.where(criteriaBuilder.and(p1,p2));
-
-        Transaction transaction = session.beginTransaction();
-        session.createQuery(query).executeUpdate();
-        transaction.commit();
-    }
-
-    @Override
-    public void deleteMenu(int idTiec) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaDelete<Menu> query = criteriaBuilder.createCriteriaDelete(Menu.class);
-        Root<Menu> root = query.from(Menu.class);
-
-        Predicate p = criteriaBuilder.equal(root.get("tiec"),idTiec);
-
+        Predicate p = criteriaBuilder.equal(root.get("id"),idMenu);
         query.where(p);
-
-        Transaction transaction = session.beginTransaction();
         session.createQuery(query).executeUpdate();
-        transaction.commit();
     }
 }

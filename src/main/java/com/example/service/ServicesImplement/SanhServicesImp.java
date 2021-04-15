@@ -1,7 +1,8 @@
 package com.example.service.ServicesImplement;
 
-import com.example.common.wrapper.CommonResponse;
+import com.example.common.response.CommonResponse;
 import com.example.common.entity.Sanh;
+import com.example.common.wrapper.SanhWrapper;
 import com.example.repository.SanhRepository;
 import com.example.service.SanhServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,25 @@ public class SanhServicesImp implements SanhServices {
     }
 
     @Override
-    public Sanh createSanh(Sanh sanh) {
-        return sanhRepository.createSanh(sanh);
+    public SanhWrapper createSanh(SanhWrapper sanh) {
+        Sanh newSanh = new Sanh();
+        newSanh.setTen(sanh.getTenSanh());
+        newSanh.setTen(sanh.getTenSanh());
+        newSanh.setGiaTien(sanh.getGiaTien());
+        newSanh.setTongSoBan(sanh.getSoBan());
+        newSanh.setHinhAnh(sanh.getHinhAnh());
+        Sanh result = sanhRepository.createSanh(newSanh);
+        if(result != null)
+            return sanh;
+        else
+            return null;
     }
 
     @Override
     public Sanh updateSanh(int id, Sanh sanh) {
         Sanh result = sanhRepository.getSanhById(id);
         if (result != null) {
-            sanhRepository.updateSanh(id, sanh);
-            return sanh;
+            return sanhRepository.updateSanh(id, sanh);
         }
         else
             return null;

@@ -1,4 +1,4 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

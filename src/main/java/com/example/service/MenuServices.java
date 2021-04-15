@@ -1,14 +1,13 @@
 package com.example.service;
 
-import com.example.common.entity.Menu;
+import com.example.common.wrapper.MenuWrapper;
 
 import java.util.List;
 
 public interface MenuServices {
     List getAllMenu();
-    Object getMenuCuaTiec(int page, int size, int keyword);
-    Menu createMenu(Menu menu);
-    Menu updateSoLuong(int idTiec, int idThucAn, Menu menu);
-    Boolean deleteThucAn(int idTiec, int idThucAn);
-    Boolean deleteMenu(int idTiec);
+    MenuWrapper getMenuById(long keyword);
+    MenuWrapper createMenu(MenuWrapper menu);
+    MenuWrapper updateMenu(long idMenu, MenuWrapper menu);
+    Boolean deleteMenu(long idMenu);
 }

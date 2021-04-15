@@ -1,14 +1,12 @@
 package com.example.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "thucan")
@@ -36,9 +34,8 @@ public class ThucAn {
     @Column(name = "HINH_ANH")
     private String hinhAnh;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "thucAn")
-    private Set<Menu> menu = new HashSet<>();
+    @OneToMany(mappedBy = "thucAn", fetch = FetchType.LAZY)
+    private List<MenuThucAn> menuthucAns = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -72,11 +69,11 @@ public class ThucAn {
         this.hinhAnh = hinhAnh;
     }
 
-    public Set<Menu> getMenu() {
-        return menu;
+    public List<MenuThucAn> getMenuthucAns() {
+        return menuthucAns;
     }
 
-    public void setMenu(Set<Menu> menu) {
-        this.menu = menu;
+    public void setMenuthucAns(List<MenuThucAn> menuthucAns) {
+        this.menuthucAns = menuthucAns;
     }
 }

@@ -1,13 +1,8 @@
 package com.example.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "nhanvien")
@@ -42,9 +37,9 @@ public class NhanVien implements Serializable {
     @Column(name = "HINH_ANH")
     private byte[] hinhAnh;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "nhanVien")
-    private Set<DanhSachNhanVien> nhanViens = new HashSet<>();
+    @ManyToOne()
+    @JoinColumn(name = "ID_CALAMVIEC")
+    private CaLamViec caLamViec;
 
     public int getId() {
         return id;
@@ -110,19 +105,19 @@ public class NhanVien implements Serializable {
         this.chucVu = chucVu;
     }
 
-    public Set<DanhSachNhanVien> getNhanViens() {
-        return nhanViens;
-    }
-
-    public void setNhanViens(Set<DanhSachNhanVien> nhanViens) {
-        this.nhanViens = nhanViens;
-    }
-
     public byte[] getHinhAnh() {
         return hinhAnh;
     }
 
     public void setHinhAnh(byte[] hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public CaLamViec getCaLamViec() {
+        return caLamViec;
+    }
+
+    public void setCaLamViec(CaLamViec caLamViec) {
+        this.caLamViec = caLamViec;
     }
 }

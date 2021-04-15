@@ -1,12 +1,9 @@
 package com.example.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "khachhang")
@@ -34,12 +31,11 @@ public class KhachHang implements Serializable {
     @Column(name = "HINH_ANH")
     private byte[] hinhAnh;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="khachHang")
-    private Set<Tiec> tiecList = new HashSet<>();
+    @OneToMany(mappedBy="khachHang", fetch = FetchType.LAZY)
+    private List<Tiec> tiecList;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY, mappedBy="khachHang")
+    @OneToOne(mappedBy="khachHang")
+    @JoinColumn(name = "PHAN_HOI_ID", nullable = true)
     private PhanHoi phanHoi;
 
     public int getId() {
@@ -90,15 +86,6 @@ public class KhachHang implements Serializable {
         this.ngaySinh = ngaySinh;
     }
 
-
-    public PhanHoi getPhanHoi() {
-        return phanHoi;
-    }
-
-    public void setPhanHoi(PhanHoi phanHoi) {
-        this.phanHoi = phanHoi;
-    }
-
     public byte[] getHinhAnh() {
         return hinhAnh;
     }
@@ -107,11 +94,19 @@ public class KhachHang implements Serializable {
         this.hinhAnh = hinhAnh;
     }
 
-    public Set<Tiec> getTiecList() {
+    public List<Tiec> getTiecList() {
         return tiecList;
     }
 
-    public void setTiecList(Set<Tiec> tiecList) {
+    public void setTiecList(List<Tiec> tiecList) {
         this.tiecList = tiecList;
+    }
+
+    public PhanHoi getPhanHoi() {
+        return phanHoi;
+    }
+
+    public void setPhanHoi(PhanHoi phanHoi) {
+        this.phanHoi = phanHoi;
     }
 }

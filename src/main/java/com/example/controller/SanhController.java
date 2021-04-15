@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.common.entity.Sanh;
+import com.example.common.wrapper.SanhWrapper;
 import com.example.service.SanhServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -26,8 +26,8 @@ public class SanhController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createSanh", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createSanh(@RequestBody Sanh sanh){
-        Sanh dataSanh = sanhServices.createSanh(sanh);
+    public ResponseEntity<?> createSanh(@RequestBody SanhWrapper sanh){
+        SanhWrapper dataSanh = sanhServices.createSanh(sanh);
         if (dataSanh != null){
             return new ResponseEntity<>(dataSanh, HttpStatus.OK);
         }

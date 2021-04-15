@@ -6,10 +6,8 @@ import java.util.List;
 
 public interface MenuRepository {
     List getAllMenu();
-    List<Object> getMenuCuaTiec(int keyword);
+    Menu getMenuById(long keyword);
     Menu createMenu(Menu menu);
-    Boolean isMenuExists(int idTiec, int idThucAn);
-    Menu updateSoLuong(int idTiec, int idThucAn, Menu menu);
-    void deleteThucAn(int idTiec, int idThucAn);
-    void deleteMenu(int idTiec);
+    Menu updateMenu(long idMenu, Menu menu);
+    void deleteMenu(long idMenu);
 }

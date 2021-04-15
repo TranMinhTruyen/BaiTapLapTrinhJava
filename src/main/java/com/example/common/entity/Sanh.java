@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -31,9 +32,8 @@ public class Sanh implements Serializable {
     @Column(name = "HINH_ANH")
     private String hinhAnh;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY,mappedBy="sanh")
-    private Tiec tiec;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy="sanh")
+    private List<Tiec> tiec;
 
     public int getId() {
         return id;
@@ -59,14 +59,6 @@ public class Sanh implements Serializable {
         this.giaTien = giaTien;
     }
 
-    public Tiec getTiec() {
-        return tiec;
-    }
-
-    public void setTiec(Tiec tiec) {
-        this.tiec = tiec;
-    }
-
     public int getTongSoBan() {
         return tongSoBan;
     }
@@ -81,5 +73,13 @@ public class Sanh implements Serializable {
 
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public List<Tiec> getTiec() {
+        return tiec;
+    }
+
+    public void setTiec(List<Tiec> tiec) {
+        this.tiec = tiec;
     }
 }

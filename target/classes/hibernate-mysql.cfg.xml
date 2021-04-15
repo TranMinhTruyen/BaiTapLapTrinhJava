@@ -10,7 +10,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">1234</property>
 
-        <property name="connection.pool_size">15</property>
+        <property name="connection.pool_size">1</property>
 
         <property name="current_session_context_class">thread</property>
 
@@ -23,7 +23,8 @@
         <mapping class="com.example.common.entity.PhanHoi" />
         <mapping class="com.example.common.entity.NhanVien" />
         <mapping class="com.example.common.entity.Menu" />
-        <mapping class="com.example.common.entity.DanhSachNhanVien" />
+        <mapping class="com.example.common.entity.CaLamViec" />
+        <mapping class="com.example.common.entity.MenuThucAn" />
     </session-factory>
 
 </hibernate-configuration>

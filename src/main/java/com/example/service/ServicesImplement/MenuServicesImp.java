@@ -1,27 +1,25 @@
 package com.example.service.ServicesImplement;
 
 import com.example.common.entity.Menu;
-import com.example.common.wrapper.CommonResponse;
+import com.example.common.wrapper.MenuWrapper;
 import com.example.repository.MenuRepository;
-import com.example.repository.ThucAnRepository;
-import com.example.repository.TiecRepository;
+import com.example.repository.MenuThucAnRepository;
 import com.example.service.MenuServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class MenuServicesImp implements MenuServices {
 
     @Autowired
     private MenuRepository menuRepository;
 
     @Autowired
-    private ThucAnRepository thucAnRepository;
-
-    @Autowired
-    private TiecRepository tiecRepository;
+    private MenuThucAnRepository menuThucAnRepository;
 
     @Override
     public List getAllMenu() {
@@ -29,53 +27,54 @@ public class MenuServicesImp implements MenuServices {
     }
 
     @Override
-    public Object getMenuCuaTiec(int page, int size, int keyword) {
-        CommonResponse result = new CommonResponse();
-        int offset = (page - 1) * size;
-        int total = menuRepository.getMenuCuaTiec(keyword).size();
-        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
-        Object[] data = menuRepository.getMenuCuaTiec(keyword).stream().skip(offset).limit(size).toArray();
-        result.setData(data);
-        result.setTotalPage(totalPage);
-        result.setTotalRecord(total);
-        result.setPage(page);
-        result.setSize(size);
-        return result;
-    }
-
-    @Override
-    public Menu createMenu(Menu menu) {
-        if (tiecRepository.getTiecbyId(menu.getTiec()) != null
-                && thucAnRepository.getThucAnById(menu.getThucAn()) != null){
-            return menuRepository.createMenu(menu);
+    public MenuWrapper getMenuById(long keyword) {
+        Menu result = menuRepository.getMenuById(keyword);
+        if (result != null){
+            MenuWrapper menuWrapper = new MenuWrapper();
+            menuWrapper.setId(result.getId());
+            menuWrapper.setTenMenu(result.getTenMenu());
+            return menuWrapper;
         }
-        else {
-            return null;
-        }
-    }
-
-    @Override
-    public Menu updateSoLuong(int idTiec, int idThucAn, Menu menu) {
-        if (menuRepository.isMenuExists(idTiec,idThucAn))
-            return menuRepository.updateSoLuong(idTiec,idThucAn,menu);
         else
             return null;
     }
 
     @Override
-    public Boolean deleteThucAn(int idTiec, int idThucAn) {
-        if (menuRepository.isMenuExists(idTiec,idThucAn)) {
-            menuRepository.deleteThucAn(idTiec, idThucAn);
-            return true;
-        }
-        else
-            return false;
+    public MenuWrapper createMenu(MenuWrapper menu) {
+
+        Menu var = new Menu();
+        var.setId(menu.getId());
+        var.setTenMenu(menu.getTenMenu());
+        Menu result = menuRepository.createMenu(var);
+
+        MenuWrapper menuWrapper = new MenuWrapper();
+        menuWrapper.setId(result.getId());
+        menuWrapper.setTenMenu(result.getTenMenu());
+        return menuWrapper;
     }
 
     @Override
-    public Boolean deleteMenu(int idTiec) {
-        if (!menuRepository.getMenuCuaTiec(idTiec).isEmpty()) {
-            menuRepository.deleteMenu(idTiec);
+    public MenuWrapper updateMenu(long idMenu, MenuWrapper menu) {
+        Menu var = new Menu();
+        var.setId(menu.getId());
+        var.setTenMenu(menu.getTenMenu());
+        if (menuRepository.getMenuById(idMenu) != null){
+            Menu result = menuRepository.updateMenu(idMenu, var);
+            MenuWrapper menuWrapper = new MenuWrapper();
+            menuWrapper.setId(result.getId());
+            menuWrapper.setTenMenu(result.getTenMenu());
+            return menuWrapper;
+        }
+        else
+            return null;
+    }
+
+
+    @Override
+    public Boolean deleteMenu(long idMenu) {
+        if (menuRepository.getMenuById(idMenu) != null){
+            menuThucAnRepository.deleteByIdMenu(idMenu);
+            menuRepository.deleteMenu(idMenu);
             return true;
         }
         else
