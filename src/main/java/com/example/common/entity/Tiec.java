@@ -1,6 +1,6 @@
 package com.example.common.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -20,12 +20,10 @@ public class Tiec implements Serializable {
     private int id;
 
     @JsonProperty("ThoiGian")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     @Column(name = "THOIGIAN")
     private Time thoiGianBatDau;
 
     @JsonProperty("NgayToChuc")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "NGAYTOCHUC")
     private Date ngayBatDau;
 
@@ -47,6 +45,7 @@ public class Tiec implements Serializable {
     @Column(name = "TRANGTHAI")
     private String trangThai;
 
+    @JsonIgnore
     @JsonProperty("PhanHoi")
     @OneToMany(mappedBy="tiec", fetch = FetchType.LAZY)
     private List<PhanHoi> phanHoiList;
@@ -97,16 +96,20 @@ public class Tiec implements Serializable {
         return sanh;
     }
 
-    public void setSanh(Sanh sanh) {
-        this.sanh = sanh;
+    public void setSanh(int sanh) {
+        Sanh newSanh = new Sanh();
+        newSanh.setId(sanh);
+        this.sanh = newSanh;
     }
 
     public KhachHang getKhachHang() {
         return khachHang;
     }
 
-    public void setKhachHang(KhachHang khachHang) {
-        this.khachHang = khachHang;
+    public void setKhachHang(int khachHang) {
+        KhachHang newKhachHang = new KhachHang();
+        newKhachHang.setId(khachHang);
+        this.khachHang = newKhachHang;
     }
 
     public String getTrangThai() {
@@ -129,15 +132,19 @@ public class Tiec implements Serializable {
         return caLamViec;
     }
 
-    public void setCaLamViec(CaLamViec caLamViec) {
-        this.caLamViec = caLamViec;
+    public void setCaLamViec(int caLamViec) {
+        CaLamViec newCaLamViec = new CaLamViec();
+        newCaLamViec.setId(caLamViec);
+        this.caLamViec = newCaLamViec;
     }
 
     public Menu getMenu() {
         return menu;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setMenu(long menu) {
+        Menu newMenu = new Menu();
+        newMenu.setId(menu);
+        this.menu = newMenu;
     }
 }

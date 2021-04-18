@@ -12,12 +12,12 @@ public class MenuThucAn {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("thucAnId")
     @JoinColumn(name = "thucan_id")
-    private ThucAn thucAn =  new ThucAn();
+    private ThucAn thucAn;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("menuId")
     @JoinColumn(name = "menu_id")
-    private Menu menu = new Menu();
+    private Menu menu;
 
     public MenuThucAnKey getId() {
         return id;
@@ -32,7 +32,9 @@ public class MenuThucAn {
     }
 
     public void setThucAn(int thucAn) {
-        this.thucAn.setId(thucAn);
+        ThucAn newThucAn = new ThucAn();
+        newThucAn.setId(thucAn);
+        this.thucAn = newThucAn;
     }
 
     public long getMenu() {
@@ -40,6 +42,8 @@ public class MenuThucAn {
     }
 
     public void setMenu(long menu) {
-        this.menu.setId(menu);
+        Menu newMenu = new Menu();
+        newMenu.setId(menu);
+        this.menu = newMenu;
     }
 }

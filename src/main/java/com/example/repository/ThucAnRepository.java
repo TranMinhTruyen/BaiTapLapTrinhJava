@@ -8,6 +8,6 @@ public interface ThucAnRepository {
     List getAllThucAn();
     ThucAn createThucAn(ThucAn thucAn);
     ThucAn getThucAnById(int id);
-    ThucAn updateThucAn(int id, ThucAn thucAn);
+    void updateThucAn(int id, ThucAn thucAn);
     void deleteThucAn(int id);
 }

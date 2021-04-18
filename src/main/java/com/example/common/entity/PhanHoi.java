@@ -13,7 +13,7 @@ public class PhanHoi {
     @Column(name = "NOIDUNG")
     private String noiDung;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "TIEC_ID", nullable = true)
     private Tiec tiec;
 

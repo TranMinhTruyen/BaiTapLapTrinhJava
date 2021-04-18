@@ -5,10 +5,10 @@ import com.example.common.entity.Tiec;
 import java.util.List;
 
 public interface TiecRepository {
+    Tiec createTiec(Tiec tiec);
     List getAllTiec();
-    Tiec getTiecbyId(int id);
-    Tiec creatTiec(Tiec tiec);
     List getTiecByKeyword(String keyword);
-    Tiec updateTiec(int id, Tiec tiec);
+    boolean isTiecExist(int id);
+    void updateTiec(int id, Tiec tiec);
     void deleteTiec(int id);
 }

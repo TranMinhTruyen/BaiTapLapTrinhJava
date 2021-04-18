@@ -75,7 +75,7 @@ public class SanhRepositoryImp implements SanhRepository {
     }
 
     @Override
-    public Sanh updateSanh(int id, Sanh sanh) {
+    public void updateSanh(int id, Sanh sanh) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Sanh> query = criteriaBuilder.createCriteriaUpdate(Sanh.class);
@@ -88,7 +88,6 @@ public class SanhRepositoryImp implements SanhRepository {
         query.where(p);
 
         session.createQuery(query).executeUpdate();
-        return sanh;
     }
 
     @Override

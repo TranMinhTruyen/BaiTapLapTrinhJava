@@ -8,6 +8,6 @@ public interface MenuRepository {
     List getAllMenu();
     Menu getMenuById(long keyword);
     Menu createMenu(Menu menu);
-    Menu updateMenu(long idMenu, Menu menu);
+    void updateMenu(long idMenu, Menu menu);
     void deleteMenu(long idMenu);
 }

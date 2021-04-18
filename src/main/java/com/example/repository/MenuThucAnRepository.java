@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MenuThucAnRepository {
     MenuThucAn create(MenuThucAn menuThucAns);
-    List getMenuThucAnByMenuId(long idMenu);
+    List<Object> getListThucAnByMenuId(long idMenu);
     boolean isIdThucAnExist(int idThucAn);
     boolean isIdMenuExist(long idMenu);
     void deleteByIdThucAn(int idThucAn);

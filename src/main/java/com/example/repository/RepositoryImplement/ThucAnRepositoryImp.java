@@ -1,6 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.ThucAn;
+import com.example.common.wrapper.ThucAnWrapper;
 import com.example.repository.ThucAnRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,9 +23,15 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
     public List getAllThucAn() {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<ThucAn> query = criteriaBuilder.createQuery(ThucAn.class);
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<ThucAn> root = query.from(ThucAn.class);
-        query.select(root);
+        query.select(criteriaBuilder.construct(
+                ThucAnWrapper.class,
+                root.get("id"),
+                root.get("ten"),
+                root.get("giaTien"),
+                root.get("hinhAnh")
+        ));
         return session.createQuery(query).getResultList();
     }
 
@@ -54,7 +61,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
 
 
     @Override
-    public ThucAn updateThucAn(int id, ThucAn thucAn) {
+    public void updateThucAn(int id, ThucAn thucAn) {
         Session session = this.sessionFactory.getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<ThucAn> query = criteriaBuilder.createCriteriaUpdate(ThucAn.class);
@@ -68,7 +75,6 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
         query.where(p);
 
         session.createQuery(query).executeUpdate();
-        return thucAn;
     }
 
     @Override

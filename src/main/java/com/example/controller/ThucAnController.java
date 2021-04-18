@@ -1,7 +1,8 @@
 package com.example.controller;
 
-import com.example.common.entity.ThucAn;
-import com.example.service.ThucAnServices;
+import com.example.common.request.ThucAnRequest;
+import com.example.common.wrapper.ThucAnWrapper;
+import com.example.services.ThucAnServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "ThucAn")
 @RestController
@@ -24,8 +27,8 @@ public class ThucAnController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createThucAn", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createThucAn(@RequestBody ThucAn thucAn){
-        ThucAn dataThucAn = thucAnServices.createThucAn(thucAn);
+    public ResponseEntity<?> createThucAn(@RequestBody ThucAnRequest thucAn){
+        ThucAnRequest dataThucAn = thucAnServices.createThucAn(thucAn);
         if (dataThucAn != null){
             return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
         }
@@ -34,11 +37,28 @@ public class ThucAnController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getAllThucAn/")
+    public ResponseEntity<?> getAllThucAn(){
+        List dataThucAn = thucAnServices.getAllThucAn();
+        return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
+    }
+
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
+    @GetMapping(value = "getThucAnById/")
+    public ResponseEntity<?> getThucAnById(@RequestParam int keyword){
+        ThucAnWrapper dataThucAn = thucAnServices.getThucAnById(keyword);
+        if (dataThucAn != null)
+            return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Not found", HttpStatus.OK);
+    }
+
+    @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateThucAn/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateThucAn(@RequestParam int id, @RequestBody ThucAn thucAn) {
-        ThucAn listThucAn = thucAnServices.updateThucAn(id, thucAn);
-        if (listThucAn != null)
-            return new ResponseEntity<>(listThucAn, HttpStatus.OK);
+    public ResponseEntity<?> updateThucAn(@RequestParam int id, @RequestBody ThucAnRequest thucAn) {
+        ThucAnRequest dataThucAn = thucAnServices.updateThucAn(id, thucAn);
+        if (dataThucAn != null)
+            return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
         else
             return new ResponseEntity<>("Not found", HttpStatus.OK);
     }

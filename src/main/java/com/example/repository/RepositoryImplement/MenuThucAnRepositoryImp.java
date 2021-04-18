@@ -1,11 +1,9 @@
 package com.example.repository.RepositoryImplement;
 
 
-import com.example.common.entity.Menu;
 import com.example.common.entity.MenuThucAn;
 import com.example.common.entity.ThucAn;
-import com.example.common.wrapper.MenuThucAnWrapper;
-import com.example.common.wrapper.MenuWrapper;
+import com.example.common.wrapper.ThucAnWrapper;
 import com.example.repository.MenuThucAnRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +34,20 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
     }
 
     @Override
-    public List getMenuThucAnByMenuId(long idMenu) {
+    public List<Object> getListThucAnByMenuId(long idMenu) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
+        Join<MenuThucAn ,ThucAn> join = root.join("thucAn",JoinType.LEFT);
         Predicate p = criteriaBuilder.equal(root.get("menu"),idMenu);
         query.where(p);
         query.select(criteriaBuilder.construct(
-                MenuThucAnWrapper.class,
-                root.get("menu").get("id"),
-                root.get("thucAn").get("id")
+                ThucAnWrapper.class,
+                join.get("id"),
+                join.get("ten"),
+                join.get("giaTien"),
+                join.get("hinhAnh")
         ));
         return session.createQuery(query).getResultList();
     }

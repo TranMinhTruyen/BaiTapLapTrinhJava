@@ -20,7 +20,7 @@ public class Menu implements Serializable {
     private String tenMenu;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
     private List<Tiec> tiec;
 
     @JsonIgnore

@@ -57,7 +57,7 @@ public class MenuRepositoryImp implements MenuRepository {
     }
 
     @Override
-    public Menu updateMenu(long idMenu, Menu menu) {
+    public void updateMenu(long idMenu, Menu menu) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Menu> query = criteriaBuilder.createCriteriaUpdate(Menu.class);
@@ -67,8 +67,6 @@ public class MenuRepositoryImp implements MenuRepository {
         Predicate p = criteriaBuilder.equal(root.get("id"),idMenu);
         query.where(p);
         session.createQuery(query).executeUpdate();
-
-        return menu;
     }
 
     @Override

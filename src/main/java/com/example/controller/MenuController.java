@@ -1,7 +1,8 @@
 package com.example.controller;
 
+import com.example.common.request.MenuRequest;
 import com.example.common.wrapper.MenuWrapper;
-import com.example.service.MenuServices;
+import com.example.services.MenuServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,8 +28,8 @@ public class MenuController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createMenu", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createMenu(@RequestBody MenuWrapper menu){
-        MenuWrapper dataMenu = menuServices.createMenu(menu);
+    public ResponseEntity<?> createMenu(@RequestBody MenuRequest menu){
+        MenuRequest dataMenu = menuServices.createMenu(menu);
         if (dataMenu != null){
             return new ResponseEntity<>(dataMenu, HttpStatus.OK);
         }
@@ -58,8 +59,8 @@ public class MenuController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PutMapping(value = "updateMenu/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateMenu(@RequestParam int idMenu, @RequestBody MenuWrapper menu) {
-        MenuWrapper dataMenu = menuServices.updateMenu(idMenu, menu);
+    public ResponseEntity<?> updateMenu(@RequestParam int idMenu, @RequestBody MenuRequest menu) {
+        MenuRequest dataMenu = menuServices.updateMenu(idMenu, menu);
         if (dataMenu != null)
             return new ResponseEntity<>(dataMenu, HttpStatus.OK);
         else

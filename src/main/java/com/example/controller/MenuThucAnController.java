@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.common.entity.MenuThucAn;
-import com.example.service.MenuThucAnServices;
+import com.example.services.MenuThucAnServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -13,9 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Tag(name = "Menu Thuc An")
+@Tag(name = "MenuThucAn")
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/menuthucan")
@@ -32,10 +30,13 @@ public class MenuThucAnController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "getMenuThucAnByMenuId/")
-    public ResponseEntity<?> getMenuThucAnByMenuId(@RequestParam long idMenu){
-        List dataMenu = menuThucAnServices.getMenuThucAnByMenuId(idMenu);
-        return new ResponseEntity<>(dataMenu, HttpStatus.OK);
+    @GetMapping(value = "getListThucAnByMenuId/")
+    public ResponseEntity<?> getListThucAnByMenuId(@RequestParam long idMenu){
+        Object dataMenu = menuThucAnServices.getListThucAnByMenuId(idMenu);
+        if (dataMenu != null)
+            return new ResponseEntity<>(dataMenu, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Not found", HttpStatus.OK);
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
