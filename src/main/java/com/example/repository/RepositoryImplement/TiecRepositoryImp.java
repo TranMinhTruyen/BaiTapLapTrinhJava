@@ -1,7 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.Tiec;
-import com.example.common.wrapper.TiecWrapper;
+import com.example.common.response.TiecResponse;
 import com.example.repository.TiecRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class TiecRepositoryImp implements TiecRepository {
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Tiec> root = query.from(Tiec.class);
         query.select(criteriaBuilder.construct(
-                TiecWrapper.class,
+                TiecResponse.class,
                 root.get("id"),
                 root.get("thoiGianBatDau").as(String.class),
                 root.get("ngayBatDau").as(String.class),
@@ -59,7 +59,7 @@ public class TiecRepositoryImp implements TiecRepository {
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Tiec> root = query.from(Tiec.class);
         query.select(criteriaBuilder.construct(
-                TiecWrapper.class,
+                TiecResponse.class,
                 root.get("id"),
                 root.get("thoiGianBatDau").as(String.class),
                 root.get("ngayBatDau").as(String.class),

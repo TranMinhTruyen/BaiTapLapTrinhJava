@@ -1,15 +1,15 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
-public class MenuThucAnWrapper {
+public class MenuThucAnResponse {
     private Long idMenu;
     private Integer idThucAn;
 
-    public MenuThucAnWrapper(Long idMenu, Integer idThucAn) {
+    public MenuThucAnResponse(Long idMenu, Integer idThucAn) {
         this.idMenu = idMenu;
         this.idThucAn = idThucAn;
     }
 
-    public MenuThucAnWrapper(){}
+    public MenuThucAnResponse(){}
 
     public long getIdMenu() {
         return idMenu;

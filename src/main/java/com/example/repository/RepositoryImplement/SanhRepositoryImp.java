@@ -1,7 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.Sanh;
-import com.example.common.wrapper.SanhWrapper;
+import com.example.common.response.SanhResponse;
 import com.example.repository.SanhRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class SanhRepositoryImp implements SanhRepository {
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Sanh> root = query.from(Sanh.class);
         query.select(criteriaBuilder.construct(
-                SanhWrapper.class,
+                SanhResponse.class,
                 root.get("id"),
                 root.get("ten"),
                 root.get("giaTien"),
@@ -45,7 +45,7 @@ public class SanhRepositoryImp implements SanhRepository {
         Root<Sanh> root = query.from(Sanh.class);
         if (keyword != null){
             query.select(criteriaBuilder.construct(
-                    SanhWrapper.class,
+                    SanhResponse.class,
                     root.get("id"),
                     root.get("ten"),
                     root.get("giaTien"),

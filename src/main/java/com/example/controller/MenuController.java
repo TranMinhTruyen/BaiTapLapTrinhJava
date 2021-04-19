@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.common.request.MenuRequest;
-import com.example.common.wrapper.MenuWrapper;
+import com.example.common.response.MenuResponse;
 import com.example.services.MenuServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -49,7 +49,7 @@ public class MenuController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getMenuById/")
     public ResponseEntity<?> getMenuById(@RequestParam int keyword){
-        MenuWrapper dataMenu = menuServices.getMenuById(keyword);
+        MenuResponse dataMenu = menuServices.getMenuById(keyword);
         if (dataMenu != null)
             return new ResponseEntity<>(dataMenu, HttpStatus.OK);
         else

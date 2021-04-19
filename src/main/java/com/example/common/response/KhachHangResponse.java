@@ -1,8 +1,11 @@
-package com.example.common.request;
+package com.example.common.response;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class KhachHangRequest {
+
+public class KhachHangResponse implements Serializable {
+
     private int id;
     private String taiKhoan;
     private String matKhau;
@@ -11,10 +14,10 @@ public class KhachHangRequest {
     private Date ngaySinh;
     private byte[] hinhAnh;
 
-    public KhachHangRequest() {
+    public KhachHangResponse() {
     }
 
-    public KhachHangRequest(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh, byte[] hinhAnh) {
+    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh, byte[] hinhAnh) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;

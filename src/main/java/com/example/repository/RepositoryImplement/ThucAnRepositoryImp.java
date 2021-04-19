@@ -1,7 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.ThucAn;
-import com.example.common.wrapper.ThucAnWrapper;
+import com.example.common.response.ThucAnResponse;
 import com.example.repository.ThucAnRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,7 +26,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<ThucAn> root = query.from(ThucAn.class);
         query.select(criteriaBuilder.construct(
-                ThucAnWrapper.class,
+                ThucAnResponse.class,
                 root.get("id"),
                 root.get("ten"),
                 root.get("giaTien"),

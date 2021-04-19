@@ -1,8 +1,8 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
 import java.math.BigDecimal;
 
-public class SanhWrapper {
+public class SanhResponse {
 
     private int id;
     private String tenSanh;
@@ -10,7 +10,7 @@ public class SanhWrapper {
     private int soBan;
     private String hinhAnh;
 
-    public SanhWrapper(int id, String tenSanh, BigDecimal giaTien, int soBan, String hinhAnh) {
+    public SanhResponse(int id, String tenSanh, BigDecimal giaTien, int soBan, String hinhAnh) {
         this.id = id;
         this.tenSanh = tenSanh;
         this.giaTien = giaTien;
@@ -18,7 +18,7 @@ public class SanhWrapper {
         this.hinhAnh = hinhAnh;
     }
 
-    public SanhWrapper(){}
+    public SanhResponse(){}
 
     public BigDecimal getGiaTien() {
         return giaTien;

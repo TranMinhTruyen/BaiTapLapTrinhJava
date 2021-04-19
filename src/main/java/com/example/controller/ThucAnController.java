@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.common.request.ThucAnRequest;
-import com.example.common.wrapper.ThucAnWrapper;
+import com.example.common.response.ThucAnResponse;
 import com.example.services.ThucAnServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -46,7 +46,7 @@ public class ThucAnController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getThucAnById/")
     public ResponseEntity<?> getThucAnById(@RequestParam int keyword){
-        ThucAnWrapper dataThucAn = thucAnServices.getThucAnById(keyword);
+        ThucAnResponse dataThucAn = thucAnServices.getThucAnById(keyword);
         if (dataThucAn != null)
             return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
         else

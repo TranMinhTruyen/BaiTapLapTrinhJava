@@ -1,15 +1,15 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
-public class MenuWrapper {
+public class MenuResponse {
     private Long id;
     private String tenMenu;
 
-    public MenuWrapper(Long id, String tenMenu) {
+    public MenuResponse(Long id, String tenMenu) {
         this.id = id;
         this.tenMenu = tenMenu;
     }
 
-    public MenuWrapper(){
+    public MenuResponse(){
     }
 
     public Long getId() {

@@ -1,6 +1,6 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
-public class TiecWrapper {
+public class TiecResponse {
     private int id;
     private String thoiGian;
     private String ngayToChuc;
@@ -11,10 +11,10 @@ public class TiecWrapper {
     private String caLamViec;
     private String menu;
 
-    public TiecWrapper() {
+    public TiecResponse() {
     }
 
-    public TiecWrapper(int id, String thoiGian, String ngayToChuc, String loai, String sanh, String khachHang, String trangThai, String caLamViec, String menu) {
+    public TiecResponse(int id, String thoiGian, String ngayToChuc, String loai, String sanh, String khachHang, String trangThai, String caLamViec, String menu) {
         this.id = id;
         this.thoiGian = thoiGian;
         this.ngayToChuc = ngayToChuc;

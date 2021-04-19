@@ -3,7 +3,7 @@ package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.MenuThucAn;
 import com.example.common.entity.ThucAn;
-import com.example.common.wrapper.ThucAnWrapper;
+import com.example.common.response.ThucAnResponse;
 import com.example.repository.MenuThucAnRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
         Predicate p = criteriaBuilder.equal(root.get("menu"),idMenu);
         query.where(p);
         query.select(criteriaBuilder.construct(
-                ThucAnWrapper.class,
+                ThucAnResponse.class,
                 join.get("id"),
                 join.get("ten"),
                 join.get("giaTien"),

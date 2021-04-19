@@ -2,7 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.ThucAn;
 import com.example.common.request.ThucAnRequest;
-import com.example.common.wrapper.ThucAnWrapper;
+import com.example.common.response.ThucAnResponse;
 import com.example.repository.ThucAnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,15 +38,15 @@ public class ThucAnServicesImp implements com.example.services.ThucAnServices {
     }
 
     @Override
-    public ThucAnWrapper getThucAnById(int id) {
+    public ThucAnResponse getThucAnById(int id) {
         ThucAn result = thucAnRepository.getThucAnById(id);
         if (result != null){
-            ThucAnWrapper thucAnWrapper = new ThucAnWrapper();
-            thucAnWrapper.setId(result.getId());
-            thucAnWrapper.setTen(result.getTen());
-            thucAnWrapper.setGiaTien(result.getGiaTien());
-            thucAnWrapper.setHinhAnh(result.getHinhAnh());
-            return thucAnWrapper;
+            ThucAnResponse thucAnResponse = new ThucAnResponse();
+            thucAnResponse.setId(result.getId());
+            thucAnResponse.setTen(result.getTen());
+            thucAnResponse.setGiaTien(result.getGiaTien());
+            thucAnResponse.setHinhAnh(result.getHinhAnh());
+            return thucAnResponse;
         }
         else
             return null;

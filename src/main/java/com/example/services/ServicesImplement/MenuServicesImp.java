@@ -2,7 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.Menu;
 import com.example.common.request.MenuRequest;
-import com.example.common.wrapper.MenuWrapper;
+import com.example.common.response.MenuResponse;
 import com.example.repository.MenuRepository;
 import com.example.repository.MenuThucAnRepository;
 import com.example.services.MenuServices;
@@ -28,13 +28,13 @@ public class MenuServicesImp implements MenuServices {
     }
 
     @Override
-    public MenuWrapper getMenuById(long keyword) {
+    public MenuResponse getMenuById(long keyword) {
         Menu result = menuRepository.getMenuById(keyword);
         if (result != null){
-            MenuWrapper menuWrapper = new MenuWrapper();
-            menuWrapper.setId(result.getId());
-            menuWrapper.setTenMenu(result.getTenMenu());
-            return menuWrapper;
+            MenuResponse menuResponse = new MenuResponse();
+            menuResponse.setId(result.getId());
+            menuResponse.setTenMenu(result.getTenMenu());
+            return menuResponse;
         }
         else
             return null;

@@ -1,21 +1,21 @@
-package com.example.common.wrapper;
+package com.example.common.response;
 
 import java.math.BigDecimal;
 
-public class ThucAnWrapper {
+public class ThucAnResponse {
     private Integer id;
     private String ten;
     private BigDecimal giaTien;
     private String hinhAnh;
 
-    public ThucAnWrapper(Integer id, String ten, BigDecimal giaTien, String hinhAnh) {
+    public ThucAnResponse(Integer id, String ten, BigDecimal giaTien, String hinhAnh) {
         this.id = id;
         this.ten = ten;
         this.giaTien = giaTien;
         this.hinhAnh = hinhAnh;
     }
 
-    public ThucAnWrapper(){}
+    public ThucAnResponse(){}
 
     public Integer getId() {
         return id;

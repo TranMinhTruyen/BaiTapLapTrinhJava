@@ -1,7 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.Menu;
-import com.example.common.wrapper.MenuWrapper;
+import com.example.common.response.MenuResponse;
 import com.example.repository.MenuRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class MenuRepositoryImp implements MenuRepository {
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Menu> root = query.from(Menu.class);
         query.select(criteriaBuilder.construct(
-                MenuWrapper.class,
+                MenuResponse.class,
                 root.get("id"),
                 root.get("tenMenu")
         ));

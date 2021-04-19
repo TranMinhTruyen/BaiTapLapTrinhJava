@@ -1,7 +1,6 @@
 package com.example.services;
 
 import com.example.common.request.TiecRequest;
-import com.example.common.wrapper.TiecWrapper;
 
 import java.util.List;
 
