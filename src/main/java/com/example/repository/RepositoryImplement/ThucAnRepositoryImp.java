@@ -90,7 +90,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
         CriteriaUpdate<ThucAn> query = criteriaBuilder.createCriteriaUpdate(ThucAn.class);
         Root<ThucAn> root = query.from(ThucAn.class);
         query.set("ten",thucAn.getTen());
-        query.set("giaTien",thucAn.getGiaTien());
+        query.set("loai",thucAn.getLoai());
         query.set("hinhAnh",thucAn.getHinhAnh());
 
         Predicate p = criteriaBuilder.equal(root.get("id"),id);

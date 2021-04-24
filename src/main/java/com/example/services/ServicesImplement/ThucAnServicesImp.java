@@ -37,7 +37,7 @@ public class ThucAnServicesImp implements com.example.services.ThucAnServices {
         ThucAn newThucAn = new ThucAn();
         newThucAn.setId(thucAn.getId());
         newThucAn.setTen(thucAn.getTen());
-        newThucAn.setGiaTien(thucAn.getGiaTien());
+        newThucAn.setLoai(thucAn.getLoai());
         newThucAn.setHinhAnh(thucAn.getHinhAnh());
 
         ThucAn result = thucAnRepository.createThucAn(newThucAn);
@@ -69,7 +69,7 @@ public class ThucAnServicesImp implements com.example.services.ThucAnServices {
     public ThucAnRequest updateThucAn(int id, ThucAnRequest thucAn) {
         ThucAn newThucAn = new ThucAn();
         newThucAn.setTen(thucAn.getTen());
-        newThucAn.setGiaTien(thucAn.getGiaTien());
+        newThucAn.setLoai(thucAn.getLoai());
         newThucAn.setHinhAnh(thucAn.getHinhAnh());
         if (thucAnRepository.getThucAnById(id) != null){
             thucAnRepository.updateThucAn(id, newThucAn);

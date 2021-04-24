@@ -22,11 +22,11 @@ public class ThucAnRequest {
         this.ten = ten;
     }
 
-    public String getGiaTien() {
+    public String getLoai() {
         return loai;
     }
 
-    public void setGiaTien(String loai) {
+    public void setLoai(String loai) {
         this.loai = loai;
     }
 
