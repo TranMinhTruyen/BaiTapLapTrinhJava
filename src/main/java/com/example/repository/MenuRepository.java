@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface MenuRepository {
     List getAllMenu();
-    Menu getMenuById(long keyword);
+    List getMenuByKeyword(String keyword);
+    Menu getMenuById(long id);
     Menu createMenu(Menu menu);
     void updateMenu(long idMenu, Menu menu);
     void deleteMenu(long idMenu);

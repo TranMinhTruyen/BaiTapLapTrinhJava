@@ -19,11 +19,11 @@ import java.util.List;
 public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Autowired
-    private LocalSessionFactoryBean sessionFactory;
+    private LocalSessionFactoryBean localSessionFactoryBean;
 
     @Override
     public MenuThucAn create(MenuThucAn menuThucAns) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         if (menuThucAns != null){
             session.save(menuThucAns);
             return menuThucAns;
@@ -35,7 +35,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public List<Object> getListThucAnByMenuId(long idMenu) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
@@ -54,7 +54,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public boolean isIdThucAnExist(int idThucAn) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<MenuThucAn> query = criteriaBuilder.createQuery(MenuThucAn.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
@@ -66,7 +66,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public boolean isIdMenuExist(long idMenu) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<MenuThucAn> query = criteriaBuilder.createQuery(MenuThucAn.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
@@ -78,7 +78,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public void deleteByIdThucAn(int idThucAn) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<MenuThucAn> query = criteriaBuilder.createCriteriaDelete(MenuThucAn.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
@@ -89,7 +89,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public void deleteByIdMenu(long idMenu) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<MenuThucAn> query = criteriaBuilder.createCriteriaDelete(MenuThucAn.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);
@@ -100,7 +100,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
 
     @Override
     public void deleteThucAnByIdMenu(long idMenu, int idThucAn) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<MenuThucAn> query = criteriaBuilder.createCriteriaDelete(MenuThucAn.class);
         Root<MenuThucAn> root = query.from(MenuThucAn.class);

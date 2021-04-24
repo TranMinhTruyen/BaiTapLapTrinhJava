@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @Tag(name = "Sanh")
 @RestController
@@ -38,8 +36,10 @@ public class SanhController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getSanhByKeyword/")
-    public ResponseEntity<?> getSanhByKeyword(@RequestParam(required = false) String keyword){
-        List listSanh = sanhServices.getSanhByKeyword(keyword);
+    public ResponseEntity<?> getSanhByKeyword(@RequestParam int page,
+                                              @RequestParam int size,
+                                              @RequestParam(required = false) String keyword){
+        Object listSanh = sanhServices.getSanhByKeyword(page, size, keyword);
         return new ResponseEntity<>(listSanh, HttpStatus.OK);
     }
 
@@ -55,7 +55,7 @@ public class SanhController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @DeleteMapping(value = "deleteSanh/")
-    public ResponseEntity<?> updateSanh(@RequestParam int id) {
+    public ResponseEntity<?> deleteSanh(@RequestParam int id) {
         boolean dataSanh = sanhServices.deleteSanhById(id);
         if (dataSanh)
             return new ResponseEntity<>(dataSanh, HttpStatus.OK);
@@ -65,8 +65,9 @@ public class SanhController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAllSanh/")
-    public ResponseEntity<?> getAllSanh(){
-        Object dataSanh = sanhServices.getAllSanh();
+    public ResponseEntity<?> getAllSanh(@RequestParam int page,
+                                        @RequestParam int size){
+        Object dataSanh = sanhServices.getAllSanh(page, size);
         return new ResponseEntity<>(dataSanh, HttpStatus.OK);
     }
 }

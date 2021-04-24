@@ -1,12 +1,16 @@
 package com.example.common.response;
 
+import java.math.BigDecimal;
+
 public class MenuResponse {
     private Long id;
     private String tenMenu;
+    private BigDecimal giaTien;
 
-    public MenuResponse(Long id, String tenMenu) {
+    public MenuResponse(Long id, String tenMenu, BigDecimal giaTien) {
         this.id = id;
         this.tenMenu = tenMenu;
+        this.giaTien = giaTien;
     }
 
     public MenuResponse(){
@@ -26,5 +30,13 @@ public class MenuResponse {
 
     public void setTenMenu(String tenMenu) {
         this.tenMenu = tenMenu;
+    }
+
+    public BigDecimal getGiaTien() {
+        return giaTien;
+    }
+
+    public void setGiaTien(BigDecimal giaTien) {
+        this.giaTien = giaTien;
     }
 }

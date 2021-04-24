@@ -2,7 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.ThucAn;
 import com.example.common.request.ThucAnRequest;
-import com.example.common.response.ThucAnResponse;
+import com.example.common.response.CommonResponse;
 import com.example.repository.ThucAnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,19 @@ public class ThucAnServicesImp implements com.example.services.ThucAnServices {
     ThucAnRepository thucAnRepository;
 
     @Override
-    public List getAllThucAn() {
-        return thucAnRepository.getAllThucAn();
+    public Object getAllThucAn(int page, int size) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = thucAnRepository.getAllThucAn();
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 
     @Override
@@ -38,18 +49,19 @@ public class ThucAnServicesImp implements com.example.services.ThucAnServices {
     }
 
     @Override
-    public ThucAnResponse getThucAnById(int id) {
-        ThucAn result = thucAnRepository.getThucAnById(id);
-        if (result != null){
-            ThucAnResponse thucAnResponse = new ThucAnResponse();
-            thucAnResponse.setId(result.getId());
-            thucAnResponse.setTen(result.getTen());
-            thucAnResponse.setGiaTien(result.getGiaTien());
-            thucAnResponse.setHinhAnh(result.getHinhAnh());
-            return thucAnResponse;
-        }
-        else
-            return null;
+    public Object getThucAnByKeyword(int page, int size, String keyword) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = thucAnRepository.getThucAnByKeyword(keyword);
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 
 

@@ -17,12 +17,12 @@ import java.util.List;
 public class SanhRepositoryImp implements SanhRepository {
 
     @Autowired
-    private LocalSessionFactoryBean sessionFactory;
+    private LocalSessionFactoryBean localSessionFactoryBean;
 
 
     @Override
     public List<Object> getAllSanh() {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Sanh> root = query.from(Sanh.class);
@@ -39,7 +39,7 @@ public class SanhRepositoryImp implements SanhRepository {
 
     @Override
     public List<Object> getSanhByKeyWord(String keyword) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Sanh> root = query.from(Sanh.class);
@@ -64,7 +64,7 @@ public class SanhRepositoryImp implements SanhRepository {
 
     @Override
     public Sanh createSanh(Sanh sanh) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         if (sanh != null){
             session.save(sanh);
             return sanh;
@@ -76,7 +76,7 @@ public class SanhRepositoryImp implements SanhRepository {
 
     @Override
     public void updateSanh(int id, Sanh sanh) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<Sanh> query = criteriaBuilder.createCriteriaUpdate(Sanh.class);
         Root<Sanh> root = query.from(Sanh.class);
@@ -92,7 +92,7 @@ public class SanhRepositoryImp implements SanhRepository {
 
     @Override
     public Sanh getSanhById(int id) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Sanh> query = criteriaBuilder.createQuery(Sanh.class);
         Root<Sanh> root = query.from(Sanh.class);
@@ -104,7 +104,7 @@ public class SanhRepositoryImp implements SanhRepository {
 
     @Override
     public void deleteSanhById(int id) {
-        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<Sanh> query = criteriaBuilder.createCriteriaDelete(Sanh.class);
         Root<Sanh> root = query.from(Sanh.class);

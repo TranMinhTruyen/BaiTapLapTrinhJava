@@ -34,9 +34,8 @@ public class KhachHang implements Serializable {
     @OneToMany(mappedBy="khachHang", fetch = FetchType.LAZY)
     private List<Tiec> tiecList;
 
-    @OneToOne(mappedBy="khachHang")
-    @JoinColumn(name = "PHAN_HOI_ID", nullable = true)
-    private PhanHoi phanHoi;
+    @OneToMany(mappedBy="khachHang", fetch = FetchType.LAZY)
+    private List<PhanHoi> phanHoi;
 
     public int getId() {
         return id;
@@ -102,11 +101,11 @@ public class KhachHang implements Serializable {
         this.tiecList = tiecList;
     }
 
-    public PhanHoi getPhanHoi() {
+    public List<PhanHoi> getPhanHoi() {
         return phanHoi;
     }
 
-    public void setPhanHoi(PhanHoi phanHoi) {
+    public void setPhanHoi(List<PhanHoi> phanHoi) {
         this.phanHoi = phanHoi;
     }
 }

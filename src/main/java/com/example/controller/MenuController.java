@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.common.request.MenuRequest;
-import com.example.common.response.MenuResponse;
 import com.example.services.MenuServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "Menu")
 @RestController
@@ -40,16 +37,19 @@ public class MenuController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAllMenu/")
-    public ResponseEntity<?> getAllMenu(){
-        List dataMenu = menuServices.getAllMenu();
+    public ResponseEntity<?> getAllMenu(@RequestParam int page,
+                                        @RequestParam int size){
+        Object dataMenu = menuServices.getAllMenu(page, size);
         return new ResponseEntity<>(dataMenu, HttpStatus.OK);
     }
 
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "getMenuById/")
-    public ResponseEntity<?> getMenuById(@RequestParam int keyword){
-        MenuResponse dataMenu = menuServices.getMenuById(keyword);
+    @GetMapping(value = "getMenuByKeyword/")
+    public ResponseEntity<?> getMenuByKeyword(@RequestParam int page,
+                                              @RequestParam int size,
+                                              @RequestParam(required = false) String keyword){
+        Object dataMenu = menuServices.getMenuByKeyword(page, size, keyword);
         if (dataMenu != null)
             return new ResponseEntity<>(dataMenu, HttpStatus.OK);
         else

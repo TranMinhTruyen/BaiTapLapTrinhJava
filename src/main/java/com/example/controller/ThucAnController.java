@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.common.request.ThucAnRequest;
-import com.example.common.response.ThucAnResponse;
 import com.example.services.ThucAnServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "ThucAn")
 @RestController
@@ -38,15 +35,18 @@ public class ThucAnController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAllThucAn/")
-    public ResponseEntity<?> getAllThucAn(){
-        List dataThucAn = thucAnServices.getAllThucAn();
+    public ResponseEntity<?> getAllThucAn(@RequestParam int page,
+                                          @RequestParam int size){
+        Object dataThucAn = thucAnServices.getAllThucAn(page, size);
         return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "getThucAnById/")
-    public ResponseEntity<?> getThucAnById(@RequestParam int keyword){
-        ThucAnResponse dataThucAn = thucAnServices.getThucAnById(keyword);
+    @GetMapping(value = "getThucAnByKeyword/")
+    public ResponseEntity<?> getThucAnByKeyword(@RequestParam int page,
+                                                @RequestParam int size,
+                                                @RequestParam(required = false) String keyword){
+        Object dataThucAn = thucAnServices.getThucAnByKeyword(page, size, keyword);
         if (dataThucAn != null)
             return new ResponseEntity<>(dataThucAn, HttpStatus.OK);
         else

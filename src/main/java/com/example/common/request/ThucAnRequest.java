@@ -1,11 +1,9 @@
 package com.example.common.request;
 
-import java.math.BigDecimal;
-
 public class ThucAnRequest {
     private Integer id;
     private String ten;
-    private BigDecimal giaTien;
+    private String loai;
     private String hinhAnh;
 
     public Integer getId() {
@@ -24,12 +22,12 @@ public class ThucAnRequest {
         this.ten = ten;
     }
 
-    public BigDecimal getGiaTien() {
-        return giaTien;
+    public String getGiaTien() {
+        return loai;
     }
 
-    public void setGiaTien(BigDecimal giaTien) {
-        this.giaTien = giaTien;
+    public void setGiaTien(String loai) {
+        this.loai = loai;
     }
 
     public String getHinhAnh() {

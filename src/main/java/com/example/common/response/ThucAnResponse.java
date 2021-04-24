@@ -1,17 +1,15 @@
 package com.example.common.response;
 
-import java.math.BigDecimal;
-
 public class ThucAnResponse {
     private Integer id;
     private String ten;
-    private BigDecimal giaTien;
+    private String loai;
     private String hinhAnh;
 
-    public ThucAnResponse(Integer id, String ten, BigDecimal giaTien, String hinhAnh) {
+    public ThucAnResponse(Integer id, String ten, String loai, String hinhAnh) {
         this.id = id;
         this.ten = ten;
-        this.giaTien = giaTien;
+        this.loai = loai;
         this.hinhAnh = hinhAnh;
     }
 
@@ -33,12 +31,12 @@ public class ThucAnResponse {
         this.ten = ten;
     }
 
-    public BigDecimal getGiaTien() {
-        return giaTien;
+    public String getGiaTien() {
+        return loai;
     }
 
-    public void setGiaTien(BigDecimal giaTien) {
-        this.giaTien = giaTien;
+    public void setGiaTien(String loai) {
+        this.loai = loai;
     }
 
     public String getHinhAnh() {

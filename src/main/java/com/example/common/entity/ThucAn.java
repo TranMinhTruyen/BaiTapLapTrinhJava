@@ -13,7 +13,7 @@ import java.util.List;
 @JsonPropertyOrder({
         "id",
         "ten",
-        "giaTien",
+        "loai",
         "hinhAnh",
 })
 public class ThucAn {
@@ -26,9 +26,9 @@ public class ThucAn {
     @Column(name = "TEN")
     private String ten;
 
-    @JsonProperty("gia_tien")
-    @Column(name = "GIA_TIEN")
-    private BigDecimal giaTien;
+    @JsonProperty("loai")
+    @Column(name = "LOAI")
+    private String loai;
 
     @JsonProperty("hinh_anh")
     @Column(name = "HINH_ANH")
@@ -53,12 +53,12 @@ public class ThucAn {
         this.ten = ten;
     }
 
-    public BigDecimal getGiaTien() {
-        return giaTien;
+    public String getGiaTien() {
+        return loai;
     }
 
-    public void setGiaTien(BigDecimal giaTien) {
-        this.giaTien = giaTien;
+    public void setGiaTien(String loai) {
+        this.loai = loai;
     }
 
     public String getHinhAnh() {

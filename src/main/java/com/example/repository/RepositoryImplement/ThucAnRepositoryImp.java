@@ -4,8 +4,8 @@ import com.example.common.entity.ThucAn;
 import com.example.common.response.ThucAnResponse;
 import com.example.repository.ThucAnRepository;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.*;
@@ -17,11 +17,11 @@ import java.util.List;
 public class ThucAnRepositoryImp implements ThucAnRepository {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private LocalSessionFactoryBean localSessionFactoryBean;
 
     @Override
     public List getAllThucAn() {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<ThucAn> root = query.from(ThucAn.class);
@@ -29,7 +29,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
                 ThucAnResponse.class,
                 root.get("id"),
                 root.get("ten"),
-                root.get("giaTien"),
+                root.get("loai"),
                 root.get("hinhAnh")
         ));
         return session.createQuery(query).getResultList();
@@ -37,7 +37,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
 
     @Override
     public ThucAn createThucAn(ThucAn thucAn) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         if (thucAn != null){
             session.save(thucAn);
             return thucAn;
@@ -48,8 +48,31 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
     }
 
     @Override
+    public List getThucAnByKeyword(String keyword) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
+        Root<ThucAn> root = query.from(ThucAn.class);
+        query.select(criteriaBuilder.construct(
+                ThucAnResponse.class,
+                root.get("id"),
+                root.get("ten"),
+                root.get("loai"),
+                root.get("hinhAnh")
+        ));
+        Predicate p1 = criteriaBuilder.equal(root.get("id").as(String.class),keyword);
+        Predicate p2 = criteriaBuilder.like(root.get("ten").as(String.class),keyword);
+        Predicate p3 = criteriaBuilder.like(root.get("loai").as(String.class),keyword);
+        query.where(criteriaBuilder.or(p1,p2,p3));
+        if (keyword != null)
+            return session.createQuery(query).getResultList();
+        else return getAllThucAn();
+    }
+
+
+    @Override
     public ThucAn getThucAnById(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<ThucAn> query = criteriaBuilder.createQuery(ThucAn.class);
         Root<ThucAn> root = query.from(ThucAn.class);
@@ -62,7 +85,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
 
     @Override
     public void updateThucAn(int id, ThucAn thucAn) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaUpdate<ThucAn> query = criteriaBuilder.createCriteriaUpdate(ThucAn.class);
         Root<ThucAn> root = query.from(ThucAn.class);
@@ -79,7 +102,7 @@ public class ThucAnRepositoryImp implements ThucAnRepository {
 
     @Override
     public void deleteThucAn(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaDelete<ThucAn> query = criteriaBuilder.createCriteriaDelete(ThucAn.class);
         Root<ThucAn> root = query.from(ThucAn.class);

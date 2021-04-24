@@ -37,8 +37,9 @@ public class TiecController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @GetMapping(value = "getAllTiec/")
-    public ResponseEntity<?> getAllTiec(){
-        List dataTiec = tiecServices.getAllTiec();
+    public ResponseEntity<?> getAllTiec(@RequestParam int page,
+                                        @RequestParam int size){
+        Object dataTiec = tiecServices.getAllTiec(page, size);
         return new ResponseEntity<>(dataTiec, HttpStatus.OK);
     }
 

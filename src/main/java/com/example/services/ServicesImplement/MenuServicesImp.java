@@ -2,6 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.Menu;
 import com.example.common.request.MenuRequest;
+import com.example.common.response.CommonResponse;
 import com.example.common.response.MenuResponse;
 import com.example.repository.MenuRepository;
 import com.example.repository.MenuThucAnRepository;
@@ -23,8 +24,35 @@ public class MenuServicesImp implements MenuServices {
     private MenuThucAnRepository menuThucAnRepository;
 
     @Override
-    public List getAllMenu() {
-        return menuRepository.getAllMenu();
+    public Object getAllMenu(int page, int size) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = menuRepository.getAllMenu();
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
+    }
+
+    @Override
+    public Object getMenuByKeyword(int page, int size, String keyword) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = menuRepository.getMenuByKeyword(keyword);
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 
     @Override

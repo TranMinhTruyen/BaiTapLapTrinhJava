@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TiecServices {
     TiecRequest createTiec(TiecRequest tiecWrapper);
-    List getAllTiec();
+    Object getAllTiec(int page, int size);
     Object getTiecByKeyword(int page, int size, String keyword);
     TiecRequest updateTiec(int id, TiecRequest tiecWrapper);
     boolean deleteTiec(int id);

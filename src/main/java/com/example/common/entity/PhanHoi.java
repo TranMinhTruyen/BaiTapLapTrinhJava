@@ -17,7 +17,8 @@ public class PhanHoi {
     @JoinColumn(name = "TIEC_ID", nullable = true)
     private Tiec tiec;
 
-    @OneToOne()
+    @ManyToOne
+    @JoinColumn(name = "KHACH_HANG_ID", nullable = true)
     private KhachHang khachHang;
 
     public int getId() {
@@ -36,19 +37,23 @@ public class PhanHoi {
         this.noiDung = noiDung;
     }
 
-    public Tiec getTiec() {
-        return tiec;
+    public int getTiec() {
+        return tiec.getId();
     }
 
-    public void setTiec(Tiec tiec) {
-        this.tiec = tiec;
+    public void setTiec(int tiec) {
+        Tiec set = new Tiec();
+        set.setId(tiec);
+        this.tiec = set;
     }
 
-    public KhachHang getKhachHang() {
-        return khachHang;
+    public int getKhachHang() {
+        return khachHang.getId();
     }
 
-    public void setKhachHang(KhachHang khachHang) {
-        this.khachHang = khachHang;
+    public void setKhachHang(int khachHang) {
+        KhachHang set = new KhachHang();
+        set.setId(khachHang);
+        this.khachHang = set;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,9 @@ public class Menu implements Serializable {
 
     @Column(name = "TEN_MENU")
     private String tenMenu;
+
+    @Column(name = "GIA_TIEN")
+    private BigDecimal giaTien;
 
     @JsonIgnore
     @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
@@ -43,6 +47,14 @@ public class Menu implements Serializable {
         this.tenMenu = tenMenu;
     }
 
+    public BigDecimal getGiaTien() {
+        return giaTien;
+    }
+
+    public void setGiaTien(BigDecimal giaTien) {
+        this.giaTien = giaTien;
+    }
+
     public List<Tiec> getTiec() {
         return tiec;
     }
@@ -51,11 +63,11 @@ public class Menu implements Serializable {
         this.tiec = tiec;
     }
 
-    public List<MenuThucAn> getThucAns() {
+    public List<MenuThucAn> getMenuThucAns() {
         return menuThucAns;
     }
 
-    public void setThucAns(List<MenuThucAn> menuThucAns) {
+    public void setMenuThucAns(List<MenuThucAn> menuThucAns) {
         this.menuThucAns = menuThucAns;
     }
 }

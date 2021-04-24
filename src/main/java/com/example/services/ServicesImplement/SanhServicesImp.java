@@ -2,6 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.Sanh;
 import com.example.common.request.SanhRequest;
+import com.example.common.response.CommonResponse;
 import com.example.repository.SanhRepository;
 import com.example.services.SanhServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,19 @@ public class SanhServicesImp implements SanhServices {
     private SanhRepository sanhRepository;
 
     @Override
-    public List getSanhByKeyword(String keyword) {
-        return sanhRepository.getSanhByKeyWord(keyword);
+    public Object getSanhByKeyword(int page, int size,String keyword) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = sanhRepository.getSanhByKeyWord(keyword);
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 
     @Override
@@ -62,7 +74,18 @@ public class SanhServicesImp implements SanhServices {
     }
 
     @Override
-    public List getAllSanh() {
-        return sanhRepository.getAllSanh();
+    public Object getAllSanh(int page, int size) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = sanhRepository.getAllSanh();
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 }

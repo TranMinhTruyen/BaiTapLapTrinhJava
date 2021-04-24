@@ -1,7 +1,6 @@
 package com.example.common.response;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 
 public class KhachHangResponse implements Serializable {
@@ -11,13 +10,13 @@ public class KhachHangResponse implements Serializable {
     private String matKhau;
     private String ho;
     private String ten;
-    private Date ngaySinh;
+    private String ngaySinh;
     private byte[] hinhAnh;
 
     public KhachHangResponse() {
     }
 
-    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh, byte[] hinhAnh) {
+    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, String ngaySinh, byte[] hinhAnh) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
@@ -67,11 +66,11 @@ public class KhachHangResponse implements Serializable {
         this.ten = ten;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 

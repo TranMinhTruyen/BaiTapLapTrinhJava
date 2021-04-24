@@ -33,8 +33,19 @@ public class TiecServicesImp implements TiecServices {
     }
 
     @Override
-    public List getAllTiec() {
-        return tiecRepository.getAllTiec();
+    public Object getAllTiec(int page, int size) {
+        CommonResponse commonResponse = new CommonResponse();
+        List result = tiecRepository.getAllTiec();
+        int offset = (page - 1) * size;
+        int total = result.size();
+        int totalPage = (total%size) == 0 ? (int)(total/size) : (int)((total / size) + 1);
+        Object[] data = result.stream().skip(offset).limit(size).toArray();
+        commonResponse.setData(data);
+        commonResponse.setTotalPage(totalPage);
+        commonResponse.setTotalRecord(total);
+        commonResponse.setPage(page);
+        commonResponse.setSize(size);
+        return commonResponse;
     }
 
     @Override

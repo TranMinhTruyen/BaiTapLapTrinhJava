@@ -19,6 +19,9 @@ public class NhanVien implements Serializable {
     @Column(name = "MAT_KHAU")
     private String matKhau;
 
+    @Column(name = "ROLE")
+    private String role;
+
     @Column(name = "HO")
     private String ho;
 
@@ -30,9 +33,6 @@ public class NhanVien implements Serializable {
 
     @Column(name = "CMND")
     private String cmnd;
-
-    @Column(name = "CHUC_VU")
-    private String chucVu;
 
     @Column(name = "HINH_ANH")
     private byte[] hinhAnh;
@@ -97,14 +97,6 @@ public class NhanVien implements Serializable {
         this.cmnd = cmnd;
     }
 
-    public String getChucVu() {
-        return chucVu;
-    }
-
-    public void setChucVu(String chucVu) {
-        this.chucVu = chucVu;
-    }
-
     public byte[] getHinhAnh() {
         return hinhAnh;
     }
@@ -113,11 +105,21 @@ public class NhanVien implements Serializable {
         this.hinhAnh = hinhAnh;
     }
 
-    public CaLamViec getCaLamViec() {
-        return caLamViec;
+    public int getCaLamViec() {
+        return caLamViec.getId();
     }
 
-    public void setCaLamViec(CaLamViec caLamViec) {
-        this.caLamViec = caLamViec;
+    public void setCaLamViec(int caLamViec) {
+        CaLamViec addId = new CaLamViec();
+        addId.setId(caLamViec);
+        this.caLamViec = addId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

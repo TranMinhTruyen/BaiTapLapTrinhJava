@@ -9,6 +9,7 @@ public interface KhachHangRepository {
     List getAllKhachHang();
     List getKhachHangByKeyword(String keyword);
     KhachHang getKhachHangByTaiKhoanMatKhau(String taiKhoan, String matKhau);
+    KhachHang getKhachHangById(int id);
     void updateKhachHangById (int id, KhachHang khachHang);
     void deleteKhachHangById (int id);
 }
