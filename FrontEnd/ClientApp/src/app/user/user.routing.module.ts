@@ -6,6 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './layouts/about/about.component';
 import { PortfolioComponent } from './layouts/portfolio/portfolio.component';
@@ -30,7 +33,10 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatProgressBarModule
   ],
   exports: [RouterModule],
   declarations: [

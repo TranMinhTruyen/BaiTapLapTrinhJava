@@ -19,10 +19,9 @@ export class NavbarComponent implements OnInit {
         data: {
           username: "username",
       },
-      width: "600px",
-      height: "600px",
+      width: "700px",
+      height: "700px",
       disableClose: true,
-      hasBackdrop: false
       });
     dialogref.afterClosed().subscribe(
       result => {

@@ -15,6 +15,8 @@ import { Notfound404Component } from './notfound404/notfound404.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressBarModule} from '@angular/material/progress-bar'; 
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     UserRoutingModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
