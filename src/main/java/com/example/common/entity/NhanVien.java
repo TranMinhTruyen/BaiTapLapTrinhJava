@@ -35,7 +35,7 @@ public class NhanVien implements Serializable {
     private String cmnd;
 
     @Column(name = "HINH_ANH")
-    private byte[] hinhAnh;
+    private String hinhAnh;
 
     @ManyToOne()
     @JoinColumn(name = "ID_CALAMVIEC")
@@ -97,12 +97,16 @@ public class NhanVien implements Serializable {
         this.cmnd = cmnd;
     }
 
-    public byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public void setCaLamViec(CaLamViec caLamViec) {
+        this.caLamViec = caLamViec;
     }
 
     public int getCaLamViec() {

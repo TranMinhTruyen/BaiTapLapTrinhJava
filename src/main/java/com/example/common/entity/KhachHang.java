@@ -29,7 +29,7 @@ public class KhachHang implements Serializable {
     private Date ngaySinh;
 
     @Column(name = "HINH_ANH")
-    private byte[] hinhAnh;
+    private String hinhAnh;
 
     @OneToMany(mappedBy="khachHang", fetch = FetchType.LAZY)
     private List<Tiec> tiecList;
@@ -85,11 +85,11 @@ public class KhachHang implements Serializable {
         this.ngaySinh = ngaySinh;
     }
 
-    public byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 

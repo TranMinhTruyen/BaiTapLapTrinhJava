@@ -10,12 +10,12 @@ public class NhanVienResponse {
     private String ngaySinh;
     private String cmnd;
     private int caLamViec;
-    private byte[] hinhAnh;
+    private String hinhAnh;
 
     public NhanVienResponse() {
     }
 
-    public NhanVienResponse(int id, String taiKhoan, String matKhau, String role, String ho, String ten, String ngaySinh, String cmnd, int caLamViec, byte[] hinhAnh) {
+    public NhanVienResponse(int id, String taiKhoan, String matKhau, String role, String ho, String ten, String ngaySinh, String cmnd, int caLamViec, String hinhAnh) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
@@ -100,11 +100,11 @@ public class NhanVienResponse {
         this.caLamViec = caLamViec;
     }
 
-    public byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 }

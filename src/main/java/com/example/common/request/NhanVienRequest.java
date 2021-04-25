@@ -12,12 +12,12 @@ public class NhanVienRequest {
     private Date ngaySinh;
     private String cmnd;
     private int caLamViec;
-    private byte[] hinhAnh;
+    private String hinhAnh;
 
     public NhanVienRequest() {
     }
 
-    public NhanVienRequest(int id, String taiKhoan, String matKhau, String role, String ho, String ten, Date ngaySinh, String cmnd, byte[] hinhAnh, int caLamViec) {
+    public NhanVienRequest(int id, String taiKhoan, String matKhau, String role, String ho, String ten, Date ngaySinh, String cmnd, String hinhAnh, int caLamViec) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
@@ -94,11 +94,11 @@ public class NhanVienRequest {
         this.cmnd = cmnd;
     }
 
-    public byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 

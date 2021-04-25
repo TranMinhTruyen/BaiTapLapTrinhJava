@@ -9,18 +9,19 @@ public class KhachHangRequest {
     private String ho;
     private String ten;
     private Date ngaySinh;
-//    private byte[] hinhAnh;
+    private String hinhAnh;
 
     public KhachHangRequest() {
     }
 
-    public KhachHangRequest(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh) {
+    public KhachHangRequest(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh, String hinhAnh) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.ho = ho;
         this.ten = ten;
         this.ngaySinh = ngaySinh;
+        this.hinhAnh = hinhAnh;
     }
 
     public int getId() {
@@ -69,5 +70,13 @@ public class KhachHangRequest {
 
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public String getHinhAnh() {
+        return hinhAnh;
+    }
+
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
     }
 }

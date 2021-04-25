@@ -11,12 +11,12 @@ public class KhachHangResponse implements Serializable {
     private String ho;
     private String ten;
     private String ngaySinh;
-    private byte[] hinhAnh;
+    private String hinhAnh;
 
     public KhachHangResponse() {
     }
 
-    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, String ngaySinh, byte[] hinhAnh) {
+    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, String ngaySinh, String hinhAnh) {
         this.id = id;
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
@@ -74,11 +74,11 @@ public class KhachHangResponse implements Serializable {
         this.ngaySinh = ngaySinh;
     }
 
-    public byte[] getHinhAnh() {
+    public String getHinhAnh() {
         return hinhAnh;
     }
 
-    public void setHinhAnh(byte[] hinhAnh) {
+    public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
     }
 }
