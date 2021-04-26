@@ -75,9 +75,6 @@ public class NhanVienServicesImp implements NhanVienServices {
         String matKhauHash = Hashing.sha256().hashString(matKhau, StandardCharsets.UTF_8).toString();
         NhanVien result = nhanVienRepository.getNhanVienByTaiKhoanMatKhau(taiKhoan,matKhauHash);
         NhanVienResponse nhanVienResponse = new NhanVienResponse();
-        nhanVienResponse.setId(result.getId());
-        nhanVienResponse.setTaiKhoan(result.getTaiKhoan());
-        nhanVienResponse.setMatKhau(result.getMatKhau());
         nhanVienResponse.setHo(result.getHo());
         nhanVienResponse.setTen(result.getTen());
         nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());

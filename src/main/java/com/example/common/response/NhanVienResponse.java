@@ -1,9 +1,6 @@
 package com.example.common.response;
 
 public class NhanVienResponse {
-    private int id;
-    private String taiKhoan;
-    private String matKhau;
     private String role;
     private String ho;
     private String ten;
@@ -15,10 +12,7 @@ public class NhanVienResponse {
     public NhanVienResponse() {
     }
 
-    public NhanVienResponse(int id, String taiKhoan, String matKhau, String role, String ho, String ten, String ngaySinh, String cmnd, int caLamViec, String hinhAnh) {
-        this.id = id;
-        this.taiKhoan = taiKhoan;
-        this.matKhau = matKhau;
+    public NhanVienResponse(String role, String ho, String ten, String ngaySinh, String cmnd, int caLamViec, String hinhAnh) {
         this.role = role;
         this.ho = ho;
         this.ten = ten;
@@ -26,30 +20,6 @@ public class NhanVienResponse {
         this.cmnd = cmnd;
         this.caLamViec = caLamViec;
         this.hinhAnh = hinhAnh;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTaiKhoan() {
-        return taiKhoan;
-    }
-
-    public void setTaiKhoan(String taiKhoan) {
-        this.taiKhoan = taiKhoan;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
     }
 
     public String getRole() {
