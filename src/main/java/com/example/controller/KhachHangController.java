@@ -71,7 +71,7 @@ public class KhachHangController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "loginKhachHang/")
+    @PostMapping(value = "loginKhachHang/")
     public ResponseEntity<?> loginKhachHang(@RequestParam String taiKhoan,
                                            @RequestParam String matKhau){
         KhachHangResponse dataKhachHang = khachHangServices.getKhachHangByTaiKhoanMatKhau(taiKhoan, matKhau);

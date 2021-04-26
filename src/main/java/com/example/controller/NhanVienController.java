@@ -72,7 +72,7 @@ public class NhanVienController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @GetMapping(value = "loginNhanVien/")
+    @PostMapping(value = "loginNhanVien/")
     public ResponseEntity<?> loginNhanVien(@RequestParam String taiKhoan,
                                              @RequestParam String matKhau){
         NhanVienResponse dataNhanVien = nhanVienServices.getNhanVienByTaiKhoanMatKhau(taiKhoan, matKhau);
