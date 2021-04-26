@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.common.request.KhachHangRequest;
+import com.example.common.request.LoginRequest;
 import com.example.common.response.KhachHangResponse;
 import com.example.services.KhachHangServices;
 import io.swagger.v3.oas.annotations.Operation;
@@ -71,10 +72,9 @@ public class KhachHangController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @PostMapping(value = "loginKhachHang/")
-    public ResponseEntity<?> loginKhachHang(@RequestParam String taiKhoan,
-                                           @RequestParam String matKhau){
-        KhachHangResponse dataKhachHang = khachHangServices.getKhachHangByTaiKhoanMatKhau(taiKhoan, matKhau);
+    @PostMapping(value = "loginKhachHang/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> loginKhachHang(@RequestBody LoginRequest loginRequest){
+        KhachHangResponse dataKhachHang = khachHangServices.getKhachHangByTaiKhoanMatKhau(loginRequest);
         return new ResponseEntity<>(dataKhachHang, HttpStatus.OK);
     }
 }

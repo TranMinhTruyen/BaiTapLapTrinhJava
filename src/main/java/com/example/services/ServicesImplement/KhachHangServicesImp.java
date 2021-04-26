@@ -2,6 +2,7 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.KhachHang;
 import com.example.common.request.KhachHangRequest;
+import com.example.common.request.LoginRequest;
 import com.example.common.response.CommonResponse;
 import com.example.common.response.KhachHangResponse;
 import com.example.repository.KhachHangRepository;
@@ -68,9 +69,9 @@ public class KhachHangServicesImp implements KhachHangServices {
     }
 
     @Override
-    public KhachHangResponse getKhachHangByTaiKhoanMatKhau(String taiKhoan, String matKhau) {
-        String matKhauHash = Hashing.sha256().hashString(matKhau, StandardCharsets.UTF_8).toString();
-        KhachHang result = khachHangRepository.getKhachHangByTaiKhoanMatKhau(taiKhoan,matKhauHash);
+    public KhachHangResponse getKhachHangByTaiKhoanMatKhau(LoginRequest loginRequest) {
+        String matKhauHash = Hashing.sha256().hashString(loginRequest.getMatKhau(), StandardCharsets.UTF_8).toString();
+        KhachHang result = khachHangRepository.getKhachHangByTaiKhoanMatKhau(loginRequest.getTaiKhoan(), matKhauHash);
         KhachHangResponse khachHangResponse = new KhachHangResponse();
         khachHangResponse.setHo(result.getHo());
         khachHangResponse.setTen(result.getTen());
