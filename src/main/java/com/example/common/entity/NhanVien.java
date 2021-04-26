@@ -38,7 +38,7 @@ public class NhanVien implements Serializable {
     private String hinhAnh;
 
     @ManyToOne()
-    @JoinColumn(name = "ID_CALAMVIEC")
+    @JoinColumn(name = "ID_CALAMVIEC", nullable = false)
     private CaLamViec caLamViec;
 
     public int getId() {
