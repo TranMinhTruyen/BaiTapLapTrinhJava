@@ -1,0 +1,78 @@
+<!-- Default form register -->
+<form class=" signup-form text-center border border-light p-5">
+
+    <p class="h4 mb-4">Đăng ký tài khoản</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input [(ngModel)]="data.ho" name="ho" type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Họ">
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input [(ngModel)]="data.ten" name="ten" type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Tên">
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <input type="text" [(ngModel)]="data.taiKhoan" name="taiKhoan" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Tài Khoản">
+
+    <!-- Password -->
+    <input type="password" [(ngModel)]="data.matKhau" name="matKhau" id="defaultRegisterFormPassword" class="form-control" placeholder="Mật Khẩu" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+      Cần ít nhất 8 ký tự và 1 chữ số !!!
+    </small>
+
+    <!-- Phone number -->
+    <input type="text" [(ngModel)]="data.cmnd" name="cmnd" id="defaultRegisterPhonePassword" class="form-control" placeholder="Chứng Minh Nhân Dân" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+      Nếu không dùng xác thực 2 yếu tố thì bỏ qua phần này !
+    </small>
+    <!-- <div class="btn-group" mdbDropdown>
+        <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light" mdbWavesEffect>
+          Ca làm việc
+        </button>
+        <select class="dropdown-menu dropdown-primary">
+            <option *ngFor="let data of caLamViec" value="data.value">{{data.name}}</option>
+            <a class="dropdown-item" href="#">Trưa</a>
+            <a class="dropdown-item" href="#">Chiều</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Full Ngày</a> 
+        </select>
+    </div> -->
+    <select class="form-control" [(ngModel)]="selectedValue" name="caLamViec">
+        <option *ngFor="let data of caLamViec" value="{{data.value}}">{{data.name}}</option>
+        <!-- <a class="dropdown-item" href="#">Trưa</a>
+        <a class="dropdown-item" href="#">Chiều</a>
+        <div class="divider dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Full Ngày</a> -->
+    </select>
+
+
+    <!-- Sign up button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="signup()">Đăng Ký Ngay</button>
+
+    <!-- Social register -->
+    <p>Hoặc là đăng ký với:</p>
+
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="facebook"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="github"></mdb-icon>
+    </a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>Khi mà bạn ấn nút
+        <em>Đăng Ký</em>, bạn đã đồng ý với <a href="https://www.youtube.com/" target="_blank">Điều Khoản</a></p> của chúng tôi
+
+</form>
+<!-- Default form register -->
