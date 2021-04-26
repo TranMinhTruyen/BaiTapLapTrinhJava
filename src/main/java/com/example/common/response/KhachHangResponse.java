@@ -5,9 +5,6 @@ import java.io.Serializable;
 
 public class KhachHangResponse implements Serializable {
 
-    private int id;
-    private String taiKhoan;
-    private String matKhau;
     private String ho;
     private String ten;
     private String ngaySinh;
@@ -16,38 +13,11 @@ public class KhachHangResponse implements Serializable {
     public KhachHangResponse() {
     }
 
-    public KhachHangResponse(int id, String taiKhoan, String matKhau, String ho, String ten, String ngaySinh, String hinhAnh) {
-        this.id = id;
-        this.taiKhoan = taiKhoan;
-        this.matKhau = matKhau;
+    public KhachHangResponse(String ho, String ten, String ngaySinh, String hinhAnh) {
         this.ho = ho;
         this.ten = ten;
         this.ngaySinh = ngaySinh;
         this.hinhAnh = hinhAnh;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTaiKhoan() {
-        return taiKhoan;
-    }
-
-    public void setTaiKhoan(String taiKhoan) {
-        this.taiKhoan = taiKhoan;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
     }
 
     public String getHo() {
