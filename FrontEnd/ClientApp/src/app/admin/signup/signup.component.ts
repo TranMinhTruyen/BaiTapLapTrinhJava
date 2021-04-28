@@ -10,18 +10,6 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   selectedValue: Number = null;
-
-  // data: any = {
-  //   taiKhoan: "",
-  //   matKhau: "",
-  //   role: "",
-  //   ho: "",
-  //   ten: "",
-  //   ngaySinh: "",
-  //   cmnd: "",
-  //   caLamViec: 0
-  // };
-  //Ca lam viec
   caLamViec: Array<any> = [
     {
       value: 1,

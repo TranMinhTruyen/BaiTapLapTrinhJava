@@ -28,24 +28,8 @@
     <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
       Nếu không dùng xác thực 2 yếu tố thì bỏ qua phần này !
     </small>
-    <!-- <div class="btn-group" mdbDropdown>
-        <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light" mdbWavesEffect>
-          Ca làm việc
-        </button>
-        <select class="dropdown-menu dropdown-primary">
-            <option *ngFor="let data of caLamViec" value="data.value">{{data.name}}</option>
-            <a class="dropdown-item" href="#">Trưa</a>
-            <a class="dropdown-item" href="#">Chiều</a>
-            <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Full Ngày</a> 
-        </select>
-    </div> -->
     <select class="form-control" [(ngModel)]="selectedValue" name="caLamViec">
         <option *ngFor="let data of caLamViec" value="{{data.value}}">{{data.name}}</option>
-        <!-- <a class="dropdown-item" href="#">Trưa</a>
-        <a class="dropdown-item" href="#">Chiều</a>
-        <div class="divider dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Full Ngày</a> -->
     </select>
 
 
