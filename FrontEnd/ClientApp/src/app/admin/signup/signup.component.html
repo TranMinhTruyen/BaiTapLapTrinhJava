@@ -28,7 +28,8 @@
     <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
       Nếu không dùng xác thực 2 yếu tố thì bỏ qua phần này !
     </small>
-    <select class="form-control" [(ngModel)]="selectedValue" name="caLamViec">
+
+    <select [(ngModel)]="selectedValue" name="caLamViec">
         <option *ngFor="let data of caLamViec" value="{{data.value}}">{{data.name}}</option>
     </select>
 

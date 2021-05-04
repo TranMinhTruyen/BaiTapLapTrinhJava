@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
     },
     {
       value: 4,
-      name: "Cả ngày"
+      name: "Tối"
     },
   ]
   data: any = {
@@ -38,7 +39,10 @@ export class SignupComponent implements OnInit {
     "caLamViec": 1
   };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   signup() {
     this.data.caLamViec = this.selectedValue;
@@ -53,9 +57,11 @@ export class SignupComponent implements OnInit {
       result => {
         let res: any = result;
         console.log(res);
+        this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát','Tạo tài khoản thành công');
         this.router.navigate(['/admin/login']);
       },
       error => {
+        this.toastr.error('Xin vui lòng tạo tài khoản lại','Tạo tài khoản thất bại');
         console.error(error);
       }
     )

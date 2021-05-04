@@ -9,6 +9,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
+import { ToastrModule } from 'ngx-toastr'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { HomeComponent } from './home/home.component';
 import { LoaderComponent } from './home/loader/loader.component';
 import { NavbarhomeComponent } from './home/navbarhome/navbarhome.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { EmployeeComponent } from './admin/managerment/employee/employee.component';
+import { AppbarssComponent } from './admin/appbarss/appbarss.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HomeComponent,
     LoaderComponent,
     NavbarhomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    EmployeeComponent,
+    AppbarssComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
