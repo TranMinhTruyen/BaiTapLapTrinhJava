@@ -46,7 +46,7 @@ public class MenuThucAnRepositoryImp implements MenuThucAnRepository {
                 ThucAnResponse.class,
                 join.get("id"),
                 join.get("ten"),
-                join.get("giaTien"),
+                join.get("loai"),
                 join.get("hinhAnh")
         ));
         return session.createQuery(query).getResultList();

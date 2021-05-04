@@ -81,7 +81,6 @@ public class NhanVienServicesImp implements NhanVienServices {
         nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());
         nhanVienResponse.setCmnd(result.getCmnd());
         nhanVienResponse.setRole(result.getRole());
-        nhanVienResponse.setCaLamViec(result.getCaLamViec());
         nhanVienResponse.setHinhAnh(result.getHinhAnh());
         return nhanVienResponse;
     }
@@ -95,7 +94,6 @@ public class NhanVienServicesImp implements NhanVienServices {
         newNhanVien.setNgaySinh(nhanVien.getNgaySinh());
         newNhanVien.setCmnd(nhanVien.getCmnd());
         newNhanVien.setRole(nhanVien.getRole());
-        newNhanVien.setCaLamViec(nhanVien.getCaLamViec());
         newNhanVien.setHinhAnh(nhanVien.getHinhAnh());
         if (nhanVienRepository.getNhanVienById(id) != null){
             nhanVienRepository.updateNhanVienById(id, newNhanVien);
