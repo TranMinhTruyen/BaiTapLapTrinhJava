@@ -39,15 +39,12 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
-                root.get("id"),
-                root.get("taiKhoan"),
-                root.get("matKhau"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
                 root.get("ngaySinh").as(String.class),
                 root.get("cmnd"),
-                root.get("caLamViec"),
+                root.get("caLamViec").get("caLam"),
                 root.get("hinhAnh")
         ));
         return session.createQuery(query).getResultList();
@@ -61,15 +58,12 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
-                root.get("id"),
-                root.get("taiKhoan"),
-                root.get("matKhau"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
                 root.get("ngaySinh").as(String.class),
                 root.get("cmnd"),
-                root.get("caLamViec"),
+                root.get("caLamViec").get("caLam"),
                 root.get("hinhAnh")
         ));
 

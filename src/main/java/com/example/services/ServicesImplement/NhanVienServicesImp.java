@@ -1,6 +1,7 @@
 package com.example.services.ServicesImplement;
 
 import com.example.common.entity.NhanVien;
+import com.example.common.request.LoginRequest;
 import com.example.common.request.NhanVienRequest;
 import com.example.common.response.CommonResponse;
 import com.example.common.response.NhanVienResponse;
@@ -71,16 +72,15 @@ public class NhanVienServicesImp implements NhanVienServices {
     }
 
     @Override
-    public NhanVienResponse getNhanVienByTaiKhoanMatKhau(String taiKhoan, String matKhau) {
-        String matKhauHash = Hashing.sha256().hashString(matKhau, StandardCharsets.UTF_8).toString();
-        NhanVien result = nhanVienRepository.getNhanVienByTaiKhoanMatKhau(taiKhoan,matKhauHash);
+    public NhanVienResponse getNhanVienByTaiKhoanMatKhau(LoginRequest loginRequest) {
+        String matKhauHash = Hashing.sha256().hashString(loginRequest.getMatKhau(), StandardCharsets.UTF_8).toString();
+        NhanVien result = nhanVienRepository.getNhanVienByTaiKhoanMatKhau(loginRequest.getTaiKhoan(), matKhauHash);
         NhanVienResponse nhanVienResponse = new NhanVienResponse();
         nhanVienResponse.setHo(result.getHo());
         nhanVienResponse.setTen(result.getTen());
         nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());
         nhanVienResponse.setCmnd(result.getCmnd());
         nhanVienResponse.setRole(result.getRole());
-        nhanVienResponse.setCaLamViec(result.getCaLamViec());
         nhanVienResponse.setHinhAnh(result.getHinhAnh());
         return nhanVienResponse;
     }
@@ -94,7 +94,6 @@ public class NhanVienServicesImp implements NhanVienServices {
         newNhanVien.setNgaySinh(nhanVien.getNgaySinh());
         newNhanVien.setCmnd(nhanVien.getCmnd());
         newNhanVien.setRole(nhanVien.getRole());
-        newNhanVien.setCaLamViec(nhanVien.getCaLamViec());
         newNhanVien.setHinhAnh(nhanVien.getHinhAnh());
         if (nhanVienRepository.getNhanVienById(id) != null){
             nhanVienRepository.updateNhanVienById(id, newNhanVien);

@@ -6,13 +6,13 @@ public class NhanVienResponse {
     private String ten;
     private String ngaySinh;
     private String cmnd;
-    private int caLamViec;
+    private String caLamViec;
     private String hinhAnh;
 
     public NhanVienResponse() {
     }
 
-    public NhanVienResponse(String role, String ho, String ten, String ngaySinh, String cmnd, int caLamViec, String hinhAnh) {
+    public NhanVienResponse(String role, String ho, String ten, String ngaySinh, String cmnd, String caLamViec, String hinhAnh) {
         this.role = role;
         this.ho = ho;
         this.ten = ten;
@@ -62,19 +62,19 @@ public class NhanVienResponse {
         this.cmnd = cmnd;
     }
 
-    public int getCaLamViec() {
-        return caLamViec;
-    }
-
-    public void setCaLamViec(int caLamViec) {
-        this.caLamViec = caLamViec;
-    }
-
     public String getHinhAnh() {
         return hinhAnh;
     }
 
     public void setHinhAnh(String hinhAnh) {
         this.hinhAnh = hinhAnh;
+    }
+
+    public String getCaLamViec() {
+        return caLamViec;
+    }
+
+    public void setCaLamViec(String caLamViec) {
+        this.caLamViec = caLamViec;
     }
 }

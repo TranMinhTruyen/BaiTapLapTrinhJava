@@ -49,7 +49,7 @@ import { AppbarssComponent } from './admin/appbarss/appbarss.component';
     FormsModule,
     NgbModule,
     ToastrModule.forRoot({
-      timeOut: 5000,
+      timeOut: 10000,
       progressBar: true,
       progressAnimation: 'increasing'
     }),

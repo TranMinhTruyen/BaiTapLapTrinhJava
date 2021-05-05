@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
-import { NgForm }   from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
@@ -10,11 +10,15 @@ import { NgForm }   from '@angular/forms';
 })
 export class EmployeeComponent implements OnInit {
 
-  closeResult : string;
+  closeResult: string;
   nhanVien: any = {
-    "id": null,
-    "taiKhoan": null,
-    "matKhau": null,
+    "data": [],
+    "totalRecord": null,
+    "page": null,
+    "size": null,
+    "totalPage": null
+  };
+  nv: any = {
     "role": null,
     "ho": null,
     "ten": null,
@@ -22,7 +26,7 @@ export class EmployeeComponent implements OnInit {
     "cmnd": null,
     "caLamViec": null,
     "hinhAnh": null
-  };
+  }
 
   constructor(
     private HttpClient: HttpClient,
@@ -30,10 +34,10 @@ export class EmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getEmployees();
+    this.getEmployees(5, 1);
   }
-  getEmployees(){
-    this.HttpClient.get<any>('http://localhost:8080/api/nhanvien/getAllNhanVien/?page=1&size=5').subscribe(
+  getEmployees(size: number, page: number) {
+    this.HttpClient.get<any>('http://localhost:8080/api/nhanvien/getAllNhanVien/?page=' + page + '&size=' + size + '').subscribe(
       response => {
         console.log(response);
         this.nhanVien = response;
@@ -41,7 +45,7 @@ export class EmployeeComponent implements OnInit {
     );
   }
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

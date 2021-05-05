@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.common.request.LoginRequest;
 import com.example.common.request.NhanVienRequest;
 import com.example.common.response.NhanVienResponse;
 import com.example.services.NhanVienServices;
@@ -72,10 +73,9 @@ public class NhanVienController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @PostMapping(value = "loginNhanVien/")
-    public ResponseEntity<?> loginNhanVien(@RequestParam String taiKhoan,
-                                             @RequestParam String matKhau){
-        NhanVienResponse dataNhanVien = nhanVienServices.getNhanVienByTaiKhoanMatKhau(taiKhoan, matKhau);
+    @PostMapping(value = "loginNhanVien/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> loginNhanVien(@RequestBody LoginRequest loginRequest){
+        NhanVienResponse dataNhanVien = nhanVienServices.getNhanVienByTaiKhoanMatKhau(loginRequest);
         return new ResponseEntity<>(dataNhanVien, HttpStatus.OK);
     }
 }

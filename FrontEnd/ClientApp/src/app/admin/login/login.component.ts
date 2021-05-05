@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   login() {
     console.log("taiKhoan: " + this.data.taiKhoan);
     console.log("matKhau: " + this.data.matKhau);
-    this.http.post("/api/nhanvien/loginNhanVien/", this.data).subscribe(
+    this.http.post("http://localhost:8080/api/nhanvien/loginNhanVien/", this.data).subscribe(
       result => {
         let res: any = result;
         console.log(res);
@@ -31,8 +31,10 @@ export class LoginComponent implements OnInit {
         if (localStorage) {
           localStorage.setItem("taiKhoan", this.data.taiKhoan);
           this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát','Đăng nhập thành công');
+          this.toastr.info('Xin chào ' + localStorage.getItem("taiKhoan"));
         } else {
           this.toastr.error('Xin vui lòng đăng nhập lại','Đăng nhập thất bại');
+          this.toastr.info('Xin lỗi ' + localStorage.getItem("taiKhoan"));
         }
       },
       error => {
