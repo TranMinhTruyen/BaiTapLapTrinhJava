@@ -33,8 +33,11 @@ public class NhanVienServicesImp implements NhanVienServices {
         newNhanVien.setRole(nhanVien.getRole());
         newNhanVien.setCaLamViec(nhanVien.getCaLamViec());
         newNhanVien.setHinhAnh(nhanVien.getHinhAnh());
-        if (nhanVienRepository.createNhanVien(newNhanVien) != null)
-            return nhanVien;
+        if (!nhanVienRepository.NhanVienIsExist(nhanVien.getTaiKhoan()))
+            if (nhanVienRepository.createNhanVien(newNhanVien) != null)
+                return nhanVien;
+            else
+                return null;
         else
             return null;
     }

@@ -112,6 +112,20 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
     }
 
     @Override
+    public boolean NhanVienIsExist(String taiKhoan) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<NhanVien> query = criteriaBuilder.createQuery(NhanVien.class);
+        Root<NhanVien> root = query.from(NhanVien.class);
+        query.select(root).where(criteriaBuilder.equal(root.get("taiKhoan"), taiKhoan));
+        NhanVien result = session.createQuery(query).uniqueResult();
+        if (result == null)
+            return false;
+        else
+            return true;
+    }
+
+    @Override
     public void updateNhanVienById(int id, NhanVien nhanVien) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

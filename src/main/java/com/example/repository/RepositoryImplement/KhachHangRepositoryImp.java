@@ -2,6 +2,7 @@ package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.KhachHang;
 import com.example.common.entity.Menu;
+import com.example.common.entity.NhanVien;
 import com.example.common.response.KhachHangResponse;
 import com.example.common.response.MenuResponse;
 import com.example.repository.KhachHangRepository;
@@ -109,6 +110,20 @@ public class KhachHangRepositoryImp implements KhachHangRepository {
         query.where(p);
 
         return session.createQuery(query).uniqueResult();
+    }
+
+    @Override
+    public boolean KhachHangIsExist(String taiKhoan) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<KhachHang> query = criteriaBuilder.createQuery(KhachHang.class);
+        Root<KhachHang> root = query.from(KhachHang.class);
+        query.select(root).where(criteriaBuilder.equal(root.get("taiKhoan"), taiKhoan));
+        KhachHang result = session.createQuery(query).uniqueResult();
+        if (result == null)
+            return false;
+        else
+            return true;
     }
 
     @Override

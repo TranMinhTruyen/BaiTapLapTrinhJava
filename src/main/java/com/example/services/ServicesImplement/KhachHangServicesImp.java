@@ -30,9 +30,12 @@ public class KhachHangServicesImp implements KhachHangServices {
         newKhachHang.setTen(khachHang.getTen());
         newKhachHang.setNgaySinh(khachHang.getNgaySinh());
 //        newKhachHang.setHinhAnh(khachHang.getHinhAnh());
-        if (khachHangRepository.createKhachHang(newKhachHang) != null)
-            return khachHang;
-        else 
+        if (!khachHangRepository.KhachHangIsExist(khachHang.getTaiKhoan()))
+            if (khachHangRepository.createKhachHang(newKhachHang) != null)
+                return khachHang;
+            else
+                return null;
+        else
             return null;
     }
 
