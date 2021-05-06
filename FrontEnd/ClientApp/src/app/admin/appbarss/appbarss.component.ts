@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appbarss.component.css']
 })
 export class AppbarssComponent implements OnInit {
+  isHidden: boolean = true;
 
-  constructor() { }
+  constructor(
+    // private http: HttpClient,
+    //  private router: Router,
+    //  private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("taiKhoanAdmin") != null){
+      this.isHidden = false;
+    }
   }
-
+  signOut(){
+    //localStorage.removeItem("taiKhoanAdmin");
+    localStorage.clear();
+    window.location.reload();
+  }
 }

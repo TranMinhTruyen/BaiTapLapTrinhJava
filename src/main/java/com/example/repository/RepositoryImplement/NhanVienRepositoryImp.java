@@ -73,7 +73,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Predicate p4 = criteriaBuilder.like(root.get("ten").as(String.class), keyword);
         Predicate p5 = criteriaBuilder.like(root.get("ngaySinh").as(String.class), keyword);
         Predicate p6 = criteriaBuilder.like(root.get("cmnd").as(String.class), keyword);
-        Predicate p7 = criteriaBuilder.like(root.get("caLamViec").as(String.class), keyword);
+        Predicate p7 = criteriaBuilder.like(root.get("caLamViec").get("caLam").as(String.class), keyword);
 
         query.where(criteriaBuilder.or(p1,p2,p3,p4,p5,p6,p7));
         if (keyword != null)

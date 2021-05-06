@@ -5,7 +5,7 @@
 <br>
 <div class="container">
     <div class="border">
-        <button class="btn btn-md btn-outline-primary" (click)="open(content)">
+        <button class="btn btn-md btn-outline-primary" (click)="triggerModal(modalData)">
             <i class="fa fa-user "></i>
             Thêm nhân viên mới</button>
     </div>
@@ -49,49 +49,52 @@
 
     </ul>
 </div>
-
-
-<ng-template #content let-modal>
-    <div class="modal-header ">
-        <h4 class="modal-title " id="modal-basic-title ">Thêm nhân viên mới</h4>
-        <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
-        <span aria-hidden="true ">&times;</span>
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
       </button>
     </div>
-    <div class="modal-body ">
-        <form #f="ngForm " (ngSubmit)="onSubmit(f) " novalidate name="form">
-            <div class="form-group ">
-                <label for="f_name ">Firstname</label>
-                <div class="input-group ">
-                    <input id="f_name " class="form-control " [(ngModel)]="nhanVien.f_name " name="f_name ">
+    <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+                <label for="ho">Họ Nhân Viên</label>
+                <div class="input-group">
+                    <input id="ho" class="form-control" [(ngModel)]="nvCre.ho" name="ho">
                 </div>
-                <label for="m_name ">Midlename</label>
-                <div class="input-group ">
-                    <input id="m_name " class="form-control " [(ngModel)]="nhanVien.m_name " name="m_name ">
+                <label for="ten">Tên Nhân Viên</label>
+                <div class="input-group">
+                    <input id="ten" class="form-control" [(ngModel)]="nvCre.ten" name="ten">
                 </div>
-                <label for="l_name ">Lastname</label>
-                <div class="input-group ">
-                    <input id="l_name " class="form-control " [(ngModel)]="nhanVien.l_name " name="l_name ">
+                <label for="taiKhoan">Tài Khoản Nhân Viên</label>
+                <div class="input-group">
+                    <input id="taiKhoan" class="form-control" [(ngModel)]="nvCre.taiKhoan" name="taiKhoan">
                 </div>
-                <label for="address ">Adress</label>
-                <div class="input-group ">
-                    <input id="address " class="form-control " [(ngModel)]="nhanVien.address " name="address ">
+                <label for="matKhau">Mật Khẩu Nhân Viên</label>
+                <div class="input-group">
+                    <input id="matKhau" class="form-control" [(ngModel)]="nvCre.matKhau" name="matKhau">
                 </div>
-                <label for="birthDate ">BirthDay</label>
-                <div class="input-group ">
-                    <input id="birthDate " class="form-control " [(ngModel)]="nhanVien.birthDate " name="birthDate ">
+                <label for="ngaySinh">Ngày Sinh Nhân Viên</label>
+                <div class="input-group">
+                    <input id="ngaySinh" class="form-control" [(ngModel)]="nvCre.ngaySinh" name="ngaySinh">
                 </div>
-                <label for="score ">Score</label>
-                <div class="input-group ">
-                    <input id="score " class="form-control " [(ngModel)]="nhanVien.score " name="score ">
+                <label for="cmnd">Chứng Minh Nhân Dân</label>
+                <div class="input-group">
+                    <input id="cmnd" class="form-control" [(ngModel)]="nvCre.cmnd" name="cmnd">
                 </div>
-                <div class="border text-center ">
-                    <button data-dismiss="modal " class="btn btn-info ">Submit</button>
+                <label for="caLamViec">Ca Làm Việc</label>
+                <div class="form-group">
+                    <select name="caLamViec" id="caLamViec" class="form-control" [(ngModel)]="nvCre.caLamViec">
+                        <option *ngFor="let caLamViec of caLamViecS" [value]="caLamViec.id">{{ caLamViec.label }}</option>
+                    </select>
+                </div>
+                <div class="border text-center">
+                    <button data-dismiss="modal" class="btn btn-info" (click)="createEmployees()">Thêm Nhân Viên Mới</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer ">
-        <button type="button " class="btn btn-outline-dark " (click)="modal.close( 'Save click') ">Save</button>
+    <div class="modal-footer">
     </div>
 </ng-template>

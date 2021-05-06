@@ -12,7 +12,7 @@
             <span class="caret"></span>
             <!-- Dropdown -->
             <li class="nav-item dropdown" dropdown>
-                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                <a *ngIf="!isHidden" dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Quản Lý
             <span class="caret"></span></a>
                 <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
@@ -31,24 +31,14 @@
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item">
                 <a class="nav-link">
-                    <mdb-icon fab icon="twitter"></mdb-icon>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
-                    <mdb-icon fab icon="google-plus"></mdb-icon>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
                     <div class="btn-group" mdbDropdown>
                         <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
                         <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                            <a class="dropdown-item" href="/admin/login">Đăng Nhập</a>
-                            <a class="dropdown-item" href="/admin/signup">Đăng Ký</a>
-                            <a class="dropdown-item" href="#">Quản Lý Tài Khoản</a>
+                            <a *ngIf="isHidden" class="dropdown-item" href="/admin/login">Đăng Nhập</a>
+                            <a *ngIf="isHidden" class="dropdown-item" href="/admin/signup">Đăng Ký</a>
+                            <a *ngIf="!isHidden" class="dropdown-item" href="/admin/personal">Quản Lý Tài Khoản</a>
                             <div class="divider dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a *ngIf="!isHidden" class="dropdown-item" (click)="signOut()">Đăng Xuất</a>
                         </div>
                     </div>
                 </a>

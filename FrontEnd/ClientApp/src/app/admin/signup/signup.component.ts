@@ -53,27 +53,32 @@ export class SignupComponent implements OnInit {
     console.log("cmnd: " + this.data.cmnd);
     console.log("caLamViec: " + this.data.caLamViec);
     console.log(this.selectedValue);
+
     this.http.post("http://localhost:8080/api/nhanvien/createNhanVien", this.data).subscribe(
       result => {
         let res: any = result;
         console.log(res);
-        this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát','Tạo tài khoản thành công');
+        this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát', 'Tạo tài khoản thành công');
         this.router.navigate(['/admin/login']);
       },
       error => {
-        this.toastr.error('Xin vui lòng tạo tài khoản lại','Tạo tài khoản thất bại');
+        this.toastr.error('Xin vui lòng tạo tài khoản lại', 'Tạo tài khoản thất bại');
         console.error(error);
       }
     )
+
   }
 
   ngOnInit() {
-    window.addEventListener("beforeunload", function (e) {
-      var confirmationMessage = "\o/";
-      console.log("cond");
-      e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
-      return confirmationMessage;              // Gecko, WebKit, Chrome <34
-    });
+    // window.addEventListener("beforeunload", function (e) {
+    //   var confirmationMessage = "\o/";
+    //   console.log("cond");
+    //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+    //   return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    // });
+    if(localStorage.getItem("taiKhoanAdmin") != null){
+      this.router.navigate(['/admin/']);
+    }
   }
 
 

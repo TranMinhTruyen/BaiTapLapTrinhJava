@@ -6,10 +6,10 @@ import { FormsModule } from '@angular/forms';
 //
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 //
-import { MatToolbarModule } from '@angular/material/toolbar'
-import { MatButtonModule } from '@angular/material/button'
-import { MatIconModule } from '@angular/material/icon'
-import { ToastrModule } from 'ngx-toastr'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,7 @@ import { NavbarhomeComponent } from './home/navbarhome/navbarhome.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { EmployeeComponent } from './admin/managerment/employee/employee.component';
 import { AppbarssComponent } from './admin/appbarss/appbarss.component';
+import { PersonalComponent } from './admin/managerment/personal/personal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AppbarssComponent } from './admin/appbarss/appbarss.component';
     NavbarhomeComponent,
     NotfoundComponent,
     EmployeeComponent,
-    AppbarssComponent
+    AppbarssComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,

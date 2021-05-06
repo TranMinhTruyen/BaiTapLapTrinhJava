@@ -29,12 +29,13 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/admin/login']);
         if (localStorage) {
-          localStorage.setItem("taiKhoan", this.data.taiKhoan);
+          localStorage.setItem("taiKhoanAdmin", this.data.taiKhoan);
           this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát','Đăng nhập thành công');
-          this.toastr.info('Xin chào ' + localStorage.getItem("taiKhoan"));
+          this.toastr.info('Xin chào ' + localStorage.getItem("taiKhoanAdmin"));
+          this.router.navigate(['/admin/']);
         } else {
           this.toastr.error('Xin vui lòng đăng nhập lại','Đăng nhập thất bại');
-          this.toastr.info('Xin lỗi ' + localStorage.getItem("taiKhoan"));
+          this.toastr.info('Xin lỗi ' + localStorage.getItem("taiKhoanAdmin"));
         }
       },
       error => {
@@ -51,12 +52,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.addEventListener("beforeunload", function (e) {
-      var confirmationMessage = "\o/";
-      console.log("cond");
-      e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
-      return confirmationMessage;              // Gecko, WebKit, Chrome <34
-    });
+    // window.addEventListener("beforeunload", function (e) {
+    //   var confirmationMessage = "\o/";
+    //   console.log("cond");
+    //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+    //   return confirmationMessage;              // Gecko, WebKit, Chrome <34
+    // });
+    if(localStorage.getItem("taiKhoanAdmin") != null){
+      this.router.navigate(['/admin/']);
+    }
   }
 
 }
