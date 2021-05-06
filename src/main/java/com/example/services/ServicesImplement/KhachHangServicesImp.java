@@ -75,12 +75,16 @@ public class KhachHangServicesImp implements KhachHangServices {
     public KhachHangResponse getKhachHangByTaiKhoanMatKhau(LoginRequest loginRequest) {
         String matKhauHash = Hashing.sha256().hashString(loginRequest.getMatKhau(), StandardCharsets.UTF_8).toString();
         KhachHang result = khachHangRepository.getKhachHangByTaiKhoanMatKhau(loginRequest.getTaiKhoan(), matKhauHash);
-        KhachHangResponse khachHangResponse = new KhachHangResponse();
-        khachHangResponse.setHo(result.getHo());
-        khachHangResponse.setTen(result.getTen());
-        khachHangResponse.setNgaySinh(result.getNgaySinh().toString());
-        khachHangResponse.setHinhAnh(result.getHinhAnh());
-        return khachHangResponse;
+        if (result != null){
+            KhachHangResponse khachHangResponse = new KhachHangResponse();
+            khachHangResponse.setId(result.getId());
+            khachHangResponse.setHo(result.getHo());
+            khachHangResponse.setTen(result.getTen());
+            khachHangResponse.setNgaySinh(result.getNgaySinh().toString());
+            khachHangResponse.setHinhAnh(result.getHinhAnh());
+            return khachHangResponse;
+        }
+        else return null;
     }
 
     @Override

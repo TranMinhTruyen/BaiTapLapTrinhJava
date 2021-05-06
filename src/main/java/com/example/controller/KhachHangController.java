@@ -75,6 +75,9 @@ public class KhachHangController {
     @PostMapping(value = "loginKhachHang/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginKhachHang(@RequestBody LoginRequest loginRequest){
         KhachHangResponse dataKhachHang = khachHangServices.getKhachHangByTaiKhoanMatKhau(loginRequest);
-        return new ResponseEntity<>(dataKhachHang, HttpStatus.OK);
+        if (dataKhachHang != null)
+            return new ResponseEntity<>(dataKhachHang, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Not found", HttpStatus.OK);
     }
 }
