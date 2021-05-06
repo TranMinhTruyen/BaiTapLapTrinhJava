@@ -39,6 +39,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
+                root.get("id"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
@@ -58,6 +59,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
+                root.get("id"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
