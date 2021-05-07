@@ -12,8 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EmployeeComponent implements OnInit {
 
+  isReadOnly: boolean;
   closeResult: string;
   closeModal: string;
+  i: string;
   nhanVien: any = {
     "data": [],
     "totalRecord": null,
@@ -22,13 +24,16 @@ export class EmployeeComponent implements OnInit {
     "totalPage": null
   };
   nv: any = {
+    "id": null,
     "role": null,
-    "ho": null,
-    "ten": null,
     "ngaySinh": null,
-    "cmnd": null,
-    "caLamViec": null,
-    "hinhAnh": null
+    "hinhAnh": null,
+    "taiKhoan": "",
+    "matKhau": "",
+    "ho": "",
+    "ten": "",
+    "cmnd": "",
+    "caLamViec": null
   }
   nvCre: any = {
     "role": null,
@@ -54,7 +59,19 @@ export class EmployeeComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) { }
-  triggerModal(content) {
+  triggerModal(content, index, isReadOnly) {
+    this.isReadOnly = isReadOnly;
+    if(index !== null){
+      console.log(this.nhanVien.data[index]);
+      this.nv = this.nhanVien.data[index];
+      this.openModel(content);
+    }
+    else{
+      this.openModel(content);
+    }   
+  }
+
+  private openModel(content){
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((res) => {
       this.closeModal = `Closed with: ${res}`;
     }, (res) => {
@@ -93,7 +110,7 @@ export class EmployeeComponent implements OnInit {
     console.log("cmnd: " + this.nvCre.cmnd);
     console.log("caLamViec: " + this.nvCre.caLamViec);
 
-    this.HttpClient.post("http://localhost:8080/api/nhanvien/createNhanVien", this.nvCre).subscribe(
+    this.HttpClient.post("http://localhost:8080/api/nhanvien/createNhanVien", this.nv).subscribe(
       result => {
         let res: any = result;
         console.log(res);
@@ -104,6 +121,35 @@ export class EmployeeComponent implements OnInit {
         console.error(error);
       }
     )
+  }
+  updateEmployees(){
+    this.HttpClient.put("/api/nhanvien/updateNhanVien/?id=" + this.nv.id, this.nv).subscribe(
+      result => {
+        let res: any = result;
+        console.log(res);
+        this.toastr.success('Cập nhập tài khoản thành công');
+      },
+      error => {
+        this.toastr.error('Xin vui lòng thử lại', 'Cập nhập nhân viên thất bại');
+        this.toastr.info('Hãy kiểm tra xem đã chọn ca làm việc chưa !!!');
+        console.error(error);
+      }
+    )
+  }
 
+  deleteEmployees(content, index, isReadOnly){
+    this.nv = this.nhanVien.data[index];
+    this.HttpClient.delete("http://localhost:8080/api/nhanvien/deleteNhanVien/?id=" + this.nv.id, this.nv).subscribe(
+      result => {
+        let res: any = result;
+        console.log(res);
+        this.toastr.success('Xóa tài khoản thành công');
+        window.location.reload();
+      },
+      error => {
+        this.toastr.error('Xin vui lòng thử lại', 'Xóa nhân viên thất bại');
+        console.error(error);
+      }
+    )
   }
 }

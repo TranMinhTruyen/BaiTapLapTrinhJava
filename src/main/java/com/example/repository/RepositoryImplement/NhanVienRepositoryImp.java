@@ -39,6 +39,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
+                root.get("id"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
@@ -58,6 +59,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Root<NhanVien> root = query.from(NhanVien.class);
         query.select(criteriaBuilder.construct(
                 NhanVienResponse.class,
+                root.get("id"),
                 root.get("role"),
                 root.get("ho"),
                 root.get("ten"),
@@ -73,7 +75,7 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         Predicate p4 = criteriaBuilder.like(root.get("ten").as(String.class), keyword);
         Predicate p5 = criteriaBuilder.like(root.get("ngaySinh").as(String.class), keyword);
         Predicate p6 = criteriaBuilder.like(root.get("cmnd").as(String.class), keyword);
-        Predicate p7 = criteriaBuilder.like(root.get("caLamViec").get("caLam").as(String.class), keyword);
+        Predicate p7 = criteriaBuilder.like(root.get("caLamViec").as(String.class), keyword);
 
         query.where(criteriaBuilder.or(p1,p2,p3,p4,p5,p6,p7));
         if (keyword != null)
@@ -109,6 +111,20 @@ public class NhanVienRepositoryImp implements NhanVienRepository {
         query.where(p);
 
         return session.createQuery(query).uniqueResult();
+    }
+
+    @Override
+    public boolean NhanVienIsExist(String taiKhoan) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<NhanVien> query = criteriaBuilder.createQuery(NhanVien.class);
+        Root<NhanVien> root = query.from(NhanVien.class);
+        query.select(root).where(criteriaBuilder.equal(root.get("taiKhoan"), taiKhoan));
+        NhanVien result = session.createQuery(query).uniqueResult();
+        if (result == null)
+            return false;
+        else
+            return true;
     }
 
     @Override

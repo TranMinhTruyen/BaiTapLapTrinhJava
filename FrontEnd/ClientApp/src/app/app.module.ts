@@ -27,6 +27,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { EmployeeComponent } from './admin/managerment/employee/employee.component';
 import { AppbarssComponent } from './admin/appbarss/appbarss.component';
 import { PersonalComponent } from './admin/managerment/personal/personal.component';
+import { CustomerComponent } from './admin/managerment/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PersonalComponent } from './admin/managerment/personal/personal.compone
     NotfoundComponent,
     EmployeeComponent,
     AppbarssComponent,
-    PersonalComponent
+    PersonalComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,

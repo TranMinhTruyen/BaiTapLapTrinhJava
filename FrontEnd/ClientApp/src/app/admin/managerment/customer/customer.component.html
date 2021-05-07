@@ -1,5 +1,4 @@
 <app-appbarss></app-appbarss>
-
 <br>
 <br>
 <br>
@@ -7,25 +6,25 @@
     <div class="border">
         <button class="btn btn-md btn-outline-primary" (click)="triggerModal(modalData, null, false)">
             <i class="fa fa-user "></i>
-            Thêm nhân viên mới</button>
+            Thêm Khách Hàng mới</button>
     </div>
     <br>
     <table class="table table-bordered table-striped ">
         <thead>
             <tr>
-                <th>Cmnd</th>
-                <th>Họ Nhân Viên</th>
-                <th>Tên Nhân Viên</th>
+                <th>Ngày Sinh</th>
+                <th>Họ Khách Hàng</th>
+                <th>Tên Khách Hàng</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let nv of nhanVien.data; index as i; ">
-                <td><span>{{nv.cmnd}}</span></td>
-                <td><span>{{nv.ho}}</span></td>
-                <td><span>{{nv.ten}}</span></td>
+            <tr *ngFor="let kh of khachHang.data; index as i; ">
+                <td><span>{{kh.ngaySinh}}</span></td>
+                <td><span>{{kh.ho}}</span></td>
+                <td><span>{{kh.ten}}</span></td>
                 <td>
                     <button class="btn btn-sm btn-info " (click)="triggerModal(modalData, i, true)">
-              <i id="ic1 " class="fa fa-search " ></i>Chi Tiết Nhân Viên</button>
+              <i id="ic1 " class="fa fa-search " ></i>Chi Tiết Khách Hàng</button>
                     <button class="btn btn-sm btn-warning " (click)="triggerModal(modalData, i, true)">
               <i id="ic2 " class="fa fa-edit "></i>Sửa</button>
                     <button class="btn btn-sm btn-danger " (click)="deleteEmployees(modalData, i, true)">
@@ -61,31 +60,31 @@
             <div class="form-group">
                 <label for="ho">Họ Nhân Viên</label>
                 <div class="input-group">
-                    <input id="ho" class="form-control" [(ngModel)]="nv.ho" name="ho">
+                    <input id="ho" class="form-control" [(ngModel)]="kh.ho" name="ho">
                 </div>
                 <label for="ten">Tên Nhân Viên</label>
                 <div class="input-group">
-                    <input id="ten" class="form-control" [(ngModel)]="nv.ten" name="ten">
+                    <input id="ten" class="form-control" [(ngModel)]="kh.ten" name="ten">
                 </div>
                 <label for="taiKhoan">Tài Khoản Nhân Viên</label>
                 <div class="input-group">
-                    <input [disabled]="isReadOnly" id="taiKhoan" class="form-control" [(ngModel)]="nv.taiKhoan" name="taiKhoan">
+                    <input [disabled]="isReadOnly" id="taiKhoan" class="form-control" [(ngModel)]="kh.taiKhoan" name="taiKhoan">
                 </div>
                 <label for="matKhau">Mật Khẩu Nhân Viên</label>
                 <div class="input-group">
-                    <input [disabled]="isReadOnly" id="matKhau" class="form-control" [(ngModel)]="nv.matKhau" name="matKhau">
+                    <input [disabled]="isReadOnly" id="matKhau" class="form-control" [(ngModel)]="kh.matKhau" name="matKhau">
                 </div>
                 <label for="ngaySinh">Ngày Sinh Nhân Viên</label>
                 <div class="input-group">
-                    <input id="ngaySinh" class="form-control" [(ngModel)]="nv.ngaySinh" name="ngaySinh">
+                    <input id="ngaySinh" class="form-control" [(ngModel)]="kh.ngaySinh" name="ngaySinh">
                 </div>
                 <label for="cmnd">Chứng Minh Nhân Dân</label>
                 <div class="input-group">
-                    <input id="cmnd" class="form-control" [(ngModel)]="nv.cmnd" name="cmnd">
+                    <input id="cmnd" class="form-control" [(ngModel)]="kh.cmnd" name="cmnd">
                 </div>
                 <label for="caLamViec">Ca Làm Việc</label>
                 <div class="form-group">
-                    <select name="caLamViec" id="caLamViec" class="form-control" [(ngModel)]="nv.caLamViec">
+                    <select name="caLamViec" id="caLamViec" class="form-control" [(ngModel)]="kh.caLamViec">
                         <option *ngFor="let caLamViec of caLamViecS" [value]="caLamViec.id">{{ caLamViec.label }}</option>
                     </select>
                 </div>

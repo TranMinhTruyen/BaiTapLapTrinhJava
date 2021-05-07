@@ -30,9 +30,12 @@ public class KhachHangServicesImp implements KhachHangServices {
         newKhachHang.setTen(khachHang.getTen());
         newKhachHang.setNgaySinh(khachHang.getNgaySinh());
 //        newKhachHang.setHinhAnh(khachHang.getHinhAnh());
-        if (khachHangRepository.createKhachHang(newKhachHang) != null)
-            return khachHang;
-        else 
+        if (!khachHangRepository.KhachHangIsExist(khachHang.getTaiKhoan()))
+            if (khachHangRepository.createKhachHang(newKhachHang) != null)
+                return khachHang;
+            else
+                return null;
+        else
             return null;
     }
 
@@ -87,7 +90,7 @@ public class KhachHangServicesImp implements KhachHangServices {
         newKhachHang.setHo(khachHang.getHo());
         newKhachHang.setTen(khachHang.getTen());
         newKhachHang.setNgaySinh(khachHang.getNgaySinh());
-//        newKhachHang.setHinhAnh(khachHang.getHinhAnh());
+        newKhachHang.setHinhAnh(khachHang.getHinhAnh());
         if (khachHangRepository.getKhachHangById(id) != null){
             khachHangRepository.updateKhachHangById(id, newKhachHang);
             return khachHang;
