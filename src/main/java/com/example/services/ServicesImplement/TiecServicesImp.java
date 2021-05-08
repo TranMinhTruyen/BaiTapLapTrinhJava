@@ -69,6 +69,7 @@ public class TiecServicesImp implements TiecServices {
         Tiec newTiec = new Tiec();
         newTiec.setThoiGianBatDau(tiecRequest.getThoiGian());
         newTiec.setNgayBatDau(tiecRequest.getNgayToChuc());
+        newTiec.setCaLamViec(tiecRequest.getCaLamViec());
         newTiec.setSanh(tiecRequest.getSanh());
         newTiec.setMenu(tiecRequest.getMenu());
         newTiec.setLoai(tiecRequest.getLoai());
