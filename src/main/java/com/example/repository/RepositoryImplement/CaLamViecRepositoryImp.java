@@ -1,7 +1,6 @@
 package com.example.repository.RepositoryImplement;
 
 import com.example.common.entity.CaLamViec;
-import com.example.common.entity.KhachHang;
 import com.example.common.response.CaLamViecResponse;
 import com.example.repository.CaLamViecRepository;
 import org.hibernate.Session;
@@ -99,8 +98,8 @@ public class CaLamViecRepositoryImp implements CaLamViecRepository {
     public void deleteCaLamViec(int id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaDelete<KhachHang> query = criteriaBuilder.createCriteriaDelete(KhachHang.class);
-        Root<KhachHang> root = query.from(KhachHang.class);
+        CriteriaDelete<CaLamViec> query = criteriaBuilder.createCriteriaDelete(CaLamViec.class);
+        Root<CaLamViec> root = query.from(CaLamViec.class);
         Predicate p = criteriaBuilder.equal(root.get("id"),id);
         query.where(p);
         session.createQuery(query).executeUpdate();
