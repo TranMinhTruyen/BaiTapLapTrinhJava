@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="testbox">
+    <form action="/">
+        <h1>Đặt Tiệc Ngay</h1>
+        <h5>Xin Hãy Nhập Thông Tin Đặt Tiệc</h5>
+
+
+        <div class="item">
+            <p>Ngày Tổ Chức Tiệc Cưới</p>
+            <input type="text" name="name" placeholder="YYYY-MM-DD" [(ngModel)]="data.ngayToChuc" />
+        </div>
+        <div class="item">
+            <p>Thời Gian</p>
+            <input type="text" name="name" placeholder="HH:MM:SS" [(ngModel)]="data.thoiGian" />
+        </div>
+        <div>
+            <label>Loại Tiệc</label>
+            <select name="loaiTiec" [(ngModel)]="data.loai">
+                <option value="Tiệc Cưới">Tiệc Cưới</option>
+                <option value="Tiệc Sinh Nhật">Tiệc Sinh Nhật</option>
+                <option value="Tiệc Quẩy">Tiệc Quẩy</option>
+              </select>
+        </div>
+        <div>
+            <label>Loại Sảnh</label>
+            <select name="loaiSanh" [(ngModel)]="data.sanh">
+                <option value="{{kh.id}}" *ngFor="let kh of sanh.data; index as i;">{{kh.tenSanh}}</option>
+              </select>
+        </div>
+        <div>
+            <label>Loại Menu</label>
+            <select name="loaiMenu" [(ngModel)]="data.menu">
+                <option value="{{kh.id}}" *ngFor="let kh of menu.data; index as i;">{{kh.tenMenu}}</option>
+              </select>
+        </div>
+
+        <div class="btn-block">
+            <button type="submit" (click)="datTiec()">Đặt Tiệc</button>
+        </div>
+    </form>
+</div>
