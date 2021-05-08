@@ -1,27 +1,38 @@
 <!-- Default form register -->
-<form class=" signup-form text-center border border-light p-5">
+<form class=" signup-form text-center border border-light p-5" [formGroup]="form">
 
     <p class="h4 mb-4">Đăng ký tài khoản</p>
 
     <div class="form-row mb-4">
-        <div class="col">
-            <!-- First name -->
-            <input [(ngModel)]="data.ho" name="ho" type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Họ">
+        <div class="col form-group">
+            <input [(ngModel)]="data.ho" name="ho" type="text" class="form-control" placeholder="Họ" formControlName="ho" [ngClass]="{'is-invalid':form.get('ho').touched && form.get('ho').invalid}">
+            <div class="invalid-feedback">
+                <div>Họ của Nhân Viên Không Được Phép Bỏ Trống</div>
+            </div>
         </div>
-        <div class="col">
-            <!-- Last name -->
-            <input [(ngModel)]="data.ten" name="ten" type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Tên">
+        <div class="col form-group">
+            <input [(ngModel)]="data.ten" name="ten" type="text" class="form-control" placeholder="Tên" formControlName="ten" [ngClass]="{'is-invalid':form.get('ten').touched && form.get('ten').invalid}">
+            <div class="invalid-feedback">
+                <div>Tên của Nhân Viên Không Được Phép Bỏ Trống</div>
+            </div>
         </div>
     </div>
 
     <!-- E-mail -->
-    <input type="text" [(ngModel)]="data.taiKhoan" name="taiKhoan" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Tài Khoản">
-
+    <div class="form-group">
+        <input type="text" [(ngModel)]="data.taiKhoan" name="taiKhoan" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Tài Khoản" formControlName="ten" [ngClass]="{'is-invalid':form.get('ten').touched && form.get('ten').invalid}">
+        <div class="invalid-feedback">
+            <div>Tài Khoản của Nhân Viên Không Được Phép Bỏ Trống</div>
+        </div>
+    </div>
     <!-- Password -->
-    <input type="password" [(ngModel)]="data.matKhau" name="matKhau" id="defaultRegisterFormPassword" class="form-control" placeholder="Mật Khẩu" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      Cần ít nhất 8 ký tự và 1 chữ số !!!
-    </small>
+    <div class="form-group">
+        <input type="password" [(ngModel)]="data.matKhau" name="matKhau" id="defaultRegisterFormPassword" class="form-control" placeholder="Mật Khẩu" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="matKhau" [ngClass]="{'is-invalid':form.get('matKhau').touched && form.get('matKhau').invalid}">
+        <div *ngIf="form.get('matKhau').touched && form.get('matKhau').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('matKhau').errors.required">Mật Khẩu Không Được Phép Bỏ Trống</div>
+            <div *ngIf="form.get('matKhau').errors.minlength">Mật Khẩu Phải lớn hơn 6 Ký Tự</div>
+        </div>
+    </div>
 
     <!-- Phone number -->
     <input type="text" [(ngModel)]="data.cmnd" name="cmnd" id="defaultRegisterPhonePassword" class="form-control" placeholder="Chứng Minh Nhân Dân" aria-describedby="defaultRegisterFormPhoneHelpBlock">
@@ -29,13 +40,14 @@
       Nếu không dùng xác thực 2 yếu tố thì bỏ qua phần này !
     </small>
 
+    <label>Ca Làm Việc</label>
     <select [(ngModel)]="selectedValue" name="caLamViec">
         <option *ngFor="let data of caLamViec" value="{{data.value}}">{{data.name}}</option>
     </select>
 
 
     <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="signup()">Đăng Ký Ngay</button>
+    <button [disabled]="!form.valid" mdbBtn color="info" block="true" class="my-4" type="submit" (click)="signup()">Đăng Ký Ngay</button>
 
     <!-- Social register -->
     <p>Hoặc là đăng ký với:</p>

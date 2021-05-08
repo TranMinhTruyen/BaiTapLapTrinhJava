@@ -7,7 +7,13 @@
     <a mat-button>Trang Chủ</a>
     <a mat-button>Sảnh Tiệc</a>
     <a mat-button>Danh Sách Thức Ăn</a>
-    <a mat-button>Danh Sách Menu</a>
-    <a mat-raised-button color="accent">Tài Khoản</a>
+    <a mat-button href="user/feedback">Phản Hồi</a>
+    <a mat-raised-button color="accent" [matMenuTriggerFor]="menu">Tài Khoản</a>
+    <mat-menu #menu="matMenu">
+        <button *ngIf="isHidden" mat-menu-item routerLink="login">Đăng Nhập</button>
+        <button *ngIf="isHidden" mat-menu-item routerLink="signup">Đăng Ký</button>
+        <button *ngIf="!isHidden" mat-menu-item>Quản Lý Tài Khoản</button>
+        <button *ngIf="!isHidden" mat-menu-item (click)="signOut()">Đăng Xuất</button>
+    </mat-menu>
 
 </mat-toolbar>

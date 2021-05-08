@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<!-- Default form login -->
+<div class="container">
+    <form class="login-form text-center border border-light p-5">
+
+        <p class="h4 mb-4">Đăng Nhập</p>
+
+        <!-- Email -->
+        <input type="text" class="form-control mb-4" [(ngModel)]="data.taiKhoan" name="taiKhoan" placeholder="Tên Tài Khoản">
+
+        <!-- Password -->
+        <input type="password" class="form-control mb-4" [(ngModel)]="data.matKhau" name="matKhau" placeholder="Mật Khẩu">
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Ghi nhớ đăng nhập</mdb-checkbox>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Quên mật khẩu à ?</a>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="login()">Sign in</button>
+
+        <!-- Register -->
+        <p>Chưa có tài khoản ?
+            <a href=" /user/signup ">Đăng Ký Ngay</a>
+        </p>
+
+        <!-- Social login -->
+        <p>Hoặc là đăng nhập với:</p>
+
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="facebook "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="twitter "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="linkedin "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="github "></mdb-icon>
+        </a>
+
+    </form>
+    <!-- Default form login -->
+</div>

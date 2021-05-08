@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 //
+import { MatListModule } from '@angular/material/list'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +31,9 @@ import { EmployeeComponent } from './admin/managerment/employee/employee.compone
 import { AppbarssComponent } from './admin/appbarss/appbarss.component';
 import { PersonalComponent } from './admin/managerment/personal/personal.component';
 import { CustomerComponent } from './admin/managerment/customer/customer.component';
+import { FeedbackComponent } from './user/func/feedback/feedback.component';
+import { SignupkhComponent } from './user/func/signupkh/signupkh.component';
+import { LoginkhComponent } from './user/func/loginkh/loginkh.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +50,17 @@ import { CustomerComponent } from './admin/managerment/customer/customer.compone
     EmployeeComponent,
     AppbarssComponent,
     PersonalComponent,
-    CustomerComponent
+    CustomerComponent,
+    FeedbackComponent,
+    SignupkhComponent,
+    LoginkhComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatMenuModule,
     NgbModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -58,10 +68,13 @@ import { CustomerComponent } from './admin/managerment/customer/customer.compone
       progressAnimation: 'increasing'
     }),
     MatIconModule,
+    MatListModule,
     MatButtonModule,
     MatToolbarModule,
+    MatSidenavModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

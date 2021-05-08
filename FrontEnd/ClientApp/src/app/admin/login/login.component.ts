@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService} from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,10 @@ import { ToastrService} from 'ngx-toastr';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form = new FormGroup({
+    taiKhoan: new FormControl('', Validators.required),
+    matKhau: new FormControl('', [Validators.required,Validators.minLength(6)])
+  })
 
   data: any = {
     "taiKhoan": "",
@@ -16,9 +21,9 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-     private http: HttpClient,
-     private router: Router,
-     private toastr: ToastrService) { }
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   login() {
     console.log("taiKhoan: " + this.data.taiKhoan);
@@ -30,25 +35,25 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin/login']);
         if (localStorage) {
           localStorage.setItem("taiKhoanAdmin", this.data.taiKhoan);
-          this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát','Đăng nhập thành công');
+          this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát', 'Đăng nhập thành công');
           this.toastr.info('Xin chào ' + localStorage.getItem("taiKhoanAdmin"));
           this.router.navigate(['/admin/']);
         } else {
-          this.toastr.error('Xin vui lòng đăng nhập lại','Đăng nhập thất bại');
+          this.toastr.error('Xin vui lòng đăng nhập lại', 'Đăng nhập thất bại');
           this.toastr.info('Xin lỗi ' + localStorage.getItem("taiKhoanAdmin"));
         }
       },
       error => {
         console.log(error);
-        this.toastr.error('Xin vui lòng đăng nhập lại','Đăng nhập thất bại');
+        this.toastr.error('Xin vui lòng đăng nhập lại', 'Đăng nhập thất bại');
       }
     )
   }
 
-  showToast(){
-    this.toastr.success('adudu','ahihi');
-    this.toastr.error('csd','sdasd');
-    this.toastr.info('asdasd','asdihauisd');
+  showToast() {
+    this.toastr.success('adudu', 'ahihi');
+    this.toastr.error('csd', 'sdasd');
+    this.toastr.info('asdasd', 'asdihauisd');
   }
 
   ngOnInit() {
@@ -58,7 +63,7 @@ export class LoginComponent implements OnInit {
     //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
     //   return confirmationMessage;              // Gecko, WebKit, Chrome <34
     // });
-    if(localStorage.getItem("taiKhoanAdmin") != null){
+    if (localStorage.getItem("taiKhoanAdmin") != null) {
       this.router.navigate(['/admin/']);
     }
   }

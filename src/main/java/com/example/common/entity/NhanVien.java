@@ -109,8 +109,8 @@ public class NhanVien implements Serializable {
         this.caLamViec = caLamViec;
     }
 
-    public int getCaLamViec() {
-        return caLamViec.getId();
+    public String getCaLamViec() {
+        return caLamViec.getCaLam();
     }
 
     public void setCaLamViec(int caLamViec) {

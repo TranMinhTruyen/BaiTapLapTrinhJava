@@ -78,14 +78,19 @@ public class NhanVienServicesImp implements NhanVienServices {
     public NhanVienResponse getNhanVienByTaiKhoanMatKhau(LoginRequest loginRequest) {
         String matKhauHash = Hashing.sha256().hashString(loginRequest.getMatKhau(), StandardCharsets.UTF_8).toString();
         NhanVien result = nhanVienRepository.getNhanVienByTaiKhoanMatKhau(loginRequest.getTaiKhoan(), matKhauHash);
-        NhanVienResponse nhanVienResponse = new NhanVienResponse();
-        nhanVienResponse.setHo(result.getHo());
-        nhanVienResponse.setTen(result.getTen());
-        nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());
-        nhanVienResponse.setCmnd(result.getCmnd());
-        nhanVienResponse.setRole(result.getRole());
-        nhanVienResponse.setHinhAnh(result.getHinhAnh());
-        return nhanVienResponse;
+        if (result != null){
+            NhanVienResponse nhanVienResponse = new NhanVienResponse();
+            nhanVienResponse.setId(result.getId());
+            nhanVienResponse.setHo(result.getHo());
+            nhanVienResponse.setTen(result.getTen());
+            nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());
+            nhanVienResponse.setCmnd(result.getCmnd());
+            nhanVienResponse.setCaLamViec(result.getCaLamViec());
+            nhanVienResponse.setRole(result.getRole());
+            nhanVienResponse.setHinhAnh(result.getHinhAnh());
+            return nhanVienResponse;
+        }
+        else return null;
     }
 
     @Override

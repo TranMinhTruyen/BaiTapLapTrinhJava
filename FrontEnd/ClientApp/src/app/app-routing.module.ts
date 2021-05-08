@@ -8,6 +8,9 @@ import { PersonalComponent } from './admin/managerment/personal/personal.compone
 import { SignupComponent } from './admin/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { FeedbackComponent } from './user/func/feedback/feedback.component';
+import { LoginkhComponent } from './user/func/loginkh/loginkh.component';
+import { SignupkhComponent } from './user/func/signupkh/signupkh.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'admin/personal', component: PersonalComponent },
   { path: 'admin/customer', component: CustomerComponent },
   { path: 'user', component: UserComponent },
+  { path: 'user/feedback', component: FeedbackComponent },
+  { path: 'user/login', component:  LoginkhComponent},
+  { path: 'user/signup', component:  SignupkhComponent},
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
 

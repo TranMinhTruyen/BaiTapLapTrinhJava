@@ -1,14 +1,23 @@
 <!-- Default form login -->
 <div class="container">
-    <form class="login-form text-center border border-light p-5">
+    <form class="login-form text-center border border-light p-5" [formGroup]="form">
 
         <p class="h4 mb-4">Đăng Nhập</p>
 
-        <!-- Email -->
-        <input type="text" class="form-control mb-4" [(ngModel)]="data.taiKhoan" name="taiKhoan" placeholder="Tên Tài Khoản">
+        <div class="form-group">
+            <input type="text" class="form-control mb-4" [(ngModel)]="data.taiKhoan" name="taiKhoan" placeholder="Tên Tài Khoản" formControlName="taiKhoan" [ngClass]="{'is-invalid':form.get('taiKhoan').touched && form.get('taiKhoan').invalid}">
+            <div class="invalid-feedback">
+                <div>Tài Khoản Không Được Phép Bỏ Trống</div>
+            </div>
+        </div>
 
-        <!-- Password -->
-        <input type="password" class="form-control mb-4" [(ngModel)]="data.matKhau" name="matKhau" placeholder="Mật Khẩu">
+        <div class="form-group">
+            <input type="password" class="form-control mb-4" [(ngModel)]="data.matKhau" name="matKhau" placeholder="Mật Khẩu" formControlName="matKhau" [ngClass]="{'is-invalid':form.get('matKhau').touched && form.get('matKhau').invalid}">
+            <div *ngIf="form.get('matKhau').touched && form.get('matKhau').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('matKhau').errors.required">Mật Khẩu Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('matKhau').errors.minlength">Mật Khẩu Phải lớn hơn 6 Ký Tự</div>
+            </div>
+        </div>
 
         <div class="d-flex justify-content-around">
             <div>
@@ -22,7 +31,7 @@
         </div>
 
         <!-- Sign in button -->
-        <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="login()">Sign in</button>
+        <button [disabled]="!form.valid" mdbBtn color="info" block="true" class="my-4" type="submit" (click)="login()">Đăng Nhập</button>
 
         <!-- Register -->
         <p>Chưa có tài khoản ?

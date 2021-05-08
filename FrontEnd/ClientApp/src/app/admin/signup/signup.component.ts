@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  form = new FormGroup({
+    ho: new FormControl('', [Validators.required]),
+    ten: new FormControl('', [Validators.required]),
+    matKhau: new FormControl('', [Validators.required,Validators.minLength(6)])
+  })
 
   selectedValue: Number = null;
   caLamViec: Array<any> = [
@@ -63,6 +69,7 @@ export class SignupComponent implements OnInit {
       },
       error => {
         this.toastr.error('Xin vui lòng tạo tài khoản lại', 'Tạo tài khoản thất bại');
+        this.toastr.info('Kiểm tra xem đã chọn ca làm việc chưa ?');
         console.error(error);
       }
     )

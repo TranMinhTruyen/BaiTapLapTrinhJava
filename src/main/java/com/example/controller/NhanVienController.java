@@ -76,6 +76,9 @@ public class NhanVienController {
     @PostMapping(value = "loginNhanVien/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginNhanVien(@RequestBody LoginRequest loginRequest){
         NhanVienResponse dataNhanVien = nhanVienServices.getNhanVienByTaiKhoanMatKhau(loginRequest);
-        return new ResponseEntity<>(dataNhanVien, HttpStatus.OK);
+        if (dataNhanVien != null)
+            return new ResponseEntity<>(dataNhanVien, HttpStatus.OK);
+        else
+            return new ResponseEntity<>("Not found", HttpStatus.OK);
     }
 }
