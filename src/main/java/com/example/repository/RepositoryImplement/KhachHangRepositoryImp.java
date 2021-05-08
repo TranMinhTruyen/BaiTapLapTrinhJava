@@ -43,8 +43,6 @@ public class KhachHangRepositoryImp implements KhachHangRepository {
         query.select(criteriaBuilder.construct(
                 KhachHangResponse.class,
                 root.get("id"),
-                root.get("taiKhoan"),
-                root.get("matKhau"),
                 root.get("ho"),
                 root.get("ten"),
                 root.get("ngaySinh").as(String.class),
@@ -62,8 +60,6 @@ public class KhachHangRepositoryImp implements KhachHangRepository {
         query.select(criteriaBuilder.construct(
                 KhachHangResponse.class,
                 root.get("id"),
-                root.get("taiKhoan"),
-                root.get("matKhau"),
                 root.get("ho"),
                 root.get("ten"),
                 root.get("ngaySinh").as(String.class),
