@@ -72,6 +72,7 @@ public class KhachHangServicesImp implements KhachHangServices {
     }
 
     @Override
+    //bug
     public KhachHangResponse getKhachHangByTaiKhoanMatKhau(LoginRequest loginRequest) {
         String matKhauHash = Hashing.sha256().hashString(loginRequest.getMatKhau(), StandardCharsets.UTF_8).toString();
         KhachHang result = khachHangRepository.getKhachHangByTaiKhoanMatKhau(loginRequest.getTaiKhoan(), matKhauHash);
