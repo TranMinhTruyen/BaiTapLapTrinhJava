@@ -42,6 +42,9 @@ import { MenucustomComponent } from './user/func/menucustom/menucustom.component
 import { CalamviecComponent } from './admin/managerment/calamviec/calamviec.component';
 import { ProfileComponent } from './user/func/profile/profile.component';
 import { TimkiemComponent } from './user/func/timkiem/timkiem.component';
+import { MenuComponent } from './admin/managerment/menu/menu.component';
+import { ThucanComponent } from './admin/managerment/thucan/thucan.component';
+import { PhanhoiComponent } from './admin/managerment/phanhoi/phanhoi.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { TimkiemComponent } from './user/func/timkiem/timkiem.component';
     MenucustomComponent,
     CalamviecComponent,
     ProfileComponent,
-    TimkiemComponent
+    TimkiemComponent,
+    MenuComponent,
+    ThucanComponent,
+    PhanhoiComponent
   ],
   imports: [
     BrowserModule,

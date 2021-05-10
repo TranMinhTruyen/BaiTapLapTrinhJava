@@ -3,20 +3,19 @@
 <div class="row bg-form " style="margin-top: 50px">
     <div class="col-md-12 col-md-offset-3 form-container">
         <h2>Tìm Kiếm Nâng Cao !</h2>
-        <p>
-            Bạn Có Thể Tìm Kiếm Gần Như Bất Cứ Thứ Gì Ở Đây:
-        </p>
-        <form role="form" method="post" id="reused_form">
+        <p>Bạn Có Thể Tìm Kiếm Gần Như Bất Cứ Thứ Gì Ở Đây:</p>
+        <input class="col-sm-12 form-group" type="text" name="name" placeholder="Nhập gì đó đi !" [(ngModel)]="search.keyWord" />
+        <form>
             <div class="row">
-                <div class="col-sm-6 form-group">
+                <div class="col-sm-12 form-group">
                     <label for="name">
                         Chọn Loại Nội Dung Bạn Muốn Tìm Kiếm: </label>
-                    <select id="cars" [(ngModel)]="data.apiString">
+                    <select id="apiString" [(ngModel)]="data.apiString">
                         <option value="1">Thức Ăn</option>
                         <option value="2">Menu Thức Ăn</option>
                         <option value="3">Loại Sảnh</option>
                         <option value="4">Loại Tiệc</option>
-                        <option value="5" selected>Loại Menu</option>
+                        <option value="5">Loại Menu</option>
                     </select>
                 </div>
             </div>
@@ -24,7 +23,7 @@
 
             <div class="row">
                 <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-lg btn-warning btn-block">Tìm Kiếm </button>
+                    <button type="submit" class="btn btn-lg btn-warning btn-block" (click)="searchNow()">Tìm Kiếm </button>
                 </div>
             </div>
 

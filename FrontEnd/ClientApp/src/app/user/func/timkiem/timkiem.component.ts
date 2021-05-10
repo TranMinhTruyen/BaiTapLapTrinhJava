@@ -7,12 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimkiemComponent implements OnInit {
   data: any={
-    "apiString": "",
+    "apiString": 1,
+  }
+  search: any ={
+    "keyWord": "",
   }
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  searchNow(){
+    console.log("keyword: " +this.search.keyWord);
+    console.log("api: " +this.data.apiString);
   }
 
 }
