@@ -73,12 +73,16 @@
                     <input id="loai" class="form-control" [(ngModel)]="nv.loai" name="loai">
                 </div>
                 <label for="menu">Menu của Tiệc Cưới</label>
-                <div class="input-group">
-                    <input id="menu" class="form-control" [(ngModel)]="nv.menu" name="menu">
+                <div class="form-group">
+                    <select name="loaiMenu" [(ngModel)]="nv.menu">
+                        <option value="{{kh.id}}" *ngFor="let kh of menu.data; index as i;">{{kh.tenMenu}}</option>
+                      </select>
                 </div>
                 <label for="sanh">Sảnh của Tiệc Cưới</label>
-                <div class="input-group">
-                    <input id="sanh" class="form-control" [(ngModel)]="nv.sanh" name="sanh">
+                <div class="form-group">
+                    <select name="loaiSanh" [(ngModel)]="nv.sanh">
+                        <option value="{{khh.id}}" *ngFor="let khh of sanh.data; index as i;">{{khh.tenSanh}}</option>
+                      </select>
                 </div>
                 <label for="ngayToChuc">Ngày Tổ Chức</label>
                 <div class="input-group">

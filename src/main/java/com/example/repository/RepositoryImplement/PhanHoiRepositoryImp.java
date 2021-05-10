@@ -29,8 +29,8 @@ public class PhanHoiRepositoryImp implements PhanHoiRepository {
                 PhanHoiResponse.class,
                 root.get("id"),
                 root.get("noiDung"),
-                root.get("tiec"),
-                root.get("khachHang")
+                root.get("tiec").get("id"),
+                root.get("khachHang").get("id")
         ));
         return session.createQuery(query).getResultList();
     }
@@ -58,8 +58,8 @@ public class PhanHoiRepositoryImp implements PhanHoiRepository {
                     PhanHoiResponse.class,
                     root.get("id"),
                     root.get("noiDung"),
-                    root.get("tiec"),
-                    root.get("khachHang")
+                    root.get("tiec").get("id"),
+                    root.get("khachHang").get("id")
             ));
             Predicate p1 = criteriaBuilder.like(root.get("noiDung").as(String.class),keyword);
             Predicate p2 = criteriaBuilder.equal(root.get("id").as(String.class),keyword);

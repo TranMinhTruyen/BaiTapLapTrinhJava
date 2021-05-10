@@ -16,6 +16,10 @@ export class DattiecquanlyComponent implements OnInit {
   closeResult: string;
   closeModal: string;
   i: string;
+  menu: any={
+    "id": "",
+    "tenMenu": "",
+  };
   nhanVien: any = {
     "data": [],
     "totalRecord": null,
@@ -25,15 +29,14 @@ export class DattiecquanlyComponent implements OnInit {
   };
   nv: any = {
     "id": null,
-    "role": null,
-    "ngaySinh": null,
-    "hinhAnh": null,
-    "taiKhoan": "",
-    "matKhau": "",
-    "ho": "",
-    "ten": "",
-    "cmnd": "",
-    "caLamViec": null
+    "thoiGian": "",
+    "ngayToChuc": "",
+    "loai": "",
+    "trangThai": "",
+    "sanh": null,
+    "khachHang": null,
+    "caLamViec": null,
+    "menu": null,
   }
   nvCre: any = {
     "role": null,
@@ -89,13 +92,38 @@ export class DattiecquanlyComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  sanh: any={
+    "id": "",
+    "tenSanh": '',
+  };
 
   ngOnInit(): void {
     this.getEmployees(5, 1);
     // if (localStorage.getItem("taiKhoanAdmin") != null && localStorage.getItem("taiKhoanKhachHang")!=null) {
     //   this.router.navigate(['/admin/']);
     // }
+    if(localStorage.getItem("taiKhoanKhachHang") == null){
+      this.router.navigate(['/user/']);
+    }
+    this.getMenu(5,1);
+    this.getSanh(5,1);
   }
+  getSanh(size: number, page: number) {
+    this.HttpClient.get<any>('http://localhost:8080/api/sanh/getAllSanh/?page=' + page + '&size=' + size + '').subscribe(
+      response => {
+        console.log(response);
+        this.sanh = response;
+      }
+    );
+  };
+  getMenu(size: number, page: number) {
+    this.HttpClient.get<any>('http://localhost:8080/api/menu/getAllMenu/?page=' + page + '&size=' + size + '').subscribe(
+      response => {
+        console.log(response);
+        this.menu = response;
+      }
+    );
+  };
   getEmployees(size: number, page: number) {
     this.HttpClient.get<any>('http://localhost:8080/api/tiec/getAllTiec/?page=' + page + '&size=' + size + '').subscribe(
       response => {
@@ -112,7 +140,7 @@ export class DattiecquanlyComponent implements OnInit {
     console.log("cmnd: " + this.nvCre.cmnd);
     console.log("caLamViec: " + this.nvCre.caLamViec);
 
-    this.HttpClient.post("http://localhost:8080/api/nhanvien/createNhanVien", this.nv).subscribe(
+    this.HttpClient.post("http://localhost:8080/api/tiec/createTiec", this.nv).subscribe(
       result => {
         let res: any = result;
         console.log(res);
@@ -125,7 +153,9 @@ export class DattiecquanlyComponent implements OnInit {
     )
   }
   updateEmployees(){
-    this.HttpClient.put("/api/nhanvien/updateNhanVien/?id=" + this.nv.id, this.nv).subscribe(
+    console.log(this.nv);
+    this.nv.caLamViec = 3;
+    this.HttpClient.put("http://localhost:8080/api/tiec/updateTiec/?id=" + this.nv.id, this.nv).subscribe(
       result => {
         let res: any = result;
         console.log(res);
@@ -133,7 +163,6 @@ export class DattiecquanlyComponent implements OnInit {
       },
       error => {
         this.toastr.error('Xin vui lòng thử lại', 'Cập nhập nhân viên thất bại');
-        this.toastr.info('Hãy kiểm tra xem đã chọn ca làm việc chưa !!!');
         console.error(error);
       }
     )
@@ -141,7 +170,7 @@ export class DattiecquanlyComponent implements OnInit {
 
   deleteEmployees(content, index, isReadOnly){
     this.nv = this.nhanVien.data[index];
-    this.HttpClient.delete("http://localhost:8080/api/nhanvien/deleteNhanVien/?id=" + this.nv.id, this.nv).subscribe(
+    this.HttpClient.delete("http://localhost:8080/api/tiec/updateTiec/?id" + this.nv.id, this.nv).subscribe(
       result => {
         let res: any = result;
         console.log(res);

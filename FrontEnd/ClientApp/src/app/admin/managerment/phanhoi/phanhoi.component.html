@@ -1,4 +1,4 @@
-<!-- <app-appbarss></app-appbarss>
+<app-appbarss></app-appbarss>
 <br>
 <br>
 <br>
@@ -12,16 +12,18 @@
     <table class="table table-bordered table-striped ">
         <thead>
             <tr>
-                <th>Id Menu</th>
-                <th>Loại Menu</th>
-                <th>Giá Menu</th>
+                <th>Id Phản Hồi</th>
+                <th>Id Tiệc</th>
+                <th>Id Khách Hàng</th>
+                <th>Nội Dung</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let kh of menuS.data; index as i; ">
+            <tr *ngFor="let kh of phanhoi.data; index as i; ">
                 <td><span>{{kh.id}}</span></td>
-                <td><span>{{kh.tenMenu}}</span></td>
-                <td><span>{{kh.giaTien}}</span></td>
+                <td><span>{{kh.idTiec}}</span></td>
+                <td><span>{{kh.idKhachHang}}</span></td>
+                <td><span>{{kh.noiDung}}</span></td>
                 <td>
                     <button class="btn btn-sm btn-warning " (click)="triggerModal(modalData, i, true)">
               <i id="ic2 " class="fa fa-edit "></i>Sửa</button>
@@ -56,17 +58,21 @@
     <div class="modal-body">
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
             <div class="form-group">
-                <label for="ten">Menu</label>
+                <label for="idTiec">Id Tiệc</label>
                 <div class="input-group">
-                    <input id="Menu" class="form-control" [(ngModel)]="menu.tenMenu" name="tenMenu">
+                    <input id="idTiec" class="form-control" [(ngModel)]="ph.idTiec" name="idTiec">
                 </div>
-                <label for="ten">Giá Tiền</label>
+                <label for="idKhachHang">Id Khách Hàng</label>
                 <div class="input-group">
-                    <input id="giaTien" class="form-control" [(ngModel)]="menu.giaTien" name="giaTien">
+                    <input id="idKhachHang" class="form-control" [(ngModel)]="ph.idKhachHang" name="idKhachHang">
+                </div>
+                <label for="noiDung">Nội Dung</label>
+                <div class="input-group">
+                    <input id="noiDung" class="form-control" [(ngModel)]="ph.noiDung" name="noiDung">
                 </div>
                 <div></div>
                 <div class="border text-center">
-                    <button *ngIf="!isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="createCaLamViec()">Thêm Menu Mới</button>
+                    <button *ngIf="!isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="createCaLamViec()">Thêm Phản Hồi Mới</button>
                     <button *ngIf="isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="updateCaLamViec()">Cập nhật</button>
                 </div>
             </div>
@@ -74,4 +80,4 @@
     </div>
     <div class="modal-footer">
     </div>
-</ng-template> -->
+</ng-template>
