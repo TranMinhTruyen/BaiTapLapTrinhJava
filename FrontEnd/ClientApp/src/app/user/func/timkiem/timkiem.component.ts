@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-timkiem',
@@ -13,13 +14,15 @@ export class TimkiemComponent implements OnInit {
     "keyWord": "",
   }
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
   searchNow(){
     console.log("keyword: " +this.search.keyWord);
     console.log("api: " +this.data.apiString);
+    this.toastr.error('Lỗi null','Có gì đó không ổn !!!');
+    this.toastr.info('Hãy kiểm tra lại dữ liệu !!!');
   }
 
 }

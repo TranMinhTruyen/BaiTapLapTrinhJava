@@ -102,6 +102,41 @@ export class CustomerComponent implements OnInit {
       }
     );
   }
+  searchNext(){
+    if(this.khachHang.page < this.khachHang.totalPage){
+      let nextPage = this.khachHang.page+1;
+      let x={
+        page:nextPage,
+        size:5,
+        keyword:""
+      }
+      this.HttpClient.get("http://localhost:8080/api/khachhang/getAllKhachHang/?page="+nextPage+ "&size=5").subscribe(result =>{
+        this.khachHang = result;
+        this.kh = this.khachHang.data;
+      },error=>console.error(error));
+    }
+    else{
+      this.toastr.info("Bạn đang ở trang cuối cùng !")
+    }
+  }
+
+  searchPrevious(){
+    if(this.khachHang.page < this.khachHang.totalPage){
+      let nextPage = this.khachHang.page-1;
+      let x={
+        page:nextPage,
+        size:5,
+        keyword:""
+      }
+      this.HttpClient.get("http://localhost:8080/api/nhanvien/getAllKhachHang/?page="+nextPage+ "&size=5").subscribe(result =>{
+        this.khachHang = result;
+        this.kh = this.khachHang.data;
+      },error=>console.error(error));
+    }
+    else{
+      this.toastr.info("Bạn đang ở trang đầu tiên !")
+    }
+  }
   createCus() {
 
     this.HttpClient.post("http://localhost:8080/api/khachhang/createKhachHang", this.kh).subscribe(

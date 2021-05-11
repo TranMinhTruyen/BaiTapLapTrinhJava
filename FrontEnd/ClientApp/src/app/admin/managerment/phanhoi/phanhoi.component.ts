@@ -65,6 +65,41 @@ export class PhanhoiComponent implements OnInit {
         }
       );
     }
+    searchNext(){
+      if(this.phanhoi.page < this.phanhoi.totalPage){
+        let nextPage = this.phanhoi.page+1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/phanhoi/getAllPhanHoi/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.phanhoi = result;
+          this.ph = this.phanhoi.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang cuối cùng !")
+      }
+    }
+  
+    searchPrevious(){
+      if(this.phanhoi.page < this.phanhoi.totalPage){
+        let nextPage = this.phanhoi.page-1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/phanhoi/getAllPhanHoi/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.phanhoi = result;
+          this.ph = this.phanhoi.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang đầu tiên !")
+      }
+    }
   triggerModal(content, index, isReadOnly) {
     this.isReadOnly = isReadOnly;
     if(index !== null){

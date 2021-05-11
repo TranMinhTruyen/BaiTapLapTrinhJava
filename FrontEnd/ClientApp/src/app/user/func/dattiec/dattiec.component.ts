@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NiceSelectModule } from "ng-nice-select";
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dattiec',
@@ -10,16 +11,23 @@ import { NiceSelectModule } from "ng-nice-select";
   styleUrls: ['./dattiec.component.css']
 })
 export class DattiecComponent implements OnInit {
+  form = new FormGroup({
+    ngayToChuc: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    thoiGian: new FormControl('', [Validators.required,Validators.minLength(8), Validators.maxLength(8)]),
+    sanh: new FormControl('', [Validators.required]),
+    loai: new FormControl('', [Validators.required]),
+    menu: new FormControl('', [Validators.required]),
+  })
   data: any = {
-
+    "id": 0,
     "thoiGian": "",
     "ngayToChuc": "",
     "loai": "",
-    "sanh": "",
-    "khachHang": "",
+    "sanh": 0,
+    "khachHang": 0,
     "trangThai": "",
-    "caLamViec": "",
-    "menu": ""
+    "caLamViec": 0,
+    "menu": 0
   };
   menu: any={
     "id": "",
@@ -42,6 +50,7 @@ export class DattiecComponent implements OnInit {
     }
     this.getMenu(5,1);
     this.getSanh(5,1);
+    console.log(this.sanh);
   }
   getMenu(size: number, page: number) {
     this.http.get<any>('http://localhost:8080/api/menu/getAllMenu/?page=' + page + '&size=' + size + '').subscribe(
@@ -65,11 +74,12 @@ export class DattiecComponent implements OnInit {
     //this.data.khachHang = "3";
     this.data.trangThai = "Đang Chuẩn Bị";
     this.data.caLamViec = "3";
-    // console.log(this.data.loai);
+    console.log(this.data.loai);
+    console.log(this.data.menu);
+    console.log(this.data.sanh);
     // console.log(this.data.khachHang);
     // console.log(this.data.trangThai);
     // console.log(this.data.menu);
-    console.log(this.data.sanh);
     // console.log(this.data.thoiGian);
     // console.log(this.data.ngayToChuc);
     this.http.post("http://localhost:8080/api/tiec/createTiec", this.data).subscribe(

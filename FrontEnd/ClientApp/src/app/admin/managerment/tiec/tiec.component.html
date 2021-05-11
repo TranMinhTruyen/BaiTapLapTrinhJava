@@ -37,15 +37,17 @@
     </table>
     <ul class="pagination">
         <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">Trang Trước</a>
+            <a class="page-link" href="javascript:void(0);" (click)="searchPrevious()">Trang Trước</a>
         </li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="searchPrevious()">{{nhanVien.page-1}}</a>
+        </li>
         <li class="page-item active">
-            <a class="page-link" href="javascript:void(0);"><span class="sr-only">2</span></a>
+            <a class="page-link" href="javascript:void(0);">{{nhanVien.page}}<span class="sr-only">(current)</span></a>
         </li>
-        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="searchNext()">{{nhanVien.page+1}}</a>
+        </li>
         <li class="page-item">
-            <a class="page-link" href="javascript:void(0);">Trang Sau</a>
+            <a class="page-link" href="javascript:void(0);" (click)="searchNext()">Trang Sau</a>
         </li>
 
     </ul>

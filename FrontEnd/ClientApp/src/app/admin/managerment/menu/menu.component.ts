@@ -64,6 +64,41 @@ export class MenuComponent implements OnInit {
         }
       );
     }
+    searchNext(){
+      if(this.menuS.page < this.menuS.totalPage){
+        let nextPage = this.menuS.page+1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/nhanvien/getAllMenu/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.menuS = result;
+          this.menu = this.menuS.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang cuối cùng !")
+      }
+    }
+  
+    searchPrevious(){
+      if(this.menuS.page < this.menuS.totalPage){
+        let nextPage = this.menuS.page-1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/nhanvien/getAllMenu/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.menuS = result;
+          this.menu = this.menuS.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang đầu tiên !")
+      }
+    }
   triggerModal(content, index, isReadOnly) {
     this.isReadOnly = isReadOnly;
     if(index !== null){

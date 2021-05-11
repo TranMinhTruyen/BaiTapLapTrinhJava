@@ -65,6 +65,41 @@ export class ThucanComponent implements OnInit {
         }
       );
     }
+    searchNext(){
+      if(this.thucAn.page < this.thucAn.totalPage){
+        let nextPage = this.thucAn.page+1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/thucAn/getAllThucAn/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.thucAn = result;
+          this.ta = this.thucAn.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang cuối cùng !")
+      }
+    }
+  
+    searchPrevious(){
+      if(this.thucAn.page < this.thucAn.totalPage){
+        let nextPage = this.thucAn.page-1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/thucAn/getAllThucAn/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.thucAn = result;
+          this.ta = this.thucAn.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang đầu tiên !")
+      }
+    }
   triggerModal(content, index, isReadOnly) {
     this.isReadOnly = isReadOnly;
     if(index !== null){

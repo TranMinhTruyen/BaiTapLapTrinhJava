@@ -64,6 +64,41 @@ export class CalamviecComponent implements OnInit {
         }
       );
     }
+    searchNext(){
+      if(this.caLamViec.page < this.caLamViec.totalPage){
+        let nextPage = this.caLamViec.page+1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/nhanvien/getAllCaLamViec/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.caLamViec = result;
+          this.clv = this.caLamViec.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang cuối cùng !")
+      }
+    }
+  
+    searchPrevious(){
+      if(this.caLamViec.page < this.caLamViec.totalPage){
+        let nextPage = this.caLamViec.page-1;
+        let x={
+          page:nextPage,
+          size:5,
+          keyword:""
+        }
+        this.HttpClient.get("http://localhost:8080/api/nhanvien/getAllCaLamViec/?page="+ nextPage + "&size=5").subscribe(result =>{
+          this.caLamViec = result;
+          this.clv = this.caLamViec.data;
+        },error=>console.error(error));
+      }
+      else{
+        this.toastr.info("Bạn đang ở trang đầu tiên !")
+      }
+    }
   triggerModal(content, index, isReadOnly) {
     this.isReadOnly = isReadOnly;
     if(index !== null){

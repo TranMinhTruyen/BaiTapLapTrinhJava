@@ -75,7 +75,41 @@ export class DattiecquanlyComponent implements OnInit {
       this.openModel(content);
     }   
   }
+  searchNext(){
+    if(this.nhanVien.page < this.nhanVien.totalPage){
+      let nextPage = this.nhanVien.page+1;
+      let x={
+        page:nextPage,
+        size:5,
+        keyword:""
+      }
+      this.HttpClient.get("http://localhost:8080/api/tiec/getAllTiec/?page="+ nextPage + "&size=5").subscribe(result =>{
+        this.nhanVien = result;
+        this.nv = this.nhanVien.data;
+      },error=>console.error(error));
+    }
+    else{
+      this.toastr.info("Bạn đang ở trang cuối cùng !")
+    }
+  }
 
+  searchPrevious(){
+    if(this.nhanVien.page < this.nhanVien.totalPage){
+      let nextPage = this.nhanVien.page-1;
+      let x={
+        page:nextPage,
+        size:5,
+        keyword:""
+      }
+      this.HttpClient.get("http://localhost:8080/api/tiec/getAllTiec/?page="+ nextPage + "&size=5").subscribe(result =>{
+        this.nhanVien = result;
+        this.nv = this.nhanVien.data;
+      },error=>console.error(error));
+    }
+    else{
+      this.toastr.info("Bạn đang ở trang đầu tiên !")
+    }
+  }
   private openModel(content){
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((res) => {
       this.closeModal = `Closed with: ${res}`;
