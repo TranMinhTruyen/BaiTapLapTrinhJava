@@ -65,19 +65,19 @@ export class SignupComponent implements OnInit {
     console.log("caLamViec: " + this.data.caLamViec);
     //console.log(this.selectedValue);
 
-    // this.http.post("http://localhost:8080/api/nhanvien/createNhanVien", this.data).subscribe(
-    //   result => {
-    //     let res: any = result;
-    //     console.log(res);
-    //     this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát', 'Tạo tài khoản thành công');
-    //     this.router.navigate(['/admin/login']);
-    //   },
-    //   error => {
-    //     this.toastr.error('Xin vui lòng tạo tài khoản lại', 'Tạo tài khoản thất bại');
-    //     this.toastr.info('Kiểm tra xem đã chọn ca làm việc chưa ?');
-    //     console.error(error);
-    //   }
-    // )
+    this.http.post("http://localhost:8080/api/nhanvien/createNhanVien", this.data).subscribe(
+      result => {
+        let res: any = result;
+        console.log(res);
+        this.toastr.success('Bạn sẽ được chuyển hướng trong dây lát', 'Tạo tài khoản thành công');
+        this.router.navigate(['/admin/login']);
+      },
+      error => {
+        this.toastr.error('Xin vui lòng tạo tài khoản lại', 'Tạo tài khoản thất bại');
+        this.toastr.info('Kiểm tra xem đã chọn ca làm việc chưa ?');
+        console.error(error);
+      }
+    )
 
   }
 
