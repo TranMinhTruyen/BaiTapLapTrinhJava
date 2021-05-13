@@ -1,51 +1,14 @@
 package com.example.common.request;
 
+import com.example.common.response.SanhResponse;
+
 import java.math.BigDecimal;
 
-public class SanhRequest {
-    private int id;
-    private String tenSanh;
-    private BigDecimal giaTien;
-    private int soBan;
-    private String hinhAnh;
-
-    public int getId() {
-        return id;
+public class SanhRequest extends SanhResponse {
+    public SanhRequest(int id, String tenSanh, BigDecimal giaTien, int soBan, String hinhAnh) {
+        super(id, tenSanh, giaTien, soBan, hinhAnh);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTenSanh() {
-        return tenSanh;
-    }
-
-    public void setTenSanh(String tenSanh) {
-        this.tenSanh = tenSanh;
-    }
-
-    public BigDecimal getGiaTien() {
-        return giaTien;
-    }
-
-    public void setGiaTien(BigDecimal giaTien) {
-        this.giaTien = giaTien;
-    }
-
-    public int getSoBan() {
-        return soBan;
-    }
-
-    public void setSoBan(int soBan) {
-        this.soBan = soBan;
-    }
-
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
+    public SanhRequest() {
     }
 }

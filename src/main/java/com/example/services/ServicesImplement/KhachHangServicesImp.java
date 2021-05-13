@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -28,7 +29,7 @@ public class KhachHangServicesImp implements KhachHangServices {
         newKhachHang.setMatKhau(matKhauHash);
         newKhachHang.setHo(khachHang.getHo());
         newKhachHang.setTen(khachHang.getTen());
-        newKhachHang.setNgaySinh(khachHang.getNgaySinh());
+        newKhachHang.setNgaySinh(Date.valueOf(khachHang.getNgaySinh()));
 //        newKhachHang.setHinhAnh(khachHang.getHinhAnh());
         if (!khachHangRepository.KhachHangIsExist(khachHang.getTaiKhoan()))
             if (khachHangRepository.createKhachHang(newKhachHang) != null)
@@ -94,7 +95,7 @@ public class KhachHangServicesImp implements KhachHangServices {
         newKhachHang.setMatKhau(khachHang.getMatKhau());
         newKhachHang.setHo(khachHang.getHo());
         newKhachHang.setTen(khachHang.getTen());
-        newKhachHang.setNgaySinh(khachHang.getNgaySinh());
+        newKhachHang.setNgaySinh(Date.valueOf(khachHang.getNgaySinh()));
         newKhachHang.setHinhAnh(khachHang.getHinhAnh());
         if (khachHangRepository.getKhachHangById(id) != null){
             khachHangRepository.updateKhachHangById(id, newKhachHang);

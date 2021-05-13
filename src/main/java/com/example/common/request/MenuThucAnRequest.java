@@ -1,30 +1,12 @@
 package com.example.common.request;
 
-public class MenuThucAnRequest {
-    private int idThucAn;
-    private long idMenu;
+import com.example.common.response.MenuThucAnResponse;
+
+public class MenuThucAnRequest extends MenuThucAnResponse {
+    public MenuThucAnRequest(Long idMenu, Integer idThucAn) {
+        super(idMenu, idThucAn);
+    }
 
     public MenuThucAnRequest() {
-    }
-
-    public MenuThucAnRequest(int idThucAn, long idMenu) {
-        this.idThucAn = idThucAn;
-        this.idMenu = idMenu;
-    }
-
-    public int getIdThucAn() {
-        return idThucAn;
-    }
-
-    public void setIdThucAn(int idThucAn) {
-        this.idThucAn = idThucAn;
-    }
-
-    public long getIdMenu() {
-        return idMenu;
-    }
-
-    public void setIdMenu(long idMenu) {
-        this.idMenu = idMenu;
     }
 }

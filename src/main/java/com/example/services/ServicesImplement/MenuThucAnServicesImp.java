@@ -2,6 +2,8 @@ package com.example.services.ServicesImplement;
 
 import com.example.common.entity.Menu;
 import com.example.common.entity.MenuThucAn;
+import com.example.common.entity.MenuThucAnKey;
+import com.example.common.request.MenuThucAnRequest;
 import com.example.common.response.ListThucAnOfMenuResponse;
 import com.example.repository.MenuRepository;
 import com.example.repository.MenuThucAnRepository;
@@ -23,8 +25,15 @@ public class MenuThucAnServicesImp implements MenuThucAnServices {
     private MenuRepository menuRepository;
 
     @Override
-    public MenuThucAn create(MenuThucAn menuThucAn) {
-        if(menuThucAnRepository.create(menuThucAn) != null)
+    public MenuThucAnRequest create(MenuThucAnRequest menuThucAn) {
+        MenuThucAn newMenuThucAn = new MenuThucAn();
+        MenuThucAnKey key = new MenuThucAnKey();
+        key.setMenuId(menuThucAn.getIdMenu());
+        key.setThucAnId(menuThucAn.getIdThucAn());
+        newMenuThucAn.setThucAn(menuThucAn.getIdThucAn());
+        newMenuThucAn.setMenu(menuThucAn.getIdMenu());
+        newMenuThucAn.setId(key);
+        if(menuThucAnRepository.create(newMenuThucAn) != null)
             return menuThucAn;
         else
             return null;

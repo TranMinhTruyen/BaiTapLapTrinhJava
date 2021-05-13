@@ -71,10 +71,10 @@ public class MenuServicesImp implements MenuServices {
     @Override
     public MenuRequest createMenu(MenuRequest menu) {
 
-        Menu var = new Menu();
-        var.setId(menu.getId());
-        var.setTenMenu(menu.getTenMenu());
-        Menu result = menuRepository.createMenu(var);
+        Menu newMenu = new Menu();
+        newMenu.setGiaTien(menu.getGiaTien());
+        newMenu.setTenMenu(menu.getTenMenu());
+        Menu result = menuRepository.createMenu(newMenu);
         if(result != null)
             return menu;
         else
