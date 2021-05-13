@@ -1,5 +1,7 @@
 package com.example.repository.RepositoryImplement;
 
+import com.example.common.entity.Menu;
+import com.example.common.entity.Sanh;
 import com.example.common.entity.Tiec;
 import com.example.common.response.TiecResponse;
 import com.example.repository.TiecRepository;
@@ -37,6 +39,8 @@ public class TiecRepositoryImp implements TiecRepository {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Object> query = criteriaBuilder.createQuery(Object.class);
         Root<Tiec> root = query.from(Tiec.class);
+        Join<Sanh, Tiec> sanhTiecJoin = root.join("sanh", JoinType.LEFT);
+        Join<Menu, Tiec> menuTiecJoin = root.join("menu", JoinType.LEFT);
         query.select(criteriaBuilder.construct(
                 TiecResponse.class,
                 root.get("id"),
@@ -47,7 +51,10 @@ public class TiecRepositoryImp implements TiecRepository {
                 root.get("khachHang").get("ten"),
                 root.get("trangThai"),
                 root.get("caLamViec").get("caLam"),
-                root.get("menu").get("tenMenu")
+                root.get("menu").get("tenMenu"),
+                sanhTiecJoin.get("tongSoBan"),
+                sanhTiecJoin.get("giaTien"),
+                menuTiecJoin.get("giaTien")
         ));
         return session.createQuery(query).getResultList();
     }

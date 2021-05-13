@@ -37,6 +37,9 @@ export class DattiecquanlyComponent implements OnInit {
     "khachHang": null,
     "caLamViec": null,
     "menu": null,
+    "soBan": 0,
+    "giaTienSanh": 0,
+    "giaTienMenu": 0
   }
   nvCre: any = {
     "role": null,

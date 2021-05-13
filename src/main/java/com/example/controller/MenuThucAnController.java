@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.common.entity.MenuThucAn;
+import com.example.common.request.MenuThucAnRequest;
 import com.example.services.MenuThucAnServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,8 +24,8 @@ public class MenuThucAnController {
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createMenuThucAn", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createMenu(@RequestBody MenuThucAn menu){
-        MenuThucAn menuThucAn = menuThucAnServices.create(menu);
+    public ResponseEntity<?> createMenu(@RequestBody MenuThucAnRequest menu){
+        MenuThucAnRequest menuThucAn = menuThucAnServices.create(menu);
         return new ResponseEntity<>(menuThucAn, HttpStatus.OK);
     }
 

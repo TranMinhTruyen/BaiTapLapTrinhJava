@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+
 //
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 //
@@ -13,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
+import { GoogleChartsModule } from 'angular-google-charts';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +49,9 @@ import { TimkiemComponent } from './user/func/timkiem/timkiem.component';
 import { MenuComponent } from './admin/managerment/menu/menu.component';
 import { ThucanComponent } from './admin/managerment/thucan/thucan.component';
 import { PhanhoiComponent } from './admin/managerment/phanhoi/phanhoi.component';
+import { DoanhthuComponent } from './admin/managerment/doanhthu/doanhthu.component';
+import { from } from 'rxjs';
+
 
 @NgModule({
   declarations: [
@@ -75,7 +82,8 @@ import { PhanhoiComponent } from './admin/managerment/phanhoi/phanhoi.component'
     TimkiemComponent,
     MenuComponent,
     ThucanComponent,
-    PhanhoiComponent
+    PhanhoiComponent,
+    DoanhthuComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +92,7 @@ import { PhanhoiComponent } from './admin/managerment/phanhoi/phanhoi.component'
     FormsModule,
     MatMenuModule,
     NgbModule,
+    GoogleChartsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       progressBar: true,
@@ -98,7 +107,9 @@ import { PhanhoiComponent } from './admin/managerment/phanhoi/phanhoi.component'
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

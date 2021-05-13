@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './admin/login/login.component';
 import { CalamviecComponent } from './admin/managerment/calamviec/calamviec.component';
 import { CustomerComponent } from './admin/managerment/customer/customer.component';
+import { DoanhthuComponent } from './admin/managerment/doanhthu/doanhthu.component';
 import { EmployeeComponent } from './admin/managerment/employee/employee.component';
 import { MenuComponent } from './admin/managerment/menu/menu.component';
 import { PersonalComponent } from './admin/managerment/personal/personal.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'admin/menu', component: MenuComponent },
   { path: 'admin/thucan', component: ThucanComponent },
   { path: 'admin/phanhoi', component: PhanhoiComponent },
+  { path: 'admin/doanhthu', component: DoanhthuComponent },
   { path: 'user', component: UserComponent },
   { path: 'user/feedback', component: FeedbackComponent },
   { path: 'user/login', component:  LoginkhComponent},

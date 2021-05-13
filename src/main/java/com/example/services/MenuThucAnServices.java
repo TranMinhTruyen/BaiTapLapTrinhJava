@@ -1,9 +1,9 @@
 package com.example.services;
 
-import com.example.common.entity.MenuThucAn;
+import com.example.common.request.MenuThucAnRequest;
 
 public interface MenuThucAnServices {
-    MenuThucAn create(MenuThucAn menuThucAns);
+    MenuThucAnRequest create(MenuThucAnRequest menuThucAns);
     Object getListThucAnByMenuId(long idMenu);
     boolean deleteByIdThucAn(int idThucAn);
     boolean deleteByIdMenu(int idMenu);

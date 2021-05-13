@@ -1,5 +1,7 @@
 package com.example.common.response;
 
+import java.math.BigDecimal;
+
 public class TiecResponse {
     private int id;
     private String thoiGian;
@@ -10,11 +12,14 @@ public class TiecResponse {
     private String trangThai;
     private String caLamViec;
     private String menu;
+    private int soBan;
+    private BigDecimal giaTienSanh;
+    private BigDecimal giaTienMenu;
 
     public TiecResponse() {
     }
 
-    public TiecResponse(int id, String thoiGian, String ngayToChuc, String loai, String sanh, String khachHang, String trangThai, String caLamViec, String menu) {
+    public TiecResponse(int id, String thoiGian, String ngayToChuc, String loai, String sanh, String khachHang, String trangThai, String caLamViec, String menu, int soBan, BigDecimal giaTienSanh, BigDecimal giaTienMenu) {
         this.id = id;
         this.thoiGian = thoiGian;
         this.ngayToChuc = ngayToChuc;
@@ -24,6 +29,9 @@ public class TiecResponse {
         this.trangThai = trangThai;
         this.caLamViec = caLamViec;
         this.menu = menu;
+        this.soBan = soBan;
+        this.giaTienSanh = giaTienSanh;
+        this.giaTienMenu = giaTienMenu;
     }
 
     public int getId() {
@@ -96,5 +104,29 @@ public class TiecResponse {
 
     public void setMenu(String menu) {
         this.menu = menu;
+    }
+
+    public int getSoBan() {
+        return soBan;
+    }
+
+    public void setSoBan(int soBan) {
+        this.soBan = soBan;
+    }
+
+    public BigDecimal getGiaTienSanh() {
+        return giaTienSanh;
+    }
+
+    public void setGiaTienSanh(BigDecimal giaTienSanh) {
+        this.giaTienSanh = giaTienSanh;
+    }
+
+    public BigDecimal getGiaTienMenu() {
+        return giaTienMenu;
+    }
+
+    public void setGiaTienMenu(BigDecimal giaTienMenu) {
+        this.giaTienMenu = giaTienMenu;
     }
 }

@@ -16,6 +16,9 @@
                 <th>Ngày Tổ Chức</th>
                 <th>Thời Gian</th>
                 <th>Trạng Thái</th>
+                <th>Số Bàn</th>
+                <th>Tiền Sảnh</th>
+                <th>Tiền Menu</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +31,9 @@
                 <td><span>{{nv.ngayToChuc}}</span></td>
                 <td><span>{{nv.thoiGian}}</span></td>
                 <td><span>{{nv.trangThai}}</span></td>
+                <td><span>{{nv.soBan}}</span></td>
+                <td><span>{{nv.giaTienSanh}}</span></td>
+                <td><span>{{nv.giaTienMenu}}</span></td>
                 <td>
                     <button class="btn btn-sm btn-info " (click)="triggerModal(modalData, i, true)">
               <i id="ic1 " class="fa fa-search " ></i>Sửa</button>

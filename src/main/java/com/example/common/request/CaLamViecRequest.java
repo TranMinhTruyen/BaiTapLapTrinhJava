@@ -1,30 +1,12 @@
 package com.example.common.request;
 
-public class CaLamViecRequest {
-    private int id;
-    private String caLam;
+import com.example.common.response.CaLamViecResponse;
 
+public class CaLamViecRequest extends CaLamViecResponse {
     public CaLamViecRequest() {
     }
 
     public CaLamViecRequest(int id, String caLam) {
-        this.id = id;
-        this.caLam = caLam;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCaLam() {
-        return caLam;
-    }
-
-    public void setCaLam(String caLam) {
-        this.caLam = caLam;
+        super(id, caLam);
     }
 }

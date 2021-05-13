@@ -1,35 +1,16 @@
 package com.example.common.request;
 
-import java.sql.Date;
+import com.example.common.response.KhachHangResponse;
 
-public class KhachHangRequest {
-    private int id;
+public class KhachHangRequest extends KhachHangResponse {
     private String taiKhoan;
     private String matKhau;
-    private String ho;
-    private String ten;
-    private Date ngaySinh;
-    private String hinhAnh;
 
-    public KhachHangRequest() {
-    }
 
-    public KhachHangRequest(int id, String taiKhoan, String matKhau, String ho, String ten, Date ngaySinh, String hinhAnh) {
-        this.id = id;
+    public KhachHangRequest(int id, String ho, String ten, String ngaySinh, String hinhAnh, String taiKhoan, String matKhau) {
+        super(id, ho, ten, ngaySinh, hinhAnh);
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
-        this.ho = ho;
-        this.ten = ten;
-        this.ngaySinh = ngaySinh;
-        this.hinhAnh = hinhAnh;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTaiKhoan() {
@@ -46,37 +27,5 @@ public class KhachHangRequest {
 
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
-    }
-
-    public String getHo() {
-        return ho;
-    }
-
-    public void setHo(String ho) {
-        this.ho = ho;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public Date getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
     }
 }

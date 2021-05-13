@@ -33,7 +33,7 @@
                 <option value="Tiệc Quẩy">Tiệc Quẩy</option>
               </select>
             <div *ngIf="form.get('loai').touched && form.get('loai').invalid" class="invalid-feedback">
-                <div *ngIf="form.get('loai').errors.required">Thời Gian Tổ Chức Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('loai').errors.required">Loại Tiệc Không Được Phép Bỏ Trống</div>
             </div>
         </div>
         <div>
@@ -42,7 +42,7 @@
                 <option [value]="kh.id" *ngFor="let kh of sanh.data; index as i;">{{kh.tenSanh}}</option>
             </select>
             <div *ngIf="form.get('sanh').touched && form.get('sanh').invalid" class="invalid-feedback">
-                <div *ngIf="form.get('sanh').errors.required">Thời Gian Tổ Chức Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('sanh').errors.required">Sảnh Tổ Chức Không Được Phép Bỏ Trống</div>
             </div>
         </div>
         <div>
@@ -51,7 +51,7 @@
                 <option value="{{khh.id}}" *ngFor="let khh of menu.data; index as i;">{{khh.tenMenu}}</option>
               </select>
             <div *ngIf="form.get('menu').touched && form.get('menu').invalid" class="invalid-feedback">
-                <div *ngIf="form.get('menu').errors.required">Thời Gian Tổ Chức Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('menu').errors.required">Menu Tổ Chức Không Được Phép Bỏ Trống</div>
             </div>
         </div>
 

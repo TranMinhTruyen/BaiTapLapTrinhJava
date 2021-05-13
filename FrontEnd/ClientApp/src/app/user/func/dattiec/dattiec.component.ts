@@ -27,7 +27,7 @@ export class DattiecComponent implements OnInit {
     "khachHang": 0,
     "trangThai": "",
     "caLamViec": 0,
-    "menu": 0
+    "menu": 0,
   };
   menu: any={
     "id": "",
