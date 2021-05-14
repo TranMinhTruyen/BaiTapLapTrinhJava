@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="imagebg"></div>
+<div class="row bg-form " style="margin-top: 50px">
+    <div class="col-md-12 col-md-offset-3 form-container">
+        <h2>Phản hồi !</h2>
+        <p>
+            Hãy cho chúng tôi biết phản hồi của bạn nào:
+        </p>
+        <form role="form" method="post" id="reused_form">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label for="comments">
+                        Bình luận:</label>
+                    <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Viết bình luận của bạn vào đây" maxlength="6000" rows="7" [(ngModel)]="data.noiDung"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="name">
+                        Chọn Loại Tiệc mà Bạn Muốn Phàn Nàn:</label>
+                    <div>
+                        <select name="loaiTiec" [(ngModel)]="data.idTiec">
+                                <option value="{{kh.id}}" *ngFor="let kh of tiec.data; index as i;">Loại: {{kh.loai}}; Sảnh: {{kh.sanh}}; Ngày tổ chức: {{kh.ngayToChuc}}</option>
+                              </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <button type="submit" class="btn btn-lg btn-warning btn-block" (click)="phanHoi()">Gửi </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

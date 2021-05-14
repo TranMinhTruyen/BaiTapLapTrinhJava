@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<!-- Default form login -->
+<div class="container">
+    <form class="login-form text-center border border-light p-5" [formGroup]="form">
+
+        <p class="h4 mb-4">Đăng Nhập</p>
+
+        <div class="form-group">
+            <input type="text" class="form-control mb-4" [(ngModel)]="data.taiKhoan" name="taiKhoan" placeholder="Tên Tài Khoản" formControlName="taiKhoan" [ngClass]="{'is-invalid':form.get('taiKhoan').touched && form.get('taiKhoan').invalid}">
+            <div class="invalid-feedback">
+                <div>Tài Khoản Không Được Phép Bỏ Trống</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="password" class="form-control mb-4" [(ngModel)]="data.matKhau" name="matKhau" placeholder="Mật Khẩu" formControlName="matKhau" [ngClass]="{'is-invalid':form.get('matKhau').touched && form.get('matKhau').invalid}">
+            <div *ngIf="form.get('matKhau').touched && form.get('matKhau').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('matKhau').errors.required">Mật Khẩu Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('matKhau').errors.minlength">Mật Khẩu Phải lớn hơn 6 Ký Tự</div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Ghi nhớ đăng nhập</mdb-checkbox>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Quên mật khẩu à ?</a>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button [disabled]="!form.valid" mdbBtn color="info" block="true" class="my-4" type="submit" (click)="login()">Sign in</button>
+
+        <!-- Register -->
+        <p>Chưa có tài khoản ?
+            <a href=" /user/signup ">Đăng Ký Ngay</a>
+        </p>
+
+        <!-- Social login -->
+        <p>Hoặc là đăng nhập với:</p>
+
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="facebook "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="twitter "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="linkedin "></mdb-icon>
+        </a>
+        <a type="button " class="light-blue-text mx-2 ">
+            <mdb-icon fab icon="github "></mdb-icon>
+        </a>
+
+    </form>
+    <!-- Default form login -->
+</div>

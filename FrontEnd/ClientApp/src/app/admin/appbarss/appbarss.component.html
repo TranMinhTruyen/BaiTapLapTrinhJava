@@ -1,0 +1,54 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="/admin">Trang quản lý</a></mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <span class="caret"></span>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+                <a *ngIf="!isHidden" dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Quản Lý
+            <span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/employee">Nhân Viên</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/customer">Khách Hàng</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/tiec">Tiệc</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/calamviec">Ca Làm Việc</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/menu">Menu</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/thucan">Thức Ăn</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/phanhoi">Phản Hồi</a>
+                    <div class="divider dropdown-divider"></div>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="/admin/doanhthu">Báo Cáo Doanh Thu</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Menu Gồm Thức Ăn</a>
+                </div>
+            </li>
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <div class="btn-group" mdbDropdown>
+                        <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                            <a *ngIf="isHidden" class="dropdown-item" href="/admin/login">Đăng Nhập</a>
+                            <a *ngIf="isHidden" class="dropdown-item" href="/admin/signup">Đăng Ký</a>
+                            <a *ngIf="!isHidden" class="dropdown-item" href="/admin/personal">Quản Lý Tài Khoản</a>
+                            <div class="divider dropdown-divider"></div>
+                            <a *ngIf="!isHidden" class="dropdown-item" (click)="signOut()">Đăng Xuất</a>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </links>
+    <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

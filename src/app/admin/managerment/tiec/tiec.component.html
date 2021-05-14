@@ -1,0 +1,103 @@
+<app-appbarss></app-appbarss>
+
+<br>
+<br>
+<br>
+<div class="container">
+    <br>
+    <table class="table table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>Ca Làm Việc</th>
+                <th>Khách Hàng</th>
+                <th>Loại Tiệc Cưới</th>
+                <th>Menu của Tiệc Cưới</th>
+                <th>Sảnh của Tiệc Cưới</th>
+                <th>Ngày Tổ Chức</th>
+                <th>Thời Gian</th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let nv of nhanVien.data; index as i; ">
+                <td><span>{{nv.caLamViec}}</span></td>
+                <td><span>{{nv.khachHang}}</span></td>
+                <td><span>{{nv.loai}}</span></td>
+                <td><span>{{nv.menu}}</span></td>
+                <td><span>{{nv.sanh}}</span></td>
+                <td><span>{{nv.ngayToChuc}}</span></td>
+                <td><span>{{nv.thoiGian}}</span></td>
+                <td><span>{{nv.trangThai}}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-info " (click)="triggerModal(modalData, i, true)">
+              <i id="ic1 " class="fa fa-search " ></i>Sửa</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">Trang Trước</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+        <li class="page-item active">
+            <a class="page-link" href="javascript:void(0);"><span class="sr-only">2</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">Trang Sau</a>
+        </li>
+
+    </ul>
+</div>
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+                <label for="caLamViec">Ca Làm Việc</label>
+                <div class="input-group">
+                    <input id="caLamViec" [disabled]="isReadOnly" class="form-control" [(ngModel)]="nv.caLamViec" name="caLamViec">
+                </div>
+                <label for="khachHang">Tên Khách Hàng</label>
+                <div class="input-group">
+                    <input id="khachHang" [disabled]="isReadOnly" class="form-control" [(ngModel)]="nv.khachHang" name="khachHang">
+                </div>
+                <label for="loai">Loại Tiệc Cưới</label>
+                <div class="input-group">
+                    <input id="loai" class="form-control" [(ngModel)]="nv.loai" name="loai">
+                </div>
+                <label for="menu">Menu của Tiệc Cưới</label>
+                <div class="input-group">
+                    <input id="menu" class="form-control" [(ngModel)]="nv.menu" name="menu">
+                </div>
+                <label for="sanh">Sảnh của Tiệc Cưới</label>
+                <div class="input-group">
+                    <input id="sanh" class="form-control" [(ngModel)]="nv.sanh" name="sanh">
+                </div>
+                <label for="ngayToChuc">Ngày Tổ Chức</label>
+                <div class="input-group">
+                    <input id="ngayToChuc" class="form-control" [(ngModel)]="nv.ngayToChuc" name="ngayToChuc">
+                </div>
+                <label for="thoiGian">Thời Gian</label>
+                <div class="form-group">
+                    <input id="thoiGian" class="form-control" [(ngModel)]="nv.thoiGian" name="thoiGian">
+                </div>
+                <label for="trangThai">Trạng Thái</label>
+                <div class="form-group">
+                    <input id="trangThai" class="form-control" [(ngModel)]="nv.trangThai" name="trangThai">
+                </div>
+                <div class="border text-center">
+                    <button *ngIf="isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="updateEmployees()">Cập nhật</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</ng-template>

@@ -1,0 +1,90 @@
+<app-appbarss></app-appbarss>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="border">
+        <button class="btn btn-md btn-outline-primary" (click)="triggerModal(modalData, null, false)">
+            <i class="fa fa-user "></i>
+            Thêm Khách Hàng mới</button>
+    </div>
+    <br>
+    <table class="table table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>Ngày Sinh</th>
+                <th>Họ Khách Hàng</th>
+                <th>Tên Khách Hàng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let kh of khachHang.data; index as i; ">
+                <td><span>{{kh.ngaySinh}}</span></td>
+                <td><span>{{kh.ho}}</span></td>
+                <td><span>{{kh.ten}}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-info " (click)="triggerModal(modalData, i, true)">
+              <i id="ic1 " class="fa fa-search " ></i>Chi Tiết Khách Hàng</button>
+                    <button class="btn btn-sm btn-warning " (click)="triggerModal(modalData, i, true)">
+              <i id="ic2 " class="fa fa-edit "></i>Sửa</button>
+                    <button class="btn btn-sm btn-danger " (click)="deleteCus(modalData, i, true)">
+              <i id="ic3 " class="fa fa-remove "></i>Xóa</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">Trang Trước</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+        <li class="page-item active">
+            <a class="page-link" href="javascript:void(0);"><span class="sr-only">2</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">Trang Sau</a>
+        </li>
+
+    </ul>
+</div>
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+                <label for="ho">Họ Khách Hàng</label>
+                <div class="input-group">
+                    <input id="ho" class="form-control" [(ngModel)]="kh.ho" name="ho">
+                </div>
+                <label for="ten">Tên Khách Hàng</label>
+                <div class="input-group">
+                    <input id="ten" class="form-control" [(ngModel)]="kh.ten" name="ten">
+                </div>
+                <label for="taiKhoan">Tài Khoản Khách Hàng</label>
+                <div class="input-group">
+                    <input [disabled]="isReadOnly" id="taiKhoan" class="form-control" [(ngModel)]="kh.taiKhoan" name="taiKhoan">
+                </div>
+                <label for="matKhau">Mật Khẩu Khách Hàng</label>
+                <div class="input-group">
+                    <input [disabled]="isReadOnly" id="matKhau" class="form-control" [(ngModel)]="kh.matKhau" name="matKhau">
+                </div>
+                <label for="ngaySinh">Ngày Sinh Khách Hàng</label>
+                <div class="input-group">
+                    <input id="ngaySinh" class="form-control" [(ngModel)]="kh.ngaySinh" name="ngaySinh" placeholder="YYYY-MM-DD">
+                </div>
+                <div class="border text-center">
+                    <button *ngIf="!isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="createCus()">Thêm Khách Hàng Mới</button>
+                    <button *ngIf="isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="updateCus()">Cập nhật</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</ng-template>

@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <mat-icon>whatshot</mat-icon>
+    <span>Nhà Hàng Víp</span>
+
+    <div class="spacer"></div>
+
+    <a mat-button href="user">Trang Chủ</a>
+    <a mat-button *ngIf="!isHidden" href="user/dattiec">Đặt Tiệc</a>
+    <a mat-button *ngIf="!isHidden" href="user/quanlytiec">Quản Lý Tiệc</a>
+    <a mat-button *ngIf="!isHidden" href="user/quanlymenu">Yêu Cầu Menu Tự Chọn</a>
+    <a mat-button *ngIf="!isHidden" href="user/feedback">Phản Hồi</a>
+    <a mat-button *ngIf="!isHidden" href="user/timkiem">Tìm Kiếm</a>
+    <a mat-raised-button color="accent" [matMenuTriggerFor]="menu">Tài Khoản</a>
+    <mat-menu #menu="matMenu">
+        <button *ngIf="isHidden" mat-menu-item routerLink="login">Đăng Nhập</button>
+        <button *ngIf="isHidden" mat-menu-item routerLink="signup">Đăng Ký</button>
+        <button *ngIf="!isHidden" mat-menu-item routerLink="profile">Quản Lý Tài Khoản</button>
+        <button *ngIf="!isHidden" mat-menu-item (click)="signOut()">Đăng Xuất</button>
+    </mat-menu>
+
+</mat-toolbar>

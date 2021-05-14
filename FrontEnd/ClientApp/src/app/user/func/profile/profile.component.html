@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div *ngFor="let nv of personals.data; index as i;" class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4 mt-3">
+        <div class="first">
+            <h6 class="heading">Khách Hàng Mới</h6>
+            <div class="time d-flex flex-row align-items-center justify-content-between mt-3">
+                <div class="d-flex align-items-center"> <i class="fa fa-clock-o clock"></i> <span class="hour ml-1">Số cmnd: {{nv.cmnd}}</span> </div>
+            </div>
+        </div>
+        <div class="second d-flex flex-row mt-2">
+            <div class="image mr-3"> <img src="https://i.imgur.com/0LKZQYM.jpg" class="rounded-circle" width="60" /> </div>
+            <div class="">
+                <div class="d-flex flex-row mb-1"> <span>Họ và Tên: {{nv.ho}} {{nv.ten}}</span>
+                    <div class="ratings ml-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                </div>
+                <div> <button class="btn btn-outline-dark btn-sm px-2" (click)="request()">Yêu cầu Refund</button> <button class="btn btn-outline-dark btn-sm" (click)="delete(nv.id)">Yêu Cầu Xóa Tài Khoản</button> </div>
+            </div>
+        </div>
+        <hr class="line-color">
+        <h6>Ngày sinh của Khách Hàng: {{nv.ngaySinh}}</h6>
+        <div class="third mt-4"> <button class="btn btn-success btn-block" (click)="request()"><i class="fa fa-clock-o"></i> Yêu cầu chỉnh sửa</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<!-- Default form register -->
+<form class=" signup-form text-center border border-light p-5" [formGroup]="form">
+
+    <p class="h4 mb-4">Đăng ký tài khoản</p>
+
+    <div class="form-row mb-4">
+        <div class="col form-group">
+            <input [(ngModel)]="data.ho" name="ho" type="text" class="form-control" placeholder="Họ" formControlName="ho" [ngClass]="{'is-invalid':form.get('ho').touched && form.get('ho').invalid}">
+            <div *ngIf="form.get('ho').touched && form.get('ho').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('ho').errors.required">Họ Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('ho').errors.maxlength">Họ Phải nhỏ hơn 8 Ký Tự</div>
+            </div>
+        </div>
+        <div class="col form-group">
+            <input [(ngModel)]="data.ten" name="ten" type="text" class="form-control" placeholder="Tên" formControlName="ten" [ngClass]="{'is-invalid':form.get('ten').touched && form.get('ten').invalid}">
+            <div *ngIf="form.get('ten').touched && form.get('ten').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('ten').errors.required">Tên Không Được Phép Bỏ Trống</div>
+                <div *ngIf="form.get('ten').errors.maxlength">Tên Phải nhỏ hơn 8 Ký Tự</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <div class="form-group">
+        <input type="text" [(ngModel)]="data.taiKhoan" name="taiKhoan" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Tài Khoản" formControlName="taiKhoan" [ngClass]="{'is-invalid':form.get('taiKhoan').touched && form.get('taiKhoan').invalid}">
+        <div *ngIf="form.get('taiKhoan').touched && form.get('taiKhoan').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('taiKhoan').errors.required">Tài Khoản Không Được Phép Bỏ Trống</div>
+            <div *ngIf="form.get('taiKhoan').errors.maxlength">Tài Khoản Phải nhỏ hơn 16 Ký Tự</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="password" [(ngModel)]="data.matKhau" name="matKhau" id="defaultRegisterFormPassword" class="form-control" placeholder="Mật Khẩu" aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="matKhau" [ngClass]="{'is-invalid':form.get('matKhau').touched && form.get('matKhau').invalid}">
+        <div *ngIf="form.get('matKhau').touched && form.get('matKhau').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('matKhau').errors.required">Mật Khẩu Không Được Phép Bỏ Trống</div>
+            <div *ngIf="form.get('matKhau').errors.minlength">Mật Khẩu Phải lớn hơn 6 Ký Tự</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="text" [(ngModel)]="data.ngaySinh" name="ngaySinh" id="defaultRegisterPhonePassword" class="form-control" placeholder="Ngày Sinh" aria-describedby="defaultRegisterFormPhoneHelpBlock" formControlName="ngaySinh" [ngClass]="{'is-invalid':form.get('ngaySinh').touched && form.get('ngaySinh').invalid}">
+        <div *ngIf="form.get('ngaySinh').touched && form.get('ngaySinh').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('ngaySinh').errors.required">Ngày Sinh Không Được Phép Bỏ Trống</div>
+            <div *ngIf="form.get('ngaySinh').errors.minlength">Ngày Sinh Phải đúng chuẩn</div>
+        </div>
+    </div>
+
+
+
+    <!-- Sign up button -->
+    <button [disabled]="!form.valid" mdbBtn color="info" block="true" class="my-4" type="submit" (click)="signup()">Đăng Ký Ngay</button>
+
+    <!-- Social register -->
+    <p>Hoặc là đăng ký với:</p>
+
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="facebook"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="github"></mdb-icon>
+    </a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>Khi mà bạn ấn nút
+        <em>Đăng Ký</em>, bạn đã đồng ý với <a href="https://www.youtube.com/" target="_blank">Điều Khoản</a></p> của chúng tôi
+
+</form>
+<!-- Default form register -->

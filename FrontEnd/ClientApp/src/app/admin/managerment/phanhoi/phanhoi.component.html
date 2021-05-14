@@ -1,0 +1,85 @@
+<app-appbarss></app-appbarss>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="border">
+        <button class="btn btn-md btn-outline-primary" (click)="triggerModal(modalData, null, false)">
+            <i class="fa fa-user "></i>
+            Thêm Menu</button>
+    </div>
+    <br>
+    <table class="table table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>Id Phản Hồi</th>
+                <th>Id Tiệc</th>
+                <th>Id Khách Hàng</th>
+                <th>Nội Dung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let kh of phanhoi.data; index as i; ">
+                <td><span>{{kh.id}}</span></td>
+                <td><span>{{kh.idTiec}}</span></td>
+                <td><span>{{kh.idKhachHang}}</span></td>
+                <td><span>{{kh.noiDung}}</span></td>
+                <td>
+                    <button class="btn btn-sm btn-warning " (click)="triggerModal(modalData, i, true)">
+              <i id="ic2 " class="fa fa-edit "></i>Sửa</button>
+                    <button class="btn btn-sm btn-danger " (click)="deleteCLV(modalData, i, true)">
+              <i id="ic3 " class="fa fa-remove "></i>Xóa</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);" (click)="searchPrevious()">Trang Trước</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="searchPrevious()">{{phanhoi.page-1}}</a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link" href="javascript:void(0);">{{phanhoi.page}}<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="javascript:void(0);" (click)="searchNext()">{{phanhoi.page+1}}</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);" (click)="searchNext()">Trang Sau</a>
+        </li>
+
+    </ul>
+</div>
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+                <label for="idTiec">Id Tiệc</label>
+                <div class="input-group">
+                    <input id="idTiec" class="form-control" [(ngModel)]="ph.idTiec" name="idTiec">
+                </div>
+                <label for="idKhachHang">Id Khách Hàng</label>
+                <div class="input-group">
+                    <input id="idKhachHang" class="form-control" [(ngModel)]="ph.idKhachHang" name="idKhachHang">
+                </div>
+                <label for="noiDung">Nội Dung</label>
+                <div class="input-group">
+                    <input id="noiDung" class="form-control" [(ngModel)]="ph.noiDung" name="noiDung">
+                </div>
+                <div></div>
+                <div class="border text-center">
+                    <button *ngIf="!isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="createCaLamViec()">Thêm Phản Hồi Mới</button>
+                    <button *ngIf="isReadOnly" data-dismiss="modal" class="btn btn-info" (click)="updateCaLamViec()">Cập nhật</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+</ng-template>
