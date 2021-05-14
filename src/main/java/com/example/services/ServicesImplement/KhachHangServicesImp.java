@@ -82,7 +82,7 @@ public class KhachHangServicesImp implements KhachHangServices {
             khachHangResponse.setId(result.getId());
             khachHangResponse.setHo(result.getHo());
             khachHangResponse.setTen(result.getTen());
-            khachHangResponse.setNgaySinh(result.getNgaySinh().toString());
+            khachHangResponse.setNgaySinh(String.valueOf(result.getNgaySinh()));
             khachHangResponse.setHinhAnh(result.getHinhAnh());
             return khachHangResponse;
         }
@@ -92,7 +92,8 @@ public class KhachHangServicesImp implements KhachHangServices {
     @Override
     public KhachHangRequest updateKhachHangById(int id, KhachHangRequest khachHang) {
         KhachHang newKhachHang = new KhachHang();
-        newKhachHang.setMatKhau(khachHang.getMatKhau());
+        String matKhauHash = Hashing.sha256().hashString(khachHang.getMatKhau(), StandardCharsets.UTF_8).toString();
+        newKhachHang.setMatKhau(matKhauHash);
         newKhachHang.setHo(khachHang.getHo());
         newKhachHang.setTen(khachHang.getTen());
         newKhachHang.setNgaySinh(Date.valueOf(khachHang.getNgaySinh()));

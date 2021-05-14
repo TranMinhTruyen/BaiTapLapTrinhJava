@@ -18,8 +18,13 @@
         </descriptors>
         <webroots />
         <sourceRoots>
+          <root url="file://$MODULE_DIR$/out" />
+          <root url="file://$MODULE_DIR$/out/production" />
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/target" />
+          <root url="file://$MODULE_DIR$/target/classes" />
+          <root url="file://$MODULE_DIR$/target/generated-sources" />
         </sourceRoots>
       </configuration>
     </facet>

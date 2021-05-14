@@ -9,6 +9,7 @@ import com.example.repository.NhanVienRepository;
 import com.example.services.NhanVienServices;
 import com.google.common.hash.Hashing;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -83,9 +84,9 @@ public class NhanVienServicesImp implements NhanVienServices {
             nhanVienResponse.setId(result.getId());
             nhanVienResponse.setHo(result.getHo());
             nhanVienResponse.setTen(result.getTen());
-            nhanVienResponse.setNgaySinh(result.getNgaySinh().toString());
+            nhanVienResponse.setNgaySinh(String.valueOf(result.getNgaySinh()));
             nhanVienResponse.setCmnd(result.getCmnd());
-            nhanVienResponse.setCaLamViec(result.getCaLamViec());
+            nhanVienResponse.setCaLamViec(result.getCaLamViec().getCaLam());
             nhanVienResponse.setRole(result.getRole());
             nhanVienResponse.setHinhAnh(result.getHinhAnh());
             return nhanVienResponse;
@@ -96,7 +97,8 @@ public class NhanVienServicesImp implements NhanVienServices {
     @Override
     public NhanVienRequest updateNhanVienById(int id, NhanVienRequest nhanVien) {
         NhanVien newNhanVien = new NhanVien();
-        newNhanVien.setMatKhau(nhanVien.getMatKhau());
+        String matKhauHash = Hashing.sha256().hashString(nhanVien.getMatKhau(), StandardCharsets.UTF_8).toString();
+        newNhanVien.setMatKhau(matKhauHash);
         newNhanVien.setHo(nhanVien.getHo());
         newNhanVien.setTen(nhanVien.getTen());
         newNhanVien.setNgaySinh(nhanVien.getNgaySinh());
