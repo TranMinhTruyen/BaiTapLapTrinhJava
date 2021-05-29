@@ -1,8 +1,13 @@
 package com.example.controller;
 
+import com.example.common.jwt.JWTTokenProvider;
 import com.example.common.request.LoginRequest;
 import com.example.common.request.NhanVienRequest;
+import com.example.common.response.JwtResponse;
+import com.example.common.response.KhachHangResponse;
 import com.example.common.response.NhanVienResponse;
+import com.example.common.user.CustomUserDetail;
+import com.example.common.user.User;
 import com.example.services.NhanVienServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,6 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "NhanVien")
@@ -23,6 +32,9 @@ public class NhanVienController {
 
     @Autowired
     NhanVienServices nhanVienServices;
+
+    @Autowired
+    JWTTokenProvider jwtTokenProvider;
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @PostMapping(value = "createNhanVien", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -73,12 +85,16 @@ public class NhanVienController {
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
-    @PostMapping(value = "loginNhanVien/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "loginNhanVien", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loginNhanVien(@RequestBody LoginRequest loginRequest){
         NhanVienResponse dataNhanVien = nhanVienServices.getNhanVienByTaiKhoanMatKhau(loginRequest);
-        if (dataNhanVien != null)
-            return new ResponseEntity<>(dataNhanVien, HttpStatus.OK);
-        else
-            return new ResponseEntity<>("Not found", HttpStatus.OK);
+        if (dataNhanVien != null){
+            User user = new User(dataNhanVien.getId(), loginRequest.getTaiKhoan(), loginRequest.getMatKhau(), "ROLE_ADMIN");
+            CustomUserDetail customUserDetail = new CustomUserDetail(user);
+            String jwt = jwtTokenProvider.generateToken(customUserDetail);
+            JwtResponse jwtResponse = new JwtResponse(jwt);
+            return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
+        }
+        else return new ResponseEntity<>("Not found khach hang account", HttpStatus.OK);
     }
 }

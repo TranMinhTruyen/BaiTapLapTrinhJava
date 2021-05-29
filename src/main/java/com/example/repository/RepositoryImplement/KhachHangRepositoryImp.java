@@ -95,6 +95,20 @@ public class KhachHangRepositoryImp implements KhachHangRepository {
     }
 
     @Override
+    public KhachHang getKhachHangByTaiKhoan(String taiKhoan) {
+        Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<KhachHang> query = criteriaBuilder.createQuery(KhachHang.class);
+        Root<KhachHang> root = query.from(KhachHang.class);
+        query.select(root);
+        Predicate p = criteriaBuilder.like(root.get("taiKhoan").as(String.class), taiKhoan);
+
+        query.where(p);
+
+        return session.createQuery(query).uniqueResult();
+    }
+
+    @Override
     public KhachHang getKhachHangById(int id) {
         Session session = this.localSessionFactoryBean.getObject().getCurrentSession();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();

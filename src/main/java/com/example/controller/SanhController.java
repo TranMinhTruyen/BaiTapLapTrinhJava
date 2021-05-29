@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -56,11 +59,15 @@ public class SanhController {
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))
     @DeleteMapping(value = "deleteSanh/")
     public ResponseEntity<?> deleteSanh(@RequestParam int id) {
-        boolean dataSanh = sanhServices.deleteSanhById(id);
-        if (dataSanh)
-            return new ResponseEntity<>(dataSanh, HttpStatus.OK);
-        else
-            return new ResponseEntity<>("Not found", HttpStatus.OK);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            boolean dataSanh = sanhServices.deleteSanhById(id);
+            if (dataSanh)
+                return new ResponseEntity<>(dataSanh, HttpStatus.OK);
+            else
+                return new ResponseEntity<>("Not found", HttpStatus.OK);
+        }
+        else return new ResponseEntity<>("You don't have permission", HttpStatus.OK);
     }
 
     @Operation(responses = @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(hidden = true))))

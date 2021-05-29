@@ -9,6 +9,7 @@ public interface NhanVienRepository {
     List getAllNhanVien();
     List getNhanVienByKeyword(String keyword);
     NhanVien getNhanVienByTaiKhoanMatKhau(String taiKhoan, String matKhau);
+    NhanVien getNhanVienByTaiKhoan(String taiKhoan);
     NhanVien getNhanVienById(int id);
     boolean NhanVienIsExist(String taiKhoan);
     void updateNhanVienById (int id, NhanVien nhanVien);
