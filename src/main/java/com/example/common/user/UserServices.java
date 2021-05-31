@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServices  implements UserDetailsService {
+public class UserServices implements UserDetailsService {
 
     @Autowired
     private KhachHangRepository khachHangRepository;
@@ -24,12 +24,12 @@ public class UserServices  implements UserDetailsService {
         NhanVien nhanVien = nhanVienRepository.getNhanVienByTaiKhoan(username);
         KhachHang khachHang = khachHangRepository.getKhachHangByTaiKhoan(username);
         if (nhanVien != null){
-            User userNhanVien = new User(nhanVien.getId(), nhanVien.getTaiKhoan(), nhanVien.getMatKhau(), "ROLE_ADMIN");
+            User userNhanVien = new User(nhanVien.getId(), nhanVien.getTaiKhoan(), nhanVien.getMatKhau(), "ADMIN");
             return new CustomUserDetail(userNhanVien);
         }
         else{
             if (khachHang != null) {
-                User userKhachHang = new User(khachHang.getId(), khachHang.getTaiKhoan(), khachHang.getMatKhau(), "ROLE_USER");
+                User userKhachHang = new User(khachHang.getId(), khachHang.getTaiKhoan(), khachHang.getMatKhau(), "USER");
                 return new CustomUserDetail(userKhachHang);
             }
             else {
@@ -38,16 +38,16 @@ public class UserServices  implements UserDetailsService {
         }
     }
 
-    public UserDetails loadUserById(int id){
+    public UserDetails loadUserById(int id, String role){
         NhanVien nhanVien = nhanVienRepository.getNhanVienById(id);
         KhachHang khachHang = khachHangRepository.getKhachHangById(id);
-        if (nhanVien != null){
-            User userNhanVien = new User(nhanVien.getId(), nhanVien.getTaiKhoan(), nhanVien.getMatKhau(), "ROLE_ADMIN");
+        if (nhanVien != null && role.equals("ADMIN")){
+            User userNhanVien = new User(nhanVien.getId(), nhanVien.getTaiKhoan(), nhanVien.getMatKhau(), role);
             return new CustomUserDetail(userNhanVien);
         }
         else{
-            if (khachHang != null) {
-                User userKhachHang = new User(khachHang.getId(), khachHang.getTaiKhoan(), khachHang.getMatKhau(), "ROLE_USER");
+            if (khachHang != null && role.equals("USER")) {
+                User userKhachHang = new User(khachHang.getId(), khachHang.getTaiKhoan(), khachHang.getMatKhau(), role);
                 return new CustomUserDetail(userKhachHang);
             }
             else {

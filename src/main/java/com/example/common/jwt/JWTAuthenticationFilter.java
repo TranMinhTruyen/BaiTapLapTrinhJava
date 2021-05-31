@@ -37,15 +37,15 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         try {
             String jwt = getJwtFromRequest(request);
             if (StringUtils.hasText(jwt) && jwtTokenProvider.validateToken(jwt)) {
-                int userId = Math.toIntExact(jwtTokenProvider.getUserIdFromJWT(jwt));
+                int userId = jwtTokenProvider.getUserIdFromJWT(jwt);
+                String role = jwtTokenProvider.getRoleFromJWT(jwt);
 
-                UserDetails userDetails = userServices.loadUserById(userId);
+                UserDetails userDetails = userServices.loadUserById(userId, role);
                 if(userDetails != null) {
                     UsernamePasswordAuthenticationToken
                             authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
                             userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
@@ -55,10 +55,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String getJwtFromRequest(HttpServletRequest request) {
+    public String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken)) {
-            return bearerToken;
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
         }
         return null;
     }

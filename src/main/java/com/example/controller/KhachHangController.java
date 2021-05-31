@@ -89,7 +89,7 @@ public class KhachHangController {
     public ResponseEntity loginKhachHang(@RequestBody LoginRequest loginRequest){
         KhachHangResponse dataKhachHang = khachHangServices.getKhachHangByTaiKhoanMatKhau(loginRequest);
         if (dataKhachHang != null){
-            User user = new User(dataKhachHang.getId(), loginRequest.getTaiKhoan(), loginRequest.getMatKhau(), "ROLE_USER");
+            User user = new User(dataKhachHang.getId(), loginRequest.getTaiKhoan(), loginRequest.getMatKhau(), "USER");
             CustomUserDetail customUserDetail = new CustomUserDetail(user);
             String jwt = jwtTokenProvider.generateToken(customUserDetail);
             JwtResponse jwtResponse = new JwtResponse(jwt);
